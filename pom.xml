@@ -19,6 +19,8 @@
         <!-- Paper API used for compilation. Override for a compile-check against the newest API:
              mvn -Ppaper-latest clean package   (see release_notes/VERSION_UPDATE_CHECKLIST.md) -->
         <paper.api.version>26.2.build.124-stable</paper.api.version>
+        <!-- triumph-gui: use a RELEASE from Maven Central (3.2.0-SNAPSHOT is not published anywhere). 3.1.13 supports 1.21.7+. -->
+        <triumph.gui.version>3.1.13</triumph.gui.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
@@ -59,6 +61,13 @@
             <artifactId>paper-api</artifactId>
             <version>${paper.api.version}</version>
             <scope>provided</scope>
+        </dependency>
+        <!-- GUI library: compile scope + relocated by maven-shade-plugin below (NOT provided - the server does not supply it) -->
+        <dependency>
+            <groupId>dev.triumphteam</groupId>
+            <artifactId>triumph-gui</artifactId>
+            <version>${triumph.gui.version}</version>
+            <scope>compile</scope>
         </dependency>
         <!-- Optional integrations (soft-depend in plugin.yml). The hook classes are only loaded when the plugin is present. -->
         <dependency>
@@ -127,7 +136,13 @@
                         </goals>
                         <configuration>
                             <minimizeJar>false</minimizeJar>
-                            <relocations />
+                            <relocations>
+                                <relocation>
+                                    <pattern>dev.triumphteam.gui</pattern>
+                                    <shadedPattern>cz.softici.server.minecraft.halloween.libs.gui</shadedPattern>
+                                </relocation>
+                            </relocations>
+                            <createDependencyReducedPom>false</createDependencyReducedPom>
                         </configuration>
                     </execution>
                 </executions>
