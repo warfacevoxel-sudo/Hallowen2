@@ -1,0 +1,837 @@
+Halloween Plugin Documentation
+
+──────────────────────────
+
+FULL COMMAND LIST
+
+Player Commands (Permission: halloween.base - default: true):
+[table]
+[tr][th]Command[/th][th]Description[/th][/tr]
+[tr][td]/halloween help[/td][td]Show all available commands with usage[/td][/tr]
+[tr][td]/halloween enable[/td][td]Enable all Halloween effects for yourself[/td][/tr]
+[tr][td]/halloween disable[/td][td]Disable all Halloween effects for yourself (prevents pranks, cannot spawn bosses/graves)[/td][/tr]
+[/table]
+
+Admin Commands (Permission: halloween.admin - default: OP):
+[table]
+[tr][th]Command[/th][th]Description[/th][/tr]
+[tr][td]/halloween on[/td][td]Enable Halloween globally for all players (starts all tasks)[/td][/tr]
+[tr][td]/halloween off[/td][td]Disable Halloween globally (despawns ALL entities: bosses, graves, bat witches, Herobrines, reverts villagers)[/td][/tr]
+[tr][td]/halloween reload[/td][td]Reload config.yml, messages.yml, and data.yml (restarts all player tasks with new intervals)[/td][/tr]
+[tr][td]/halloween set <event> <min> <max>[/td][td]Adjust event interval in minutes. Events: pumpkin, slenderman, fire, lightning, darkness, herobrine. Set 0 0 to disable event[/td][/tr]
+[tr][td]/halloween reset pumpkin[/td][td]Reset pumpkin easter egg states (inventory filled with pumpkins after 3 curses)[/td][/tr]
+[tr][td]/halloween reset helmet[/td][td]Reset helmet reward tiers (progressive cake rewards)[/td][/tr]
+[tr][td]/halloween reset all[/td][td]Reset ALL one-time events (pumpkin + helmet)[/td][/tr]
+[tr][td]/halloween cleanup[/td][td]Remove leftover Halloween entities (Herobrines, bosses, grave mobs, bat witches) - does NOT remove Pumpkin Traders[/td][/tr]
+[tr][td]/halloween cleanup all[/td][td]Remove ALL Halloween entities including Pumpkin Traders[/td][/tr]
+[tr][td]/halloween sound <player|@a> <sound>[/td][td]Play horror sound to specific player or all players (@a). Tab completion available[/td][/tr]
+[/table]
+
+Buff Management Commands (Permission: halloween.admin - default: OP):
+[table]
+[tr][th]Command[/th][th]Description[/th][/tr]
+[tr][td]/halloween buffs list[/td][td]Show all configured pumpkin buffs with status (enabled/disabled), levels, and glowing setting[/td][/tr]
+[tr][td]/halloween buffs toggle[/td][td]Enable/disable entire buff system (keeps pumpkin head event but removes all potion effects)[/td][/tr]
+[tr][td]/halloween buffs glow <on|off>[/td][td]Toggle glowing effect when wearing pumpkin helmet[/td][/tr]
+[tr][td]/halloween buffs add <effect> <level>[/td][td]Add new buff to pumpkin helmet. Example: /halloween buffs add NIGHT_VISION 1[/td][/tr]
+[tr][td]/halloween buffs remove <effect>[/td][td]Remove buff from pumpkin helmet. Example: /halloween buffs remove STRENGTH[/td][/tr]
+[tr][td]/halloween buffs enable <effect>[/td][td]Enable specific buff (keeps in config but activates it)[/td][/tr]
+[tr][td]/halloween buffs disable <effect>[/td][td]Disable specific buff (keeps in config but deactivates it)[/td][/tr]
+[tr][td]/halloween buffs level <effect> <level>[/td][td]Change buff amplifier level. Example: /halloween buffs level SPEED 3[/td][/tr]
+[/table]
+
+Command Examples:
+/halloween set pumpkin 2 5          # Pumpkin curse every 2-5 minutes
+/halloween set herobrine 10 20      # Herobrine every 10-20 minutes (for testing)
+/halloween set fire 0 0             # Disable fire event completely
+/halloween buffs add NIGHT_VISION 1 # Add Night Vision I to pumpkin helmet
+/halloween sound @a warden_heartbeat # Play warden heartbeat to all players
+/halloween cleanup all              # Remove all entities including traders
+
+Note: Custom command prefix can be set in config.yml (e.g., /scary, /spooky instead of /halloween)
+
+──────────────────────────
+
+Horror Sound Command
+
+Play spooky sounds to specific players or everyone!
+
+Available Sounds:
+• cave_ambience (or cave) - Eerie cave sounds
+• witch_cackle (or witch) - Witch laughing
+• ghast_scream (or ghast) - Ghast crying
+• enderman_scream (or enderman) - Enderman scream
+• zombie_growl (or zombie) - Zombie groaning
+• skeleton_rattle (or skeleton) - Skeleton rattling
+• creeper_hiss (or creeper) - Creeper fuse
+• wither - Wither ambient sound
+• ender_dragon (or dragon) - Dragon growl
+• thunder - Thunder strike
+• bell - Bell toll
+• portal - Nether portal ambience
+• soul - Soul escape
+• sculk_shriek (or sculk) - Sculk shrieker
+• warden_heartbeat (or warden) - Warden heartbeat
+• horse_death - Horse death sound (spooky!)
+
+Example Commands:
+/halloween sound Steve cave_ambience
+/halloween sound @a ghast_scream
+/scary sound PlayerName enderman_scream  (works with custom prefix)
+
+──────────────────────────
+
+Boss Battles
+
+Pumpkin Zombie Boss (formerly Pumpkin Monster):
+Summoning: Place fence + carved pumpkin on top, ignite with flint & steel
+Stats: 100 HP, Diamond Armor, Mace weapon, +30% speed, +2.0 damage
+Rewards: 10-14 carved pumpkins, cakes, zombie head (rare!), glowstone dust, phantom membrane, XP
+
+Pumpkin Skeleton Boss (formerly Pumpkin Witch):
+Summoning: Place lapis lazuli block + carved pumpkin on top, ignite with flint & steel
+Stats: 100 HP, Netherite Armor + Pumpkin Head, Bow, +30% speed, +3.0 damage
+Minions: Spawns Cursed Bat (every 10s) and Haunting Phantom (every 60s)
+Rewards: Ancient Debris (rare!), phantom membrane, beneficial potion, 15-30 pumpkins, +40% more XP
+
+Smart XP System:
+Low-level players (<30): Receive direct levels (3-7 levels per boss)
+High-level players (≥30): Receive raw XP that scales naturally with Minecraft's level curve
+Pumpkin Skeleton Boss gives +40% more XP than Pumpkin Zombie Boss
+Prevents high-level XP exploits while rewarding lower levels fairly
+
+Protection:
+Players who disabled Halloween effects (/halloween disable) cannot spawn bosses
+Prevents opt-out players from exploiting boss rewards
+
+──────────────────────────
+
+Grave System
+
+Build elaborate graves to summon an undead army!
+
+How to Build:
+1. Place 3 wood planks underground (coffin)
+2. Cover with 3 dirt blocks above planks
+3. Place RIP sign on middle dirt block
+4. Build cross with stone walls (4 vertical + 2 horizontal at 3rd level)
+5. Place candles on opposite side from cross
+6. Light candle with flint & steel to trigger!
+
+What Happens:
+18-second dramatic animation (cross sinks → dirt vanishes → coffin transforms to nether bricks)
+Undead army spawns: 3 Skeletons, 2 Zombies, 2 Skeleton Riders, 3 Zombie Riders
+All mobs wear pumpkin helmets and glow
+Buffed stats: +30% health, +50% damage, +20% speed
+
+Rewards:
+Chest appears with: 10-32 pumpkins, 2-5 cakes, skeleton skulls (50% chance), zombie heads (50% chance), 5 diamonds, 2-4 ancient debris, treasure map
+Team-based XP distribution (XP split based on kill contribution)
+
+Protection:
+Disabled players cannot trigger graves
+Helpful message shows if disabled player tries to activate
+
+──────────────────────────
+
+NEW v3.0.0: Bat Transformation Event
+
+Bats can transform into dangerous witches!
+
+How It Works:
+• When a bat dies, 33% chance to transform into a witch
+• Witch spawns with pumpkin helmet and glow effect
+• 1.5x health multiplier (tougher than normal witch)
+• Witch is marked as "transformed" internally
+
+Rewards:
+• 3-8 carved pumpkins
+• Random useful potion: Strength, Swiftness, Regeneration, Healing, or Fire Resistance
+• 5 XP levels (smart XP system applies)
+
+Configuration:
+bat_transformation:
+  enabled: true      # Toggle on/off
+  chance: 0.33       # 33% transformation rate
+  health_multiplier: 1.5
+  xp_reward: 5
+  rewards:
+    pumpkins_min: 3
+    pumpkins_max: 8
+    potion_drop: true
+
+Use /halloween cleanup to remove all transformed witches
+
+──────────────────────────
+
+Pumpkin Villager Trading
+
+Convert any villager to a Pumpkin Trader!
+
+How to Convert:
+Right-click any villager with a carved pumpkin
+Villager becomes Pumpkin Trader (Toolsmith profession, wears pumpkin helmet)
+
+Trading:
+64 carved pumpkins ↔ 1 emerald (both directions)
+Daily limit: 64 trades per villager
+Villagers revert to normal when Halloween is disabled globally
+
+Use Case:
+Create pumpkin economy on your server
+Reward players for collecting pumpkins
+Alternative emerald source
+
+──────────────────────────
+
+Random Pumpkin Mobs
+
+10% chance any mob spawns wearing a pumpkin helmet!
+
+Features:
+Works with zombies, skeletons, creepers, and more
+Drops 5-10 carved pumpkins when killed
+Fully configurable spawn chance and drop amounts
+
+Configuration:
+random_pumpkin_mobs:
+  enabled: true
+  chance: 0.10  # 10% chance
+  pumpkin_drops:
+    min: 5
+    max: 10
+
+──────────────────────────
+
+Custom Command Prefix
+
+Avoid conflicts with other Halloween plugins!
+
+Configuration:
+# In config.yml
+command_prefix: "scary"  # Change from "halloween" to any name
+
+How It Works:
+When you set a custom prefix (e.g., "scary"), this plugin:
+✅ Registers your custom command (e.g., /scary)
+✅ Unregisters /halloween completely
+✅ Frees /halloween for other plugins to use
+
+Examples:
+command_prefix: "scary"
+
+# After restart, use:
+/scary help
+/scary enable
+/scary sound @a cave_ambience
+
+Perfect for servers with multiple Halloween plugins!
+Works on Spigot, Paper, and Purpur
+
+──────────────────────────
+
+Events & Pranks
+
+NEW v3.0.0: All events now have individual enabled/disabled flags!
+
+Pumpkin Curse → default 5–15 minutes (enabled: true)
+Slenderman → default 10–20 minutes (enabled: true)
+Fire → default 30–60 minutes (enabled: true)
+Lightning → default 20–40 minutes (enabled: true)
+Darkness → default 10–50 minutes (enabled: true)
+Herobrine → default 40–80 minutes (enabled: true, night only)
+Bat Transformation → 33% chance on bat death (enabled: true) NEW v3.0.0!
+
+Adjustable in config.yml or via /halloween set.
+
+NEW v3.0.0: Disable individual events!
+In config.yml:
+events:
+  pumpkin:
+    enabled: false  # ✅ This now actually works!
+    min: 5
+    max: 15
+
+Or use command:
+/halloween set pumpkin 0 0  # Disables pumpkin event
+
+Examples:
+/halloween set darkness 15 30    # More frequent darkness
+/halloween set pumpkin 5 20      # Adjust pumpkin curse timing
+/halloween set herobrine 10 20   # More frequent Herobrine (for testing)
+
+──────────────────────────
+
+Herobrine Event
+
+4-stage progressive nightmare encounter (night only)!
+
+How It Works:
+Stage 1: Herobrine appears far away (3 chunks), watching you...
+Stage 2: He moves closer (2 chunks), still watching...
+Stage 3: Now very close (1 chunk), getting ready...
+Stage 4: Invisible attack from behind with creepy effects!
+
+Features:
+• Only spawns at night (ticks 13000-23000)
+• Progressive stages with 10-20 second delays
+• Auto-despawns after 20 seconds per stage
+• Despawns if you approach too close (stages 1-3)
+• Custom Steve skin with white eyes (Galthorius skin)
+• Particles and horror sounds
+• Final stage: invisible attack with 3-second buildup
+
+Configuration:
+events:
+  herobrine:
+    enabled: true  # Toggle on/off
+    min: 40        # Minutes between spawns
+    max: 80
+
+herobrine:
+  enabled: true
+  render_distance: 3  # How far players can see him
+
+Commands:
+/halloween set herobrine 10 20  # More frequent (for testing)
+/halloween cleanup              # Remove leftover Herobrines
+
+──────────────────────────
+
+Pumpkin Buff Customization
+
+Available Effects:
+SPEED, HASTE, STRENGTH, REGENERATION, RESISTANCE, JUMP_BOOST, NIGHT_VISION, INVISIBILITY, FIRE_RESISTANCE, WATER_BREATHING, ABSORPTION, HEALTH_BOOST, LUCK, SLOW_FALLING
+
+Example Commands:
+/halloween buffs list                    # View current buffs
+/halloween buffs add NIGHT_VISION 1      # Add Night Vision
+/halloween buffs remove STRENGTH         # Remove Strength
+/halloween buffs level SPEED 3           # Change Speed to Level 3
+/halloween buffs disable RESISTANCE      # Disable temporarily
+/halloween buffs enable RESISTANCE       # Re-enable
+/halloween buffs glow off                # Toggle glowing
+/halloween buffs toggle                  # Disable all buffs
+
+Use Cases:
+PvP Servers: Remove combat buffs (STRENGTH, RESISTANCE)
+Survival: Reduce levels for balance (SPEED 1 instead of SPEED 2)
+Creative: Keep only useful buffs (NIGHT_VISION, HASTE)
+Hardcore: Disable all buffs but keep pranks active
+
+──────────────────────────
+
+Messages
+
+- All prank texts are in messages.yml
+- Supports %PLAYER% placeholder
+- Add unlimited variations — one is chosen randomly each time
+- Auto-updates: New messages added automatically when updating plugin
+
+Example custom messages:
+darkness:
+  - "%PLAYER% was swallowed by the void..."
+  - "The darkness claims %PLAYER%!"
+pumpkinMonsterSpawn:
+  - "🎃 %PLAYER% awakened a Pumpkin Zombie Boss!"
+pumpkinWitchDefeat:
+  - "⭐ %PLAYER% defeated the legendary Pumpkin Skeleton Boss!"
+graveAwaken:
+  - "⚰️ %PLAYER% has disturbed an ancient grave... something evil awakens!"
+batTransformation:  # NEW v3.0.0!
+  - "🦇 A bat transformed into a witch near %PLAYER%!"
+
+──────────────────────────
+
+Rewards & Easter Eggs
+
+Progressive Cake Rewards:
+Wear pumpkin helmet continuously to earn cakes
+1st reward: 3 minutes
+2nd reward: 6 more minutes (9 total)
+3rd reward: 9 more minutes (18 total)
+Continues increasing by 3 minutes each time
+Caps at 30 minutes, then repeats every 30 minutes
+Players see: "Next reward in X minutes of continuous pumpkin wearing!"
+
+Easter Eggs:
+After 3 pumpkin curses → Inventory fills with pumpkins (once per player)
+Admins can reset these via /halloween reset
+
+──────────────────────────
+
+Configuration Files
+
+config.yml - Main plugin settings
+• Enable/disable plugin features
+• NEW v3.0.0: Individual enabled flags for all events (events.pumpkin.enabled, etc.)
+• NEW v3.0.0: Bat transformation configuration
+• Adjust event intervals (now under events: section)
+• Configure pumpkin buffs (effects, levels, glowing)
+• Set custom command prefix
+• Configure boss stats and rewards (pumpkin_zombie_boss, pumpkin_skeleton_boss)
+• Configure grave system
+• Configure villager trading
+• Configure random pumpkin mobs
+• Configure Herobrine event
+• Configure update checker
+
+messages.yml - Customizable messages
+• All broadcast messages
+• Support for multiple random variations
+• Auto-merges on updates (preserves customizations)
+• Boss spawn/defeat messages
+• Grave messages
+• NEW v3.0.0: Bat transformation messages
+
+data.yml - Player data (auto-generated)
+• Player opt-out status
+• Pumpkin curse counts
+• Easter egg states
+• Helmet reward tiers
+• Global enable/disable state
+• Custom event intervals
+
+──────────────────────────
+
+COMPLETE config.yml (v3.0.0)
+
+[CODE]
+# =========================================================
+# Halloween Plugin v3.0.0 Config
+# =========================================================
+# DO NOT EDIT THIS LINE - used for auto-migration detection
+config_version: "3.0.0"
+
+# Global enable/disable is controlled via commands, not here!
+#   /halloween on  - Enable Halloween globally (stored in data.yml)
+#   /halloween off - Disable Halloween globally (stored in data.yml)
+# Players can individually opt-out with: /halloween disable
+
+# =========================================================
+# COMMAND PREFIX SETTINGS
+# =========================================================
+# Command prefix (default: halloween)
+# Changes BOTH the messages AND registers a working command!
+# Examples: halloween, scary, spooky, hw, etc.
+#
+# ⚠️ IMPORTANT: When you set a custom prefix (e.g., "scary"):
+# - Plugin registers /scary as the ONLY command
+# - /halloween and /hlw are UNREGISTERED (freed for other plugins!)
+# - This ensures ZERO conflicts with other Halloween plugins
+#
+# Restart server after changing this setting!
+command_prefix: "halloween"
+
+# Broadcast settings
+broadcast_events: false  # If false, only affected player sees messages
+
+# =========================================================
+# LOGIN & HELMET REWARDS (v3.0.0+)
+# =========================================================
+
+# Login Pumpkin Spawn
+login_pumpkin:
+  enabled: true  # Set to false to disable login pumpkin spawn
+  cooldown_minutes: 30  # Minutes cooldown after login
+
+# Helmet Trick-or-Treat Rewards
+helmet_rewards:
+  enabled: true  # Set to false to disable cake rewards
+  first_reward_minutes: 5  # Minutes for first cake reward
+  increment_minutes: 5  # Increase interval each time (5, 10, 15, ...)
+  max_minutes: 30  # Maximum interval between cakes
+
+# =========================================================
+# BOSS ENCOUNTERS
+# =========================================================
+
+# Pumpkin Zombie Boss
+# Summon: Place fence + carved pumpkin on top, ignite with flint & steel
+pumpkin_zombie_boss:
+  enabled: true
+  health: 100.0  # Boss health
+  damage_boost: 2.0  # Additional damage multiplier
+  speed_boost: 0.3  # Movement speed boost (30%)
+  xp_reward: 10  # Levels to give on defeat
+  rewards:
+    - material: CARVED_PUMPKIN
+      min: 15
+      max: 20
+    - material: CAKE
+      min: 3
+      max: 5
+    - material: PHANTOM_MEMBRANE
+      min: 1
+      max: 5
+    - material: ZOMBIE_HEAD
+      min: 1
+      max: 1
+      chance: 0.3  # 30% chance
+    - material: GLOWSTONE_DUST
+      min: 10
+      max: 32
+
+# Pumpkin Skeleton Boss (with Minions)
+# Summon: Place lapis block + carved pumpkin on top, ignite with flint & steel
+pumpkin_skeleton_boss:
+  enabled: true
+  health: 100.0  # Boss health
+  damage_boost: 3.0  # Additional damage
+  speed_boost: 0.3  # Movement speed boost (30%)
+  xp_reward: 15  # Levels to give on defeat (+40% more than zombie boss)
+  bat_spawn_interval: 10  # Seconds between bat spawns
+  phantom_spawn_interval: 60  # Seconds between phantom spawns
+  minion_range: 20  # Range to check for existing minions
+  rewards:
+    - material: CARVED_PUMPKIN
+      min: 15
+      max: 30
+    - material: PHANTOM_MEMBRANE
+      min: 2
+      max: 4
+    - material: ANCIENT_DEBRIS
+      min: 1
+      max: 2
+    - material: POTION  # Strength II potion
+      min: 1
+      max: 1
+
+# =========================================================
+# RANDOM FEATURES
+# =========================================================
+  
+# Random pumpkin head mobs
+random_pumpkin_mobs:
+  enabled: true
+  chance: 0.10  # 10% chance for any mob to spawn with pumpkin
+  pumpkin_drops: 
+    min: 1
+    max: 3
+    
+# Pumpkin Villager trading
+pumpkin_villager:
+  enabled: true
+  daily_limit: 64  # Max trades per day per villager
+
+# Bat Transformation Event (v3.0.0+)
+# When players kill bats, they have a chance to transform into witches
+bat_transformation:
+  enabled: true
+  chance: 0.33  # 33% chance for bat to transform into witch on death
+  health_multiplier: 1.5  # Witch has 150% normal health
+  message: "§5§l✦ §dThe bat transforms into a witch! §5§l✦"
+  xp_reward: 5  # XP levels for killing transformed witch
+  rewards:
+    pumpkins_min: 3
+    pumpkins_max: 8
+    potion_drop: true  # Random potion (Strength/Swiftness/Regen/Healing/Fire Resistance)
+
+# =========================================================
+# SCARE EVENTS (v3.0.0 - Unified Structure)
+# =========================================================
+# All random scare events that happen to players at intervals
+# Set min and max to 0 to disable an event
+# Intervals are in MINUTES
+
+events:
+  # Pumpkin Curse - Places carved pumpkin on player's head
+  pumpkin:
+    enabled: true  # NEW v3.0.0: Individual enable/disable flag
+    min: 5  # Minimum minutes between events
+    max: 20  # Maximum minutes between events
+  
+  # Slenderman - Spawns enderman briefly in front of player
+  slenderman:
+    enabled: true
+    min: 15
+    max: 40
+  
+  # Fire Event - Sets player on fire (harmless by default)
+  fire:
+    enabled: true
+    min: 30
+    max: 60
+    damage_enabled: false  # Set to true to enable fire damage
+  
+  # Lightning Event - Strikes lightning near player (harmless by default)
+  lightning:
+    enabled: true
+    min: 20
+    max: 35
+    damage_enabled: false  # Set to true to enable lightning damage
+  
+  # Darkness Event - Brief blindness effect with spooky sounds
+  darkness:
+    enabled: true
+    min: 10
+    max: 50
+    duration_seconds: 2  # Duration of blindness effect
+  
+  # Herobrine Progressive Scare Event (v1.7.0+)
+  # Spawns Herobrine (Steve with white eyes) at night in 4 progressive stages
+  herobrine:
+    enabled: true
+    min: 40  # Minimum minutes between Herobrine encounters
+    max: 80  # Maximum minutes between Herobrine encounters
+    render_distance: 3  # Maximum spawn distance in chunks
+
+# =========================================================
+# PUMPKIN BUFFS
+# =========================================================
+# Buffs applied when wearing carved pumpkin helmet
+# Available effects: SPEED, HASTE, STRENGTH, REGENERATION, RESISTANCE, 
+#                    JUMP_BOOST, NIGHT_VISION, INVISIBILITY, FIRE_RESISTANCE, 
+#                    WATER_BREATHING, ABSORPTION, HEALTH_BOOST, LUCK, SLOW_FALLING
+# Level 0 = Effect I, Level 1 = Effect II, etc.
+# Duration: 15 seconds (prevents night vision blinking)
+
+pumpkin_buffs:
+  enabled: true
+  glowing: true  # Makes player glow when wearing pumpkin
+  duration: 15  # Duration in seconds (prevents blinking, v1.7.2+)
+  effects:
+    - type: HASTE
+      level: 1
+      enabled: false
+    - type: SPEED
+      level: 1
+      enabled: true
+    - type: STRENGTH
+      level: 1
+      enabled: false
+    - type: REGENERATION
+      level: 1
+      enabled: true
+    - type: RESISTANCE
+      level: 1
+      enabled: false
+    - type: JUMP_BOOST
+      level: 1
+      enabled: false
+
+# =========================================================
+# GRAVE SYSTEM (v1.6.0+)
+# =========================================================
+# Build elaborate graves and summon undead armies!
+# How to build: 3 planks (coffin) → 3 dirt → RIP sign → stone wall cross → candles
+# Light candle with flint & steel to start the encounter
+
+grave:
+  enabled: true
+  wave_timeouts:
+    wave1: 120  # 2 minutes to complete wave 1
+    wave2: 180  # 3 minutes to complete wave 2
+    wave3: 300  # 5 minutes to complete wave 3
+  spawns:
+    # Wave 1 spawns
+    wave1:
+      skeleton: 3
+      zombie: 2
+      skeleton_horse: 2
+      zombie_horse: 3
+    # Wave 2 spawns (harder)
+    wave2:
+      skeleton: 5
+      zombie: 7
+      skeleton_horse: 3
+      zombie_horse: 4
+    # Wave 3 spawns (hardest)
+    wave3:
+      skeleton: 10
+      zombie: 8
+      blaze: 3  # Replaced phantoms with blazes (v1.7.2+)
+      skeleton_horse: 6
+  health_boost: 1.3  # 30% more health
+  damage_boost: 1.5  # 50% more damage
+  speed_boost: 0.2  # 20% speed increase
+  pumpkin_drops_per_mob: 3  # Pumpkins per grave mob
+  xp_per_mob: 5  # Extra XP per mob kill
+  rewards:
+    - material: CARVED_PUMPKIN
+      min: 10
+      max: 32
+    - material: CAKE
+      min: 2
+      max: 5
+    - material: SKELETON_SKULL
+      min: 0
+      max: 1
+      chance: 0.5  # 50% chance
+    - material: ZOMBIE_HEAD
+      min: 0
+      max: 1
+      chance: 0.5  # 50% chance
+    - material: DIAMOND
+      min: 5
+      max: 10
+    - material: ANCIENT_DEBRIS
+      min: 1
+      max: 3
+    - material: FILLED_MAP  # Treasure map
+      min: 1
+      max: 1
+
+# =========================================================
+# UPDATE CHECKER (v1.7.1+)
+# =========================================================
+
+update_checker:
+  enabled: true  # Set to false to disable update notifications
+  # Message shown to admins when update is available
+  # Placeholders: %current_version%, %new_version%, %link%
+  message: "§6[Halloween] §eNew update available!\n§7Current: §c%current_version% §7→ Latest: §a%new_version%\n§eDownload: %link%"
+[/CODE]
+
+──────────────────────────
+
+Permissions
+
+Permission               | Description                                    | Default
+------------------------|------------------------------------------------|--------
+halloween.base          | Basic commands (help, enable, disable)        | true
+halloween.admin         | Admin commands (on/off, set, reset, reload,    | op
+                        | buffs, sound, cleanup)                         |
+
+──────────────────────────
+
+Tips & Best Practices
+
+• Players can opt-out with /halloween disable if effects are too intense
+• Disabled players cannot spawn bosses or trigger graves (prevents exploits)
+• Use /halloween off to despawn all entities instantly
+• NEW v3.0.0: Disable individual events in config.yml with enabled: false
+• Perfect for Halloween events or seasonal servers
+• Combine with spooky maps or texture packs for maximum effect
+• Test buff configurations in creative mode before applying to survival
+• Use /halloween reload after editing config files manually
+• Backup your config.yml and messages.yml before major changes
+• Monitor player feedback and adjust event frequencies accordingly
+• Use /halloween sound command to enhance events and create atmosphere
+• Set command_prefix if you have multiple Halloween plugins
+• Grave builds make great server attractions and combat arenas!
+• Pumpkin Villagers create a fun pumpkin-based economy
+• NEW v3.0.0: Bat transformation adds variety to cave exploration
+• Set event intervals to 0 0 to fully disable specific events
+
+──────────────────────────
+
+Troubleshooting
+
+Buffs not applying?
+→ Check /halloween buffs list - is pumpkin_buffs.enabled true?
+→ Ensure player is wearing a CARVED_PUMPKIN (not jack-o-lantern)
+→ Try /halloween reload
+
+Event enabled: false not working?
+→ UPDATE TO v3.0.0! This was fixed in the major update
+→ After updating, use /halloween reload
+→ Or set intervals to 0 0: /halloween set pumpkin 0 0
+
+Commands not working?
+→ Verify you have halloween.admin permission for admin commands
+→ If using custom command prefix, use your configured command (e.g., /scary)
+
+Boss not spawning?
+→ Ensure correct structure: fence/lapis + carved pumpkin on top
+→ Light the pumpkin with flint & steel (not torch)
+→ Make sure you haven't disabled Halloween with /halloween disable
+
+Grave not activating?
+→ Check structure carefully - follow build guide exactly
+→ Ensure RIP sign is on middle dirt block
+→ Light the candle (not the sign)
+→ Disabled players cannot activate graves
+
+Custom command not working?
+→ After changing command_prefix, do a FULL server restart (not /reload)
+→ Verify console shows "Registered custom command"
+
+Bat transformation not working?
+→ Ensure bat_transformation.enabled: true in config.yml
+→ It's only 33% chance by default (configurable)
+→ Use /halloween reload after config changes
+
+XP errors in console?
+→ UPDATE TO v3.0.0! XP errors were fixed in all 3 locations
+→ No more "Experience must be positive" errors
+
+Old Halloween folder still present?
+→ v3.0.0 uses Halloween_Softici folder to prevent conflicts
+→ Manually migrate data.yml: copy plugins\Halloween\data.yml plugins\Halloween_Softici\data.yml
+→ After verifying everything works, delete old Halloween folder
+
+──────────────────────────
+
+Version History
+
+v3.0.0 (January 2025) - MAJOR UPDATE
+• BREAKING: Plugin folder renamed Halloween → Halloween_Softici
+• BREAKING: Config restructured: intervals → events, boss sections renamed
+• NEW: Bat Transformation Event (33% chance, configurable)
+• NEW: Per-event enabled/disabled flags (✅ NOW WORKS!)
+• NEW: Old folder detection with migration warnings
+• FIXED: Event enabled: false now properly stops events (6 tasks updated)
+• FIXED: Bat witch potion drops now craftable (random useful potions)
+• FIXED: XP errors in 3 locations (GraveManager, PumpkinMonsterManager, PumpkinWitchManager)
+• FIXED: Config version overwrite during migration
+• FIXED: Deprecated sections removed (pumpkin_protector, standalone herobrine)
+• IMPROVED: Code cleanup (200+ lines of dead code removed)
+
+v1.7.2 (October 9, 2025)
+• FIXED: Grave wave timeout system
+• FIXED: Cross arms sink completely
+• FIXED: Wave 3 blazes replace phantoms
+• FIXED: Herobrine skin displays correctly
+• FIXED: Pumpkin buff duration increased to 15 seconds
+• NEW: Dynamic boss reward configuration
+• NEW: Ancient debris in grave rewards
+• NEW: Per-wave mob spawn configuration
+• NEW: Horse death sound effect
+
+v1.7.1 (October 8, 2025)
+• FIXED: Grave detection underground
+• FIXED: Cross arms sink completely
+• NEW: Automatic update checker
+• NEW: Clickable download links
+
+v1.7.0 (October 7, 2025)
+• NEW: Herobrine 4-stage progressive encounter
+• NEW: Night-only spawning
+• NEW: Stage-based atmospheric effects
+
+v1.6.2 (October 7, 2025)
+• NEW: Horror sound command
+• NEW: 15 unique horror sounds
+• NEW: Tab completion
+
+v1.6.1 (October 7, 2025)
+• NEW: Custom command prefix
+• NEW: Dynamic command registration
+• NEW: Player data separated to data.yml
+
+v1.6.0 (October 7, 2025)
+• NEW: Grave system
+• NEW: 18-second animation
+• NEW: Team XP distribution
+
+v1.5.4 (October 6, 2025)
+• NEW: Smart XP scaling
+• NEW: Boss spawn protection
+
+v1.5.0 (October 5, 2025)
+• NEW: Boss battles
+• NEW: Pumpkin Villager trading
+• NEW: Random pumpkin mobs
+
+v1.4.0 (October 3, 2025)
+• NEW: Darkness event
+• NEW: Progressive cake rewards
+
+v1.3.0 (October 3, 2025)
+• NEW: Configurable pumpkin buffs
+• NEW: Buff management commands
+
+──────────────────────────
+
+Need more help? Ask in the discussion thread!

@@ -1,0 +1,31 @@
+[SIZE=6][B][COLOR=#FF6600]🎃 Halloween Plugin v3.3.0 - Your Requests 🎃[/COLOR][/B][/SIZE]
+
+[SIZE=4][B]Colours, translations, vanish support, join-message toggle, buff level fix[/B][/SIZE]
+Everything in this release comes from the discussion thread - thank you for the feedback!
+
+[HR][/HR]
+
+[SIZE=5][B][COLOR=#FF6600]🎨 Colours & placeholders[/COLOR][/B][/SIZE]
+✅ [FONT=courier new]&c[/FONT], [FONT=courier new]&l[/FONT] ... and hex [FONT=courier new]&#RRGGBB[/FONT] colours work in messages.yml (and in the config messages) - [FONT=courier new]§[/FONT] still works too
+✅ Placeholders are case-insensitive: [FONT=courier new]%player%[/FONT] = [FONT=courier new]%PLAYER%[/FONT]
+
+[SIZE=5][B][COLOR=#FF6600]🌍 100% translatable[/COLOR][/B][/SIZE]
+✅ [B]Every[/B] text the plugin shows is now in messages.yml: help menu, "Halloween mode ENABLED/DISABLED", "effects enabled/disabled for you", permission message and all admin command feedback (84 new categories, appended automatically to your file)
+
+[SIZE=5][B][COLOR=#FF6600]👻 Vanish & spectators[/COLOR][/B][/SIZE]
+✅ Vanished players (SuperVanish, PremiumVanish, Essentials, CMI - anything setting the standard "vanished" metadata) and spectators get no scares, buffs or rewards and are never named in boss/grave broadcasts
+✅ Configurable: [FONT=courier new]player_filters.respect_vanish[/FONT] / [FONT=courier new]skip_spectators[/FONT]
+
+[SIZE=5][B][COLOR=#FF6600]🔇 Join messages toggle[/COLOR][/B][/SIZE]
+✅ [FONT=courier new]login_messages.enabled: false[/FONT] keeps the join silent, [FONT=courier new]login_messages.sound: false[/FONT] disables the spooky join sound
+
+[SIZE=5][B][COLOR=#FF6600]🧪 Pumpkin buff level fix[/COLOR][/B][/SIZE]
+✅ [FONT=courier new]level: 1[/FONT] now means Effect I (it used to give Effect II). [B]Existing configs are converted automatically[/B] - your players keep exactly the same effects.
+✅ [FONT=courier new]/halloween buffs add|level[/FONT] validate the level instead of erroring
+
+[SIZE=5][B][COLOR=#FF6600]🐛 Also[/COLOR][/B][/SIZE]
+✅ Grave announcements now respect [FONT=courier new]/halloween disable[/FONT]
+
+[HR][/HR]
+[B]Requirements:[/B] Spigot / Paper / Purpur 1.21.3+ (incl. 26.1 / 26.2 / 26.3), Java 21+
+[B]Upgrade:[/B] drop-in for v3.0.5+ - stop, swap the JAR, start. Config and messages are merged automatically.

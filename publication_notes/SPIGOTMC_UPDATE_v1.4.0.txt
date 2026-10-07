@@ -1,0 +1,286 @@
+[SIZE=6][B][COLOR=#FF6600]🎃 Halloween Plugin v1.4.0 - Darkness Update[/COLOR][/B][/SIZE]
+
+[B]New spooky darkness event + bug fixes for an even better Halloween experience![/B]
+
+[HR][/HR]
+
+[SIZE=5][B][COLOR=#FFD700]✨ What's New in v1.4.0[/COLOR][/B][/SIZE]
+
+[B][COLOR=#8B0000]🌑 New Darkness Event[/COLOR][/B]
+Players will now experience random moments of darkness accompanied by terrifying sounds! This brief but impactful event adds another layer of spookiness to your server.
+
+[LIST]
+[*] [B]Screen Darkening:[/B] 1-second blindness effect (very visible!)
+[*] [B]Layered Scary Sounds:[/B] Multiple iron trapdoor sounds + ambient cave sounds
+[*] [B]Configurable:[/B] Default 10-50 minutes between events
+[*] [B]Broadcast Messages:[/B] Random spooky messages
+[*] [B]Auto-Merging:[/B] Updates automatically add new messages without overwriting yours!
+[/LIST]
+
+[B][COLOR=#8B0000]🍰 Progressive Cake Rewards[/COLOR][/B]
+Helmet rewards are now progressive and repeatable!
+
+[LIST]
+[*] [B]1st reward:[/B] 3 minutes → Get cake
+[*] [B]2nd reward:[/B] 6 minutes → Get cake
+[*] [B]3rd reward:[/B] 9 minutes → Get cake
+[*] [B]Continues up to 30 minutes, then repeats every 30 minutes![/B]
+[*] Players are notified when next reward is available
+[/LIST]
+
+[B][COLOR=#8B0000]🐛 Bug Fixes[/COLOR][/B]
+[LIST]
+[*] [B]Fixed:[/B] Messages now auto-merge on update (no more "Missing message: darkness")
+[*] [B]Fixed:[/B] Darkness effect now uses BLINDNESS (more visible across versions)
+[*] [B]Fixed:[/B] Enhanced trapdoor sounds with multiple layers for creepier effect
+[*] [B]Fixed:[/B] Config sections auto-merge on updates
+[/LIST]
+
+[HR][/HR]
+
+[SIZE=5][B][COLOR=#FFD700]⚙️ Configuration[/COLOR][/B][/SIZE]
+
+[B]config.yml:[/B]
+[CODE]intervals:
+  darkness:
+    min: 10    # Minimum minutes between darkness events
+    max: 50    # Maximum minutes between darkness events[/CODE]
+
+[B]Adjust in real-time:[/B]
+[CODE]/halloween set darkness <min> <max>
+
+Examples:
+/halloween set darkness 15 30  # More frequent
+/halloween set darkness 30 90  # Less frequent
+/halloween set darkness 5 10   # Very spooky![/CODE]
+
+[HR][/HR]
+
+[SIZE=5][B][COLOR=#FFD700]📋 Complete Event List[/COLOR][/B][/SIZE]
+
+[TABLE="width: 100%"]
+[TR]
+[TH]Event[/TH]
+[TH]Default Interval[/TH]
+[TH]Description[/TH]
+[/TR]
+[TR]
+[TD]🎃 Pumpkin[/TD]
+[TD]1-10 min[/TD]
+[TD]Forces carved pumpkin helmet on player[/TD]
+[/TR]
+[TR]
+[TD]👻 Slenderman[/TD]
+[TD]10-15 min[/TD]
+[TD]Teleports creepy entity behind player[/TD]
+[/TR]
+[TR]
+[TD]🔥 Fire[/TD]
+[TD]30-60 min[/TD]
+[TD]Harmless fire effect on player[/TD]
+[/TR]
+[TR]
+[TD]⚡ Lightning[/TD]
+[TD]20-40 min[/TD]
+[TD]Harmless lightning strike[/TD]
+[/TR]
+[TR]
+[TD][B][COLOR=#FF0000]🌑 Darkness NEW![/COLOR][/B][/TD]
+[TD]10-50 min[/TD]
+[TD]Brief darkness with scary sounds[/TD]
+[/TR]
+[/TABLE]
+
+[HR][/HR]
+
+[SIZE=5][B][COLOR=#FFD700]🎃 All Features (v1.3.0 + v1.4.0)[/COLOR][/B][/SIZE]
+
+[B]Configurable Pumpkin Helmet Buffs:[/B]
+[LIST]
+[*] Customize which buffs are applied when wearing carved pumpkin
+[*] Set individual effect levels (1-5+)
+[*] Enable/disable specific effects
+[*] Toggle glowing effect
+[*] 8 admin commands for real-time buff management
+[*] Supports all Minecraft potion effects (SPEED, HASTE, STRENGTH, REGENERATION, NIGHT_VISION, etc.)
+[/LIST]
+
+[B]Example Buff Commands:[/B]
+[CODE]/halloween buffs list              # Show all buffs
+/halloween buffs add NIGHT_VISION 1  # Add Night Vision I
+/halloween buffs remove STRENGTH     # Remove Strength
+/halloween buffs level SPEED 2       # Change Speed to Level II
+/halloween buffs toggle              # Enable/disable all buffs[/CODE]
+
+[HR][/HR]
+
+[SIZE=5][B][COLOR=#FFD700]🎮 Cake Reward Progression[/COLOR][/B][/SIZE]
+
+The new progressive reward system encourages players to wear pumpkin helmets longer:
+
+[TABLE="width: 100%"]
+[TR]
+[TH]Reward #[/TH]
+[TH]Time Required[/TH]
+[TH]Reward[/TH]
+[/TR]
+[TR]
+[TD]1st[/TD]
+[TD]3 minutes[/TD]
+[TD]🍰 Cake[/TD]
+[/TR]
+[TR]
+[TD]2nd[/TD]
+[TD]6 minutes more[/TD]
+[TD]🍰 Cake[/TD]
+[/TR]
+[TR]
+[TD]3rd[/TD]
+[TD]9 minutes more[/TD]
+[TD]🍰 Cake[/TD]
+[/TR]
+[TR]
+[TD]4th+[/TD]
+[TD]Increases by 3 min each time[/TD]
+[TD]🍰 Cake[/TD]
+[/TR]
+[TR]
+[TD]10th+[/TD]
+[TD]30 minutes (capped)[/TD]
+[TD]🍰 Cake every 30 min[/TD]
+[/TR]
+[/TABLE]
+
+[I]Players see: "Next reward in X minutes of continuous pumpkin wearing!"[/I]
+
+[HR][/HR]
+
+[SIZE=5][B][COLOR=#FFD700]📦 Installation & Upgrading[/COLOR][/B][/SIZE]
+
+[B]New Installation:[/B]
+[LIST=1]
+[*] Download [B]halloween-plugin-1.4.0.jar[/B]
+[*] Place in your [B]plugins[/B] folder
+[*] Start/restart server
+[*] Configure via [B]/halloween[/B] commands or edit [B]config.yml[/B]
+[/LIST]
+
+[B]Upgrading from v1.3.0 or earlier:[/B]
+[LIST=1]
+[*] Stop your server
+[*] Replace old JAR with [B]halloween-plugin-1.4.0.jar[/B]
+[*] Start server
+[*] [B]Automatic:[/B] Darkness messages and config auto-added!
+[*] [B]No data loss:[/B] All settings and player data preserved
+[/LIST]
+
+[COLOR=#00AA00][B]✅ The plugin automatically merges new features without overwriting your custom messages or configs![/B][/COLOR]
+
+[HR][/HR]
+
+[SIZE=5][B][COLOR=#FFD700]🔧 All Commands[/COLOR][/B][/SIZE]
+
+[B]Player Commands:[/B]
+[CODE]/halloween help           - Show all commands
+/halloween enable         - Enable Halloween effects for yourself
+/halloween disable        - Disable Halloween effects for yourself[/CODE]
+
+[B]Admin Commands:[/B]
+[CODE]/halloween on/off                        - Global Halloween mode toggle
+/halloween set <event> <min> <max>        - Adjust event intervals
+/halloween reload                         - Reload configuration
+/halloween reset <pumpkin|helmet|all>     - Reset player states
+
+Buff Commands:
+/halloween buffs list                     - Show all pumpkin buffs
+/halloween buffs toggle                   - Enable/disable buff system
+/halloween buffs add <effect> <level>     - Add buff
+/halloween buffs remove <effect>          - Remove buff
+/halloween buffs enable/disable <effect>  - Toggle specific buff
+/halloween buffs level <effect> <level>   - Change buff level
+/halloween buffs glow <on|off>            - Toggle glowing effect[/CODE]
+
+[HR][/HR]
+
+[SIZE=5][B][COLOR=#FFD700]✅ Compatibility[/COLOR][/B][/SIZE]
+
+[LIST]
+[*] [B]Minecraft:[/B] 1.20+ (tested on 1.21.1)
+[*] [B]Server:[/B] Spigot, Paper, Purpur, or compatible
+[*] [B]Java:[/B] 17+
+[*] [B]Backward Compatible:[/B] 100% compatible with v1.3.0
+[*] [B]Auto-Update Safe:[/B] Your configs and messages are preserved
+[/LIST]
+
+[HR][/HR]
+
+[SIZE=5][B][COLOR=#FFD700]💡 Usage Examples[/COLOR][/B][/SIZE]
+
+[B]PvP Server - Remove Combat Buffs:[/B]
+[CODE]/halloween buffs remove STRENGTH
+/halloween buffs remove RESISTANCE
+/halloween buffs add NIGHT_VISION 1
+/halloween set darkness 5 15  # More frequent for atmosphere[/CODE]
+
+[B]Survival Server - Balanced:[/B]
+[CODE]/halloween buffs level SPEED 1
+/halloween buffs level STRENGTH 1
+/halloween set darkness 20 60  # Occasional scares[/CODE]
+
+[B]Creative Server - Utility Only:[/B]
+[CODE]/halloween buffs remove STRENGTH
+/halloween buffs remove RESISTANCE
+/halloween buffs add NIGHT_VISION 1
+/halloween buffs glow off[/CODE]
+
+[HR][/HR]
+
+[SIZE=5][B][COLOR=#FFD700]📝 Changelog[/COLOR][/B][/SIZE]
+
+[B]v1.4.0 (October 3, 2025)[/B]
+[LIST]
+[*] NEW: Darkness event with blindness effect and layered sounds
+[*] NEW: Progressive cake reward system (3min, 6min, 9min... up to 30min)
+[*] NEW: Auto-merging system for messages.yml and config.yml on updates
+[*] IMPROVED: Darkness now uses BLINDNESS effect (more visible)
+[*] IMPROVED: Multiple trapdoor sounds for creepier atmosphere
+[*] FIXED: "Missing message" errors on updates
+[*] FIXED: Config sections now auto-merge on plugin updates
+[/LIST]
+
+[B]v1.3.0 (October 3, 2025)[/B]
+[LIST]
+[*] NEW: Fully configurable pumpkin helmet buffs
+[*] NEW: 8 admin commands for buff management
+[*] NEW: Real-time buff modifications without restart
+[/LIST]
+
+[HR][/HR]
+
+[SIZE=5][B][COLOR=#FFD700]🆘 Support & Links[/COLOR][/B][/SIZE]
+
+Need help? Found a bug? Want to suggest a feature?
+[LIST]
+[*] Post in this thread
+[*] Check [B]config.yml[/B] for inline documentation
+[*] Use [B]/halloween help[/B] in-game for command reference
+[/LIST]
+
+[HR][/HR]
+
+[SIZE=5][B][COLOR=#FFD700]⭐ Enjoying the Plugin?[/COLOR][/B][/SIZE]
+
+If you love this plugin, please leave a [B][COLOR=#FFD700]⭐⭐⭐⭐⭐ 5-star review[/COLOR][/B]! 
+
+It helps others discover the plugin and motivates continued development. Your feedback matters!
+
+[HR][/HR]
+
+[CENTER][SIZE=6][B]🎃 Stay Spooky! 👻🕷️[/B][/SIZE][/CENTER]
+
+[SIZE=2][I]Developed by Softici s.r.o. | Version 1.4.0 | Released October 3, 2025[/I][/SIZE]
+
+[HR][/HR]
+
+[SIZE=4][B]What's your favorite Halloween event?[/B][/SIZE]
+[I]Let us know in the comments below! 🎃[/I]

@@ -1,0 +1,41 @@
+name: Halloween_Softici
+main: cz.softici.server.minecraft.HalloweenPlugin
+version: 3.4.0
+api-version: 1.21
+author: Softici s.r.o.
+description: "Halloween events for Paper, Spigot & Purpur 1.21.3-26.x: scares, pumpkin bosses, grave waves, Herobrine, candy economy, stats, Discord."
+website: https://softici.gitlab.io/halloween/
+softdepend: [Vault, PlaceholderAPI, WorldGuard, Nexo]
+
+commands:
+  halloween:
+    description: Main Halloween command. Actual command is /halloween or /hlw. Display text can be changed via config.yml command_prefix option.
+    usage: /<command> [help|enable|disable|stats|top|on|off|reload|set|reset|buffs|sound|trigger|candy|cleanup]
+    aliases: [hlw]
+    permission: halloween.base
+    permission-message: You don't have permission to use this command.
+
+permissions:
+  halloween.base:
+    description: Allows players to use Halloween help, enable, and disable commands
+    default: true
+
+  halloween.use:
+    description: Allows admins to use global Halloween controls (on|off, reload, set, reset, buffs)
+    default: op
+
+  halloween.admin:
+    description: Receives in-game update notifications on join
+    default: op
+
+  halloween.stats:
+    description: Lets players see their own Halloween statistics (/halloween stats) and the public leaderboard
+    default: true
+
+  halloween.stats.admin:
+    description: See any player's statistics and every statistic, including admin-only ones
+    default: op
+
+  halloween.trigger:
+    description: Fire any Halloween event or boss manually (/halloween trigger)
+    default: op

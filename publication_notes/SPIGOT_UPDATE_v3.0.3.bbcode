@@ -1,0 +1,68 @@
+[SIZE=5][COLOR=#FF6600][B]🎃 Halloween Plugin v3.0.3 - Double Hotfix Update![/B][/COLOR][/SIZE]
+
+[COLOR=#FF6600][B]Release Date:[/B][/COLOR] October 15, 2025
+[COLOR=#FF6600][B]Build:[/B][/COLOR] Two critical hotfixes (v3.0.2 + v3.0.3)
+
+[SIZE=4][COLOR=#CC3300]🐛 Critical Bug Fixes[/COLOR][/SIZE]
+
+[COLOR=#009900][B]v3.0.3 - Reward System Hotfix[/B][/COLOR]
+[LIST]
+[*][B]FIXED:[/B] Min/max 0,0 configuration errors when disabling rewards
+[*][B]FIXED:[/B] Random pumpkin mob drops respect [FONT=courier]min: 0, max: 0[/FONT] setting  
+[*][B]FIXED:[/B] Bat transformation pumpkin rewards respect [FONT=courier]min: 0, max: 0[/FONT] setting
+[*][B]IMPROVED:[/B] Admins can safely disable specific rewards without plugin errors
+[/LIST]
+
+[COLOR=#009900][B]v3.0.2 - Pumpkin Trader Hotfix[/B][/COLOR]
+[LIST]
+[*][B]FIXED:[/B] Pumpkin Trader creation bypassing Halloween enable/disable settings
+[*][B]FIXED:[/B] Players with Halloween disabled can no longer create Pumpkin Traders
+[*][B]FIXED:[/B] Pumpkin Trader creation respects global Halloween on/off state
+[/LIST]
+
+[SIZE=4][COLOR=#6600CC]💡 What This Means for Admins[/COLOR][/SIZE]
+
+[COLOR=#0066CC][B]Better Control Over Rewards:[/B][/COLOR]
+You can now safely disable specific rewards by setting [FONT=courier]min: 0, max: 0[/FONT]:
+
+[CODE]
+# Disable random pumpkin drops from mobs with pumpkin heads
+random_pumpkin_mobs:
+  pumpkin_drops: 
+    min: 0
+    max: 0
+
+# Disable pumpkin rewards from bat transformations (keep XP and potions)
+bat_transformation:
+  rewards:
+    pumpkins_min: 0
+    pumpkins_max: 0
+    potion_drop: true  # Still gives potions
+[/CODE]
+
+[COLOR=#0066CC][B]Proper Halloween Disable Respect:[/B][/COLOR]
+All features now properly respect your Halloween settings:
+[LIST]
+[*][FONT=courier]/halloween off[/FONT] - Globally disables all Halloween features
+[*][FONT=courier]/halloween disable[/FONT] - Individual players can opt out
+[*]Pumpkin Trader creation now respects these settings
+[/LIST]
+
+[SIZE=4][COLOR=#FF6600]📦 Installation[/COLOR][/SIZE]
+
+[LIST=1]
+[*]Stop your server
+[*]Replace [FONT=courier]halloween-plugin-3.0.1.jar[/FONT] with [FONT=courier]halloween-plugin-3.0.3.jar[/FONT]
+[*]Start your server
+[*]No config changes needed - hotfix automatically compatible
+[/LIST]
+
+[COLOR=#CC6600][B]Compatibility:[/B][/COLOR] Works with existing v3.0.0, v3.0.1, v3.0.2 configs
+[COLOR=#CC6600][B]Minecraft:[/B][/COLOR] 1.21.1+ (Paper/Purpur recommended)
+[COLOR=#CC6600][B]Java:[/B][/COLOR] 17+
+
+[SIZE=4][COLOR=#9900CC]🔗 Links[/COLOR][/SIZE]
+
+[URL=https://github.com/yourusername/halloween-plugin/releases]📥 Download[/URL] | [URL=https://github.com/yourusername/halloween-plugin]📚 Documentation[/URL] | [URL=https://github.com/yourusername/halloween-plugin/issues]🐛 Bug Reports[/URL]
+
+[I][COLOR=#666666]Thanks for using Halloween Plugin! These hotfixes ensure smooth operation for all server admins. 🎃[/COLOR][/I]

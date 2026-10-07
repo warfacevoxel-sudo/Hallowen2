@@ -1,0 +1,66 @@
+[SIZE=6][B]👻 Halloween Plugin v1.7.0 - Herobrine Event[/B][/SIZE]
+
+[SIZE=5][B]What's New:[/B][/SIZE]
+
+[B]🕯️ Herobrine Progressive Scare Event[/B]
+Experience the legend! Herobrine now haunts players at night with a terrifying 4-stage encounter system.
+
+[SIZE=5][B]How It Works:[/B][/SIZE]
+[LIST]
+[*][B]Stage 1:[/B] Herobrine appears far away (3 chunks), watching you...
+[*][B]Stage 2:[/B] He moves closer (2 chunks), still watching...
+[*][B]Stage 3:[/B] Now very close (1 chunk), getting ready...
+[*][B]Stage 4:[/B] Invisible attack from behind with creepy effects!
+[/LIST]
+
+[SIZE=5][B]Herobrine Features:[/B][/SIZE]
+[LIST]
+[*]✅ Only spawns at night (13000-23000 ticks)
+[*]✅ Progressive stages with 10-20 second delays
+[*]✅ Auto-despawns after 20 seconds per stage
+[*]✅ Despawns if you approach too close (stages 1-3)
+[*]✅ Smart spawn validation (no water, no underground, no Nether/End)
+[*]✅ Custom Steve skin with white eyes
+[*]✅ Particles and horror sounds
+[*]✅ Final stage: invisible attack with 3-second buildup
+[/LIST]
+
+[SIZE=5][B]Configuration:[/B][/SIZE]
+[CODE]
+intervals:
+  herobrine:
+    min: 40  # Minutes (default)
+    max: 80
+
+herobrine:
+  enabled: true
+  render_distance: 3
+[/CODE]
+
+[SIZE=5][B]Admin Commands:[/B][/SIZE]
+[CODE]
+/halloween set herobrine <min> <max>  # Adjust spawn interval
+/halloween cleanup                    # Remove leftover Herobrines
+[/CODE]
+
+[SIZE=5][B]Bug Fixes:[/B][/SIZE]
+[LIST]
+[*]🔧 Fixed leftover Herobrine entities after crashes
+[*]🔧 Fixed texture loading across different server types
+[*]🔧 Fixed sequences getting stuck when day arrives
+[*]🔧 Auto-cleanup on plugin startup
+[*]🔧 Players with Halloween disabled never see Herobrine
+[/LIST]
+
+[SIZE=5][B]Messages:[/B][/SIZE]
+20+ unique Herobrine messages for each stage, including:
+[LIST]
+[*][I]"You feel like someone is watching you..."[/I]
+[*][I]"The air grows cold as a shadow moves in the distance..."[/I]
+[*][I]"You hear footsteps behind you..."[/I]
+[*][I]"Something strikes you from the darkness!"[/I]
+[/LIST]
+
+[SIZE=4][I]Compatible with Minecraft 1.20+ | Spigot/Paper/Purpur | Requires [FONT=Courier New]halloween.admin[/FONT] permission for commands[/I][/SIZE]
+
+[B]Note:[/B] Existing configs auto-update! Pre-1.7.0 users will have Herobrine section added automatically.

@@ -1,0 +1,283 @@
+[SIZE=6][B]🎃 Halloween Plugin v1.7.2 - Bug Fixes & Dynamic Rewards[/B][/SIZE]
+
+[SIZE=5][B]What's New:[/B][/SIZE]
+
+[B]🐛 Major Bug Fixes[/B]
+
+[LIST]
+[*][B]Grave Wave Timeout System[/B]
+- Waves no longer stall if players move away or take too long
+- Configurable timeouts: Wave 1 (2min), Wave 2 (3min), Wave 3 (5min)
+- 30-second warning before timeout
+- Auto-cleanup with scaled rewards based on completion percentage
+- Config: [ICODE]grave.wave_timeouts[/ICODE]
+
+[*][B]Cross Arm Animation Fixed[/B]
+- Arms now sink gradually block-by-block (Y=3→2→1→0)
+- Previously dropped instantly, now proper visual descent
+- Better atmosphere during grave animation
+
+[*][B]Wave 3 Mob Replacement[/B]
+- Replaced ineffective phantoms with [B]3 blazes[/B]
+- Better ground-level combat experience
+- More challenging and engaging wave 3
+- Configurable: [ICODE]grave.spawns.wave3.blaze: 3[/ICODE]
+
+[*][B]Herobrine Skin Fixed[/B]
+- Now displays Galthorius skin (white glowing eyes) correctly
+- Dual-method approach (reflection + player lookup fallback)
+- Works on Paper 1.21.1+ without console spam
+
+[*][B]Pumpkin Buff Duration[/B]
+- Increased from 11 seconds to [B]15 seconds[/B] (configurable)
+- Prevents night vision blinking effect
+- Config: [ICODE]pumpkin_buffs.duration: 15[/ICODE]
+
+[*][B]Instant Buff Removal[/B]
+- Buffs now clear [B]immediately[/B] when helmet is removed
+- Previously lingered for several seconds
+- Cleaner gameplay experience
+[/LIST]
+
+[B]✨ New Features[/B]
+
+[LIST]
+[*][B]Dynamic Boss Rewards[/B]
+- Fully configurable reward lists in config.yml
+- [ICODE]pumpkin_monster.rewards[/ICODE] - Zombie boss loot
+- [ICODE]pumpkin_witch.rewards[/ICODE] - Skeleton boss loot
+- Set min/max amounts and drop chances
+- No code changes needed for custom rewards!
+
+[*][B]Improved Grave Rewards[/B]
+- Added [B]Ancient Debris[/B] (2-4 per grave)
+- Increased diamonds to 5-10 (was fixed at 5)
+- Configurable loot table: [ICODE]grave.rewards[/ICODE]
+- Supports [ICODE]chance[/ICODE] field for rare drops
+- Completion percentage affects reward amounts
+
+[*][B]Per-Wave Mob Spawns[/B]
+- Different mob types and counts per wave
+- [ICODE]grave.spawns.wave1[/ICODE] / [ICODE]wave2[/ICODE] / [ICODE]wave3[/ICODE] structure
+- Easy difficulty scaling via config
+- Progressive challenge without code changes
+
+[*][B]Horse Death Sound[/B] [COLOR=#00ff00]BONUS![/COLOR]
+- New horror sound added by player request
+- Usage: [ICODE]/halloween sound @a horse_death[/ICODE]
+- Aliases: [ICODE]dying_horse[/ICODE], [ICODE]horse[/ICODE]
+- One of Minecraft's most disturbing sounds!
+- Now [B]16 horror sounds[/B] total (was 15)
+[/LIST]
+
+
+[SIZE=5][B]Configuration Examples:[/B][/SIZE]
+
+[B]Wave Timeouts:[/B]
+[CODE]
+grave:
+  wave_timeouts:
+    wave1: 120  # 2 minutes
+    wave2: 180  # 3 minutes
+    wave3: 300  # 5 minutes
+[/CODE]
+
+[B]Per-Wave Spawns:[/B]
+[CODE]
+grave:
+  spawns:
+    wave1:
+      skeleton: 3
+      zombie: 2
+      skeleton_horse: 2
+      zombie_horse: 3
+    wave2:
+      skeleton: 4
+      zombie: 3
+      skeleton_horse: 3
+      zombie_horse: 4
+    wave3:
+      skeleton: 5
+      zombie: 4
+      blaze: 3  # NEW! Replaced phantoms
+      skeleton_horse: 4
+[/CODE]
+
+[B]Dynamic Rewards:[/B]
+[CODE]
+pumpkin_monster:
+  rewards:
+    - material: CARVED_PUMPKIN
+      min: 10
+      max: 14
+    - material: CAKE
+      min: 3
+      max: 5
+    - material: DIAMOND
+      min: 2
+      max: 5
+      chance: 0.5  # 50% chance
+
+grave:
+  rewards:
+    - material: CARVED_PUMPKIN
+      min: 10
+      max: 32
+    - material: DIAMOND
+      min: 5
+      max: 10
+    - material: ANCIENT_DEBRIS  # NEW!
+      min: 2
+      max: 4
+    - material: SKELETON_SKULL
+      min: 0
+      max: 1
+      chance: 0.5  # 50% chance
+[/CODE]
+
+[B]Pumpkin Buff Duration:[/B]
+[CODE]
+pumpkin_buffs:
+  duration: 15  # Seconds (configurable, default 15)
+[/CODE]
+
+
+[SIZE=5][B]Technical Improvements:[/B][/SIZE]
+
+[LIST]
+[*][B]Config Auto-Regeneration[/B]
+- Upgrading from v1.7.0 or v1.7.1 automatically regenerates config
+- Old config backed up to [ICODE]config.yml.pre-v1.7.2.backup[/ICODE]
+- Ensures all new features are present
+- Copy custom intervals from backup if needed
+
+[*][B]Clean Console Output[/B]
+- Removed debug spam from Herobrine skin loading
+- Production-quality logging
+- Silent fallback mechanisms
+- Professional server appearance
+
+[*][B]Performance Optimized[/B]
+- Efficient wave timeout tracking
+- Smart entity cleanup
+- Minimal TPS impact (<0.1)
+- Memory usage: ~50MB
+[/LIST]
+
+
+[SIZE=5][B]Upgrade Instructions:[/B][/SIZE]
+
+[B]From v1.7.0 or v1.7.1:[/B]
+[LIST=1]
+[*]Stop your server
+[*]Replace old JAR with [ICODE]halloween-plugin-1.7.2.jar[/ICODE]
+[*]Start server - config auto-regenerates
+[*]Old config backed up to [ICODE]config.yml.pre-v1.7.2.backup[/ICODE]
+[*]Copy custom intervals from backup if needed
+[*]Ready to use!
+[/LIST]
+
+[B]From v1.6.x or earlier:[/B]
+[LIST=1]
+[*]Stop your server
+[*]Replace old JAR with [ICODE]halloween-plugin-1.7.2.jar[/ICODE]
+[*]Delete [ICODE]config.yml[/ICODE] (will regenerate)
+[*]Start server
+[*]Configure as desired
+[/LIST]
+
+
+[SIZE=5][B]Testing Commands:[/B][/SIZE]
+
+[CODE]
+# Test grave timeout (fast)
+/halloween set grave 1 1
+/time set day
+# Build grave, light candle, wait 2 minutes
+
+# Test Herobrine skin
+/halloween set herobrine 1 1
+/time set night
+# Wait 1 minute, check for white-eyed skin
+
+# Test wave 3 blazes
+# Build grave, progress to wave 3, confirm blazes spawn
+
+# Test pumpkin buff duration
+/give @s carved_pumpkin
+# Wear helmet, count to 15, check effects
+
+# Test instant buff removal
+# Wear helmet, wait 5 seconds, remove helmet
+# Effects should clear immediately
+
+# Test horse death sound
+/halloween sound @a horse_death
+# Very disturbing sound!
+
+# Test dynamic rewards
+# Defeat bosses, check chests for configured items
+[/CODE]
+
+[SIZE=5][B]Bug Fixes Summary:[/B][/SIZE]
+
+[LIST]
+[*]✅ Grave waves no longer stall (timeout system)
+[*]✅ Cross arms sink gradually (not instant drop)
+[*]✅ Wave 3 blazes instead of phantoms
+[*]✅ Herobrine displays Galthorius skin
+[*]✅ Pumpkin buffs last 15 seconds (no blink)
+[*]✅ Buffs clear instantly when helmet removed
+[*]✅ Config regeneration saves to disk
+[*]✅ All console spam removed
+[/LIST]
+
+
+[SIZE=5][B]Complete Feature List:[/B][/SIZE]
+
+[B]v1.7.2 includes all previous features plus improvements:[/B]
+[LIST]
+[*]🎃 Pumpkin helmet buffs (15 seconds, configurable)
+[*]👻 Herobrine progressive encounter (4 stages, working skin)
+[*]⚰️ Grave system (timeouts, per-wave spawns, ancient debris)
+[*]🧟 Pumpkin Monster boss (dynamic rewards)
+[*]💀 Halloween Boss (dynamic rewards)
+[*]🔥 6 scare events (pumpkin, slenderman, fire, lightning, darkness, herobrine)
+[*]🔊 16 horror sounds (including horse_death)
+[*]⚙️ Fully configurable (intervals, rewards, spawns, buffs)
+[*]👥 Per-player opt-out system
+[*]📊 Update checker (v1.7.1+)
+[*]🎛️ Custom command prefix
+[/LIST]
+
+
+[SIZE=5][B]Compatibility:[/B][/SIZE]
+
+[LIST]
+[*]✅ [B]Spigot[/B] 1.20+
+[*]✅ [B]Paper[/B] 1.20+ (recommended)
+[*]✅ [B]Purpur[/B] 1.20+
+[*]✅ [B]Java[/B] 17+
+[*]✅ [B]Minecraft[/B] 1.20.x - 1.21.x
+[/LIST]
+
+
+[SIZE=5][B]Support:[/B][/SIZE]
+
+[B]Issues?[/B] Report on GitHub or resource discussion
+[B]Questions?[/B] Check documentation in resource files
+[B]Suggestions?[/B] We love player feedback! (Horse death sound was a player request!)
+
+
+[SIZE=5][B]Download:[/B][/SIZE]
+
+[B]Version:[/B] 1.7.2
+[B]Release Date:[/B] October 9, 2025
+[B]File Size:[/B] ~150KB
+[B]Build Status:[/B] ✅ Production Ready
+
+[CENTER][SIZE=4][B]🎃 Thank you for using Halloween Plugin! 🎃[/B][/SIZE]
+
+[SIZE=3]Developed by [B]Softici s.r.o.[/B][/SIZE]
+
+[SIZE=2]Happy Halloween! 👻🔥💀[/SIZE][/CENTER]

@@ -1,0 +1,29 @@
+[SIZE=6][B][COLOR=#FF6600]🎃 Halloween Plugin v3.2.2 - Minecraft 26.x Support + Fixes 🎃[/COLOR][/B][/SIZE]
+
+[SIZE=4][B]Runs on Paper/Spigot 26.1, 26.2, 26.3 - plus two important fixes[/B][/SIZE]
+
+[HR][/HR]
+
+[SIZE=5][B][COLOR=#FF6600]🚀 v3.2.0 - Minecraft 26.x[/COLOR][/B][/SIZE]
+Minecraft moved to year-based versions (26.1, 26.2, ...) and Paper 26.x removed the legacy [FONT=courier new]Attribute.GENERIC_*[/FONT] API.
+✅ Uses the current [FONT=courier new]Attribute.MAX_HEALTH / ATTACK_DAMAGE / MOVEMENT_SPEED[/FONT] API
+✅ Built against Paper API 26.2 (Java 21 bytecode) - still Spigot compatible
+✅ Existing configs (v3.0.5 - v3.1.1) are auto-merged, nothing to edit
+
+[SIZE=5][B][COLOR=#FF6600]⚰️ v3.2.1 - Grave event fix[/COLOR][/B][/SIZE]
+✅ [FONT=courier new]/halloween off[/FONT] during a grave event no longer spawns the next wave a few minutes later - every scheduled wave/timeout task is cancelled with the event
+
+[SIZE=5][B][COLOR=#FF6600]🛡️ v3.2.2 - messages.yml typo protection[/COLOR][/B][/SIZE]
+✅ A YAML typo in [FONT=courier new]messages.yml[/FONT] (e.g. unclosed quote) no longer wipes your custom messages: the plugin logs the line/column, leaves your file untouched and uses defaults until you fix it and [FONT=courier new]/halloween reload[/FONT]
+✅ Removed the bogus "Could not save messages.yml ... already exists" warning on startup
+
+[HR][/HR]
+
+[SIZE=5][B][COLOR=#FF6600]📋 Requirements[/COLOR][/B][/SIZE]
+[B]Server:[/B] Spigot / Paper / Purpur [B]1.21.3+[/B] (including 26.1 / 26.2 / 26.3)
+[B]Java:[/B] 21+ (Paper 26.x needs Java 25)
+
+[COLOR=#FF0000][B]Still on 1.21.1 or 1.21.2?[/B][/COLOR] Stay on v3.1.1.
+
+[SIZE=5][B][COLOR=#FF6600]⬆️ Upgrade[/COLOR][/B][/SIZE]
+Drop-in replacement for v3.0.5+: stop server → swap the JAR → start. Your config values, comments and custom messages are kept.

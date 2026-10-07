@@ -1,0 +1,638 @@
+# =========================================================
+# Halloween Plugin - messages.yml
+# =========================================================
+# Every message is a list; one entry is picked at random each time.
+# Colours: use & codes (&c, &l, ...) or &#RRGGBB hex colours, § codes also work.
+# Placeholders are case-insensitive: %PLAYER% == %player%. Available placeholders are
+# listed next to each category (%COMMAND% = the configured command name, e.g. "halloween").
+# Categories you delete or leave empty fall back to the built-in English defaults.
+# Since v3.3.0 ALL texts the plugin shows to players and admins are here.
+# =========================================================
+
+pumpkin:
+  - "👻 A spooky spirit has cursed %PLAYER% with a pumpkin!"
+  - "🎃 A spooky spirit has cursed %PLAYER% with a pumpkin!"
+  - "👻 Beware! %PLAYER% is now wearing the mark of Halloween."
+  - "🕯️ A cursed pumpkin appeared on %PLAYER%'s head."
+
+slenderman:
+  - "👻 Slenderman almost got %PLAYER%… but he vanished in shame."
+  - "👀 Slenderman almost got %PLAYER%… but he vanished in shame."
+  - "🎃 Something spooky appeared before %PLAYER%, but it chickened out."
+  - "👻 Halloween scarecrow came to play with %PLAYER%, but instead he screamed!"
+
+fire:
+  - "🔥 %PLAYER% fell into the burning ring of fire..."
+  - "🔥 I fell into the burning ring of fire... and %PLAYER% joined me!"
+  - "🔥 Looks like %PLAYER% played with matches again!"
+  - "💥 Somebody set %PLAYER% on fire... luckily it’s harmless."
+
+lightning:
+  - "⚡ Somebody was messing with lightnings and accidentally hit %PLAYER%"
+  - "⚡ Zeus was aiming for someone else, sorry %PLAYER%"
+  - "⚡ Somebody was messing with lightnings and accidentally hit %PLAYER%!"
+  - "⚡ Zeus aimed wrong… sorry %PLAYER%."
+  - "🌩️ A thunderbolt scared %PLAYER% to death (almost)."
+
+helmetReward:
+  - "🍰 %PLAYER% was rewarded for trick-or-treat!"
+  - "🥮 Halloween spirits gave %PLAYER% a sweet gift."
+  - "🎂 %PLAYER% got a cake for dedication to the pumpkin life."
+
+pumpkinEasterEgg:
+  - "🎃 Well... %PLAYER% seems to really like pumpkins."
+  - "🧡 Pumpkins, pumpkins everywhere! %PLAYER% can't get enough."
+  - "😱 %PLAYER% has been consumed by pumpkin madness!"
+
+darkness:
+  - "🌑 The darkness is creeping in... %PLAYER% feels it."
+  - "👻 %PLAYER% is surrounded by an eerie darkness."
+  - "🌌 The shadows whisper to %PLAYER%, urging them to embrace the night."
+
+pumpkinMonsterSpawn:
+  - "🎃 %PLAYER% awakened a Pumpkin Monster!"
+  - "🎃 %PLAYER% has summoned something terrible..."
+  - "🎃 The Pumpkin Monster rises at %PLAYER%'s command!"
+
+pumpkinMonsterKill:
+  - "💀 %PLAYER% was overwhelmed by dark powers..."
+  - "☠️ The Pumpkin Monster proved too much for %PLAYER%..."
+  - "🎃 %PLAYER% couldn't handle the Halloween curse..."
+
+pumpkinMonsterDefeat:
+  - "🏆 %PLAYER% defeated the mighty Pumpkin Monster!"
+  - "⭐ %PLAYER% conquered the Halloween boss!"
+  - "🎉 The Pumpkin Monster falls before %PLAYER%!"
+
+pumpkinWitchSpawn:
+  - "🎃💀 %PLAYER% summoned the Halloween Boss!"
+  - "🎃💀 %PLAYER% awakened a powerful skeleton warrior..."
+  - "🎃💀 The Halloween Boss rises from the darkness!"
+
+pumpkinWitchKill:
+  - "💀 The Halloween Boss has claimed %PLAYER%..."
+  - "☠️ %PLAYER% fell to the boss's arrows..."
+  - "🎃 %PLAYER% couldn't survive the Halloween Boss..."
+
+pumpkinWitchDefeat:
+  - "⭐ %PLAYER% defeated the legendary Halloween Boss!"
+  - "🏆 %PLAYER% conquered the Halloween Boss!"
+  - "🎉 The Halloween Boss falls before %PLAYER%'s might!"
+
+# v3.0.9 - Boss Manager Messages (customizable by server admins)
+bossPlayerDisabled:
+  - "§c§l[Halloween] §7You have Halloween disabled! Type §e/%COMMAND% enable §7to spawn bosses."
+
+bossCooldown:
+  - "§c§l[Halloween] §7You must wait §e%MINUTES%m %SECONDS%s §7before spawning another %BOSS_TYPE% Boss!"
+
+bossRapidClick:
+  - "§c§l[Halloween] §7Boss spawn is on cooldown! You're clicking too fast."
+
+graveAwaken:
+  - "🪦 %PLAYER% has disturbed an ancient grave... something evil awakens!"
+  - "💀 %PLAYER% has awakened old evil from beyond the grave!"
+  - "👻 The dead rise as %PLAYER% disturbs their eternal rest!"
+  - "⚰️ %PLAYER% has broken the seal on a cursed grave!"
+
+graveCurseBroken:
+  - "✨ %PLAYER% has broken the curse of the grave and defeated the undead army!"
+  - "🏆 %PLAYER% has vanquished the grave guardians and lifted the curse!"
+  - "⭐ The grave's curse is broken thanks to %PLAYER%!"
+  - "🎉 %PLAYER% and their allies have defeated the undead horde!"
+
+herobrine_stage1:
+  - "👤 %PLAYER% sees something strange in the distance..."
+  - "🔍 A figure watches %PLAYER% from afar..."
+  - "👤 %PLAYER% feels like they're being watched..."
+  - "🔍 Something... or someone... is observing %PLAYER%..."
+
+herobrine_stage2:
+  - "🔍 The figure is getting closer to %PLAYER%..."
+  - "🔍 %PLAYER% feels an eerie presence approaching..."
+  - "🔍 Something is stalking %PLAYER%..."
+  - "🔍 he mysterious figure draws nearer to %PLAYER%..."
+
+herobrine_stage3:
+  - "🔍 %PLAYER% can now clearly see him... those white eyes..."
+  - "🔍 Herobrine is very close to %PLAYER% now..."
+  - "🔍 %PLAYER% should run! Herobrine is approaching!"
+  - "💀 The legend is real... %PLAYER% sees Herobrine!"
+
+herobrine_stage4:
+  - "☠️ Herobrine has found %PLAYER%..."
+  - "💀 %PLAYER% came face to face with Herobrine..."
+  - "💀 Herobrine appeared behind %PLAYER%!"
+  - "💀 %PLAYER% felt Herobrine's cold stare..."
+  - "💀 %PLAYER% barely survived an encounter with Herobrine..."
+
+welcomeMessage:
+  - "👻 Welcome to the spookiest server, %PLAYER%! Prepare for Halloween scares!"
+  - "🎃 %PLAYER% has entered the haunted realm! May the spirits guide you..."
+  - "🦇 Welcome %PLAYER%! The Halloween spirits are already watching you..."
+  - "⚡ %PLAYER% joins the server as thunder rumbles in the distance... Welcome!"
+  - "💀 Welcome %PLAYER%! Hope you're ready for some spine-chilling adventures!"
+  - "🕯️ %PLAYER% steps into the shadows... Welcome to our Halloween world!"
+  - "👺 Welcome %PLAYER%! The ghosts and goblins are excited to meet you!"
+  - "🌙 %PLAYER% arrives under the eerie moonlight... Welcome to the server!"
+
+disableMessageNotification:
+  - "§7Type §e/%COMMAND% disable §7if you don't want Halloween effects."
+  - "§7Use §e/%COMMAND% disable §7to opt out of spooky events."
+  - "§7Not enjoying the scares? Type §e/%COMMAND% disable §7to turn them off."
+  - "§7Too spooky for you? Use §e/%COMMAND% disable §7to disable effects."
+
+enableMessageNotification:
+  - "§7👻 Halloween event is active! Type §e/%COMMAND% enable §7to join the fun."
+  - "§7🎃 Halloween spirits are waiting! Use §e/%COMMAND% enable §7to participate."
+  - "§7💀 Missing out on Halloween? Type §e/%COMMAND% enable §7to join in!"
+  - "§7🦇 Halloween event is running! Use §e/%COMMAND% enable §7to get spooked!"
+
+# v3.0.8 - Grave Event Messages (customizable by server admins)
+gravePlayerDisabled:
+  - "§c§l[Halloween] §7You have Halloween disabled. Enable it with §e/%COMMAND% enable§7 to interact with graves."
+
+graveGloballyDisabled:
+  - "§c§l[Halloween] §7Halloween is currently disabled! An admin must enable it with §e/%COMMAND% on§7."
+
+graveAlreadyActive:
+  - "§c§l[Halloween] §7This grave has already been disturbed!"
+
+graveCooldown:
+  - "§c§l[Halloween] §7You must wait §e%MINUTES%m %SECONDS%s §7before activating another grave!"
+
+graveFirstWaveStart:
+  - "§c§l⚔ WAVE 1/%TOTAL_WAVES% §7has spawned!"
+
+graveWaveStart:
+  - "§c§l⚔ WAVE %WAVE%/%TOTAL_WAVES% §7has spawned!"
+
+graveWaveCleared:
+  - "§e§l⚔ Wave %CURRENT_WAVE% cleared! Preparing wave %NEXT_WAVE%..."
+
+graveWaveWarning:
+  - "§c§l⚠ WARNING: §e30 seconds remaining! §7(%MOBS_LEFT% mobs left)"
+
+graveWaveTimeout:
+  - "§c§l⏱ WAVE %WAVE% TIMEOUT!"
+
+graveWaveTimeoutDetails:
+  - "§7Time's up! §e%MOBS_LEFT% §7mobs remaining."
+  - "§7Completion: §e%COMPLETION_PERCENT%%"
+  - "§c§lRewards reduced by remaining mobs!"
+
+graveEventCompleted:
+  - "§e§l⚔ Grave event completed"
+
+graveEventCompletedWithPenalty:
+  - "§e§l⚔ Grave event completed (with timeout penalty)"
+
+graveAllWavesDefeated:
+  - "§a§l✔ All waves defeated! Rewards await..."
+
+graveIncompleteDefense:
+  - "§c§l⚠ Incomplete grave defense! Minimal rewards given."
+
+graveXPReward:
+  - "§a§l[Halloween] §7You received §e%XP% XP §7for helping defeat the grave! (§e%CONTRIBUTION%%§7 contribution)"
+
+# v3.1.0: Reward Messages
+xpRewardWithLevels:
+  - "§6+%XP% XP §7(~%LEVELS% levels)"
+  - "You gained §e+%XP% XP §7(approximately %LEVELS% levels)"
+
+xpRewardOnly:
+  - "§6+%XP% XP"
+  - "You earned §e+%XP% experience points"
+
+levelReward:
+  - "§6+%LEVELS% Levels"
+  - "You gained §e+%LEVELS% experience levels!"
+
+pumpkinCooldown:
+  - "§e🎃 You're on pumpkin cooldown! Wait %MINUTES% more minutes."
+  - "Pumpkin cooldown active. Time remaining: %MINUTES% minutes"
+
+halloweenGloballyDisabled:
+  - "§7🎃 Halloween event is currently disabled by admins."
+  - "The Halloween events are not active right now."
+
+pumpkinLoveNote:
+  - "🎃 Surprise! Your love for pumpkins has been… noted."
+  - "The spirits approve of your pumpkin devotion!"
+  - "Your pumpkin obsession has been recorded in the annals of history."
+
+helmetRewardTimer:
+  - "§6🍰 Next reward in %MINUTES% minutes of continuous pumpkin wearing!"
+  - "Keep the pumpkin on! Reward available in %MINUTES% more minutes."
+
+batWitchDefeatedWithPumpkins:
+  - "§d✦ Bat Witch defeated! §e+%PUMPKINS% pumpkins"
+  - "You slayed the Bat Witch! Gained §e+%PUMPKINS% pumpkins"
+
+batWitchDefeatedNoPumpkins:
+  - "§d✦ Bat Witch defeated!"
+  - "You defeated the Bat Witch!"
+
+# =========================================================
+# v3.3.0 - all remaining texts are configurable below
+# =========================================================
+
+# --- Player & system messages (v3.3.0) ---
+pluginInfo:  # no-arg command
+  - "Halloween plugin by Softici s.r.o. Type /%COMMAND% help"
+
+playersOnly:
+  - "Only players can use this command."
+
+effectsDisabledForYou:
+  - "🎃 Halloween effects disabled for you."
+
+effectsEnabledForYou:
+  - "🎃 Halloween effects enabled for you."
+
+noPermission:
+  - "You don't have permission."
+
+halloweenModeEnabled:  # broadcast on /%COMMAND% on
+  - "🎃 Halloween mode ENABLED!"
+
+halloweenModeDisabled:  # broadcast on /%COMMAND% off
+  - "🕯️ Halloween mode DISABLED."
+
+# --- /%COMMAND% help lines (v3.3.0) - %COMMAND% = command name without slash ---
+helpHeader:
+  - "§6=== Halloween Plugin Commands ==="
+
+help_help:
+  - "§e/%COMMAND% help §7- Show commands"
+
+help_enableDisable:
+  - "§e/%COMMAND% enable|disable §7- Player controls"
+
+helpAdminHeader:
+  - "§c=== Admin Commands ==="
+
+help_onOff:
+  - "§e/%COMMAND% on|off §7- Global toggle"
+
+help_set:
+  - "§e/%COMMAND% set <action> <min> <max> §7- Adjust intervals"
+
+help_reset:
+  - "§e/%COMMAND% reset <pumpkin|helmet|cooldowns|all> [player] §7- Reset states / cooldowns"
+
+help_reload:
+  - "§e/%COMMAND% reload §7- Reload configs"
+
+help_sound:
+  - "§e/%COMMAND% sound <player|@a> <sound> §7- Play horror sound"
+
+help_buffsList:
+  - "§e/%COMMAND% buffs list §7- List all pumpkin buffs"
+
+help_buffsToggle:
+  - "§e/%COMMAND% buffs toggle §7- Toggle all buffs on/off"
+
+help_buffsGlow:
+  - "§e/%COMMAND% buffs glow <on|off> §7- Toggle glowing effect"
+
+help_buffsAdd:
+  - "§e/%COMMAND% buffs add <effect> <level> §7- Add a buff"
+
+help_buffsRemove:
+  - "§e/%COMMAND% buffs remove <effect> §7- Remove a buff"
+
+help_buffsEnable:
+  - "§e/%COMMAND% buffs enable <effect> §7- Enable a buff"
+
+help_buffsDisable:
+  - "§e/%COMMAND% buffs disable <effect> §7- Disable a buff"
+
+help_buffsLevel:
+  - "§e/%COMMAND% buffs level <effect> <level> §7- Change buff level"
+
+help_cleanup:
+  - "§e/%COMMAND% cleanup [all] §7- Remove leftover Halloween entities"
+
+# --- Grave event (v3.3.0 additions) ---
+graveProceedingToWave:  # %NEXT_WAVE%
+  - "§e§lProceeding to Wave %NEXT_WAVE%..."
+
+graveFinalCompletion:  # %COMPLETION_PERCENT%
+  - "§7Final completion: §e%COMPLETION_PERCENT%%"
+
+# --- Admin command feedback (v3.3.0) - only shown to players with halloween.use ---
+cmdOffCleanedUp:
+  - "§7All bosses, graves, bat witches, and villagers have been cleaned up."
+
+cmdReloadDone:
+  - "🎃 Halloween config and messages reloaded."
+
+cmdReloadTasksRestarted:
+  - "✅ All player tasks restarted with new intervals."
+
+cmdReloadMessagesBroken:
+  - "§c⚠ messages.yml has a syntax error - default messages are used, your file was left untouched."
+
+cmdReloadMessagesError:  # %ERROR%
+  - "§7%ERROR%"
+
+cmdReloadMessagesHint:
+  - "§7Fix the typo and run the reload again. See console for details."
+
+cmdSetUsage:
+  - "Usage: /%COMMAND% set <pumpkin|slenderman|fire|lightning|darkness|herobrine> <min> <max>"
+
+cmdSetDisabled:  # %ACTION%
+  - "§c⚠️ Event '%ACTION%' has been DISABLED (interval 0 0)."
+
+cmdSetApplied:  # %ACTION% %MIN% %MAX%
+  - "§aInterval for %ACTION% set to %MIN%-%MAX% minutes."
+
+cmdSetTasksRestarted:
+  - "§e✅ All player tasks restarted with new interval."
+
+cmdSetGloballyDisabledNote:
+  - "§7Note: Halloween is globally disabled. Enable with /%COMMAND% on"
+
+cmdSetInvalid:
+  - "§cInvalid values. Use: /%COMMAND% set <action> <min> <max>"
+
+cmdResetUsage:
+  - "Usage: /%COMMAND% reset <pumpkin|helmet|cooldowns|all> [player]"
+
+cmdResetCooldowns:
+  - "⏱ Boss and grave cooldowns have been reset for everyone."
+
+cmdResetCooldownsPlayer:  # %PLAYER%
+  - "⏱ Boss and grave cooldowns reset for %PLAYER%."
+
+cmdResetPumpkin:
+  - "🎃 Pumpkin easter egg states have been reset."
+
+cmdResetHelmet:
+  - "🍰 Helmet reward states have been reset."
+
+cmdResetAll:
+  - "🔄 All one-time events have been reset."
+
+cmdResetInvalid:
+  - "Invalid reset type. Use pumpkin|helmet|cooldowns|all"
+
+cmdCleanupAll:
+  - "§a✅ Cleaned up ALL Halloween entities including Pumpkin Traders."
+
+cmdCleanupDone:
+  - "§a✅ Cleaned up all Halloween entities (Herobrines, bosses, grave mobs)."
+
+cmdCleanupHint:
+  - "§7Use '/%COMMAND% cleanup all' to also remove Pumpkin Traders."
+
+cmdUnknown:
+  - "Unknown command. Try /%COMMAND% help"
+
+cmdBuffsUsage:
+  - "Usage: /%COMMAND% buffs <list|toggle|glow|add|remove|enable|disable|level>"
+
+cmdBuffsListHeader:
+  - "§6=== Pumpkin Helmet Buffs ==="
+
+cmdBuffsListStatusEnabled:
+  - "§7Status: §aEnabled"
+
+cmdBuffsListStatusDisabled:
+  - "§7Status: §cDisabled"
+
+cmdBuffsListGlowOn:
+  - "§7Glowing: §aOn"
+
+cmdBuffsListGlowOff:
+  - "§7Glowing: §cOff"
+
+cmdBuffsListEffectsHeader:
+  - "§6Active Effects:"
+
+cmdBuffsListEffectEnabled:  # %EFFECT% %LEVEL%
+  - "  §a✓ §e%EFFECT% §7Level %LEVEL%"
+
+cmdBuffsListEffectDisabled:  # %EFFECT% %LEVEL%
+  - "  §c✗ §e%EFFECT% §7Level %LEVEL%"
+
+cmdBuffsToggledOn:
+  - "§6Pumpkin buffs §aenabled§6."
+
+cmdBuffsToggledOff:
+  - "§6Pumpkin buffs §cdisabled§6."
+
+cmdBuffsGlowUsage:
+  - "Usage: /%COMMAND% buffs glow <on|off>"
+
+cmdBuffsGlowOn:
+  - "§6Glowing effect §aenabled§6."
+
+cmdBuffsGlowOff:
+  - "§6Glowing effect §cdisabled§6."
+
+cmdBuffsAddUsage:
+  - "Usage: /%COMMAND% buffs add <effect> <level>"
+
+cmdBuffsRemoveUsage:
+  - "Usage: /%COMMAND% buffs remove <effect>"
+
+cmdBuffsEnableDisableUsage:  # %SUBCOMMAND%
+  - "Usage: /%COMMAND% buffs %SUBCOMMAND% <effect>"
+
+cmdBuffsLevelUsage:
+  - "Usage: /%COMMAND% buffs level <effect> <level>"
+
+cmdBuffsUnknown:
+  - "Unknown buffs command. Try /%COMMAND% help"
+
+cmdBuffsAlreadyExists:  # %EFFECT%
+  - "§cEffect %EFFECT% already exists. Use /%COMMAND% buffs level to change it."
+
+cmdBuffsInvalidEffect:  # %EFFECT%
+  - "§cInvalid effect type: %EFFECT%"
+
+cmdBuffsAdded:  # %EFFECT% %LEVEL%
+  - "§aAdded effect %EFFECT% at level %LEVEL%."
+
+cmdBuffsNotFound:  # %EFFECT%
+  - "§cEffect %EFFECT% not found."
+
+cmdBuffsRemoved:  # %EFFECT%
+  - "§aRemoved effect %EFFECT%."
+
+cmdBuffsEffectEnabled:  # %EFFECT%
+  - "§aEnabled effect %EFFECT%."
+
+cmdBuffsEffectDisabled:  # %EFFECT%
+  - "§aDisabled effect %EFFECT%."
+
+cmdBuffsLevelSet:  # %EFFECT% %LEVEL%
+  - "§aSet %EFFECT% to level %LEVEL%."
+
+cmdBuffsInvalidLevel:  # %LEVEL%
+  - "§cInvalid level '%LEVEL%'. Use a number from 1 (Effect I) to 255."
+
+cmdSoundUsage:
+  - "§cUsage: /%COMMAND% sound <player|@a> <sound>"
+
+cmdSoundExample1:
+  - "§7Example: /%COMMAND% sound PlayerName cave_ambience"
+
+cmdSoundExample2:
+  - "§7Example: /%COMMAND% sound @a witch_cackle"
+
+cmdSoundUnknown:  # %SOUND%
+  - "§cUnknown sound: %SOUND%"
+
+cmdSoundTabHint:
+  - "§7Use tab completion to see available sounds."
+
+cmdSoundPlayedAll:  # %SOUND% %COUNT%
+  - "§aPlayed §e%SOUND% §ato §e%COUNT% §aplayer(s)."
+
+cmdSoundPlayerNotFound:  # %PLAYER%
+  - "§cPlayer not found: %PLAYER%"
+
+cmdSoundPlayed:  # %SOUND% %PLAYER%
+  - "§aPlayed §e%SOUND% §ato §e%PLAYER%§a."
+
+# =========================================================
+# v3.4.0
+# =========================================================
+
+# --- /%COMMAND% trigger (admin) ---
+help_trigger:
+  - "§e/%COMMAND% trigger <event> [player|@a] §7- Fire an event or boss now"
+
+cmdTriggerUsage:
+  - "Usage: /%COMMAND% trigger <pumpkin|slenderman|fire|lightning|darkness|herobrine|zombieboss|skeletonboss|batwitch> [player|@a]"
+
+cmdTriggerUnknown:  # %EVENT%
+  - "§cUnknown event '%EVENT%'. Use tab completion to see the available events."
+
+cmdTriggerDone:  # %EVENT% %PLAYER%
+  - "§aTriggered §e%EVENT% §afor §e%PLAYER%§a."
+
+cmdTriggerDoneAll:  # %EVENT% %COUNT%
+  - "§aTriggered §e%EVENT% §afor §e%COUNT% §aplayer(s)."
+
+cmdTriggerProtected:  # %PLAYER% %WORLD%
+  - "§cNot triggered for %PLAYER%: world '%WORLD%' is blacklisted or the region has halloween-events = deny."
+
+help_debug:
+  - "§e/%COMMAND% debug eligible [player] §7- Why does a player (not) get events?"
+
+cmdDebugUsage:
+  - "Usage: /%COMMAND% debug eligible [player]"
+
+cmdTriggerHerobrineUnavailable:  # %PLAYER%
+  - "§cHerobrine could not start for %PLAYER% - it needs night time in the overworld and no sequence already running."
+
+# --- Season scheduler ---
+seasonStarted:
+  - "&6&l🎃 The Halloween season has begun! &7Watch your back..."
+
+seasonEnded:
+  - "&7&l🕯️ The Halloween season is over. &7Thanks for playing - see you next year!"
+
+seasonCountdown:  # %DAYS%
+  - "&6🎃 Halloween starts in &e%DAYS% &6day(s)!"
+
+seasonTopHeader:  # %STAT%
+  - "&6&l=== Halloween Hall of Fame (%STAT%) ==="
+
+# --- Witching hour ---
+witchingHourStart:
+  - "&5&l🌙 The witching hour begins... &7the spirits grow restless."
+
+witchingHourEnd:
+  - "&7The witching hour is over. &8For now."
+
+# --- Discord webhook (colours are stripped automatically) ---
+discordBossSpawn:  # %BOSS_TYPE% %PLAYER%
+  - "🎃 **%PLAYER%** summoned a %BOSS_TYPE%!"
+
+discordBossDefeat:  # %BOSS_TYPE% %PLAYER%
+  - "⚔️ **%PLAYER%** defeated the %BOSS_TYPE%!"
+
+discordGraveStart:  # %PLAYER%
+  - "⚰️ **%PLAYER%** disturbed a grave... the undead are rising."
+
+discordGraveComplete:  # %PLAYER% %COMPLETION_PERCENT%
+  - "✅ Grave event started by **%PLAYER%** completed (%COMPLETION_PERCENT%%)."
+
+discordSeasonStart:
+  - "🎃 The Halloween season has begun on the server!"
+
+discordSeasonEnd:
+  - "🕯️ The Halloween season is over. Thanks for playing!"
+
+# --- Statistics ---
+statsHeader:  # %PLAYER%
+  - "&6&l=== Halloween statistics: &e%PLAYER% &6&l==="
+
+statsLine:  # %STAT% %VALUE%
+  - "&7%STAT%: &e%VALUE%"
+
+statsNoData:  # %PLAYER%
+  - "&7No Halloween statistics for &e%PLAYER% &7yet."
+
+statsDisabled:
+  - "&cStatistics are disabled on this server."
+
+statsUnknown:  # %STAT%
+  - "&cUnknown statistic '%STAT%'. Available: scares, pumpkins_received, halloween_mob_kills, bosses_spawned, bosses_defeated, graves_started, graves_completed, grave_mvp, cakes, candy_earned, pumpkin_time"
+
+topHeader:  # %STAT% %COUNT%
+  - "&6&l=== Top %COUNT% - %STAT% ==="
+
+topLine:  # %RANK% %PLAYER% %VALUE%
+  - "&e#%RANK% &f%PLAYER% &7- &e%VALUE%"
+
+topEmpty:  # %STAT%
+  - "&7Nobody has any %STAT% yet."
+
+help_stats:
+  - "§e/%COMMAND% stats [player] §7- Your Halloween statistics  §e| /%COMMAND% top <stat> §7- Leaderboard"
+
+cmdStatsUsage:
+  - "Usage: /%COMMAND% stats [player]  |  /%COMMAND% top <stat> [count]"
+
+# --- Candy & rewards ---
+candyNotEdible:
+  - "&6🍬 That's Halloween Candy - trade it, don't eat it!"
+
+rewardMoney:  # %AMOUNT%
+  - "&a💰 You received &e%AMOUNT% &afor your bravery!"
+
+cmdCandyUsage:
+  - "Usage: /%COMMAND% candy give <player> <amount>"
+
+cmdCandyGiven:  # %PLAYER% %AMOUNT%
+  - "&aGave &e%AMOUNT% &aHalloween Candy to &e%PLAYER%&a."
+
+# --- Boss bars & titles (titles: "Title|Subtitle") ---
+bossBarZombie:
+  - "&6&l🎃 Pumpkin Monster"
+
+bossBarSkeleton:
+  - "&5&l☠ Halloween Boss"
+
+bossBarGraveWave:  # %WAVE% %TOTAL_WAVES% %MOBS_LEFT% %TIME%
+  - "&c&l⚰ Wave %WAVE%/%TOTAL_WAVES% &7· &e%MOBS_LEFT% &7mobs left · &e%TIME%"
+
+titleBossSpawnZombie:  # %PLAYER%
+  - "&6&lPUMPKIN MONSTER|&7summoned by %PLAYER%"
+
+titleBossSpawnSkeleton:  # %PLAYER%
+  - "&5&lHALLOWEEN BOSS|&7summoned by %PLAYER%"
+
+titleWaveStart:  # %WAVE% %TOTAL_WAVES%
+  - "&c&lWAVE %WAVE%/%TOTAL_WAVES%|&7The undead are rising..."
+
+titleGraveComplete:  # %PLAYER%
+  - "&a&lGRAVE CLEARED|&7Rewards await at the coffin"

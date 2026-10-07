@@ -1,0 +1,403 @@
+[SIZE=6][B][COLOR=#FF6600]Halloween Plugin[/COLOR][/B][/SIZE]
+[I]An advanced seasonal plugin that transforms your Minecraft server into a cinematic Halloween experience[/I]
+
+Developed by [B]Softici s.r.o.[/B]
+
+[SIZE=5][B][COLOR=#FF6600]Overview[/COLOR][/B][/SIZE]
+The Halloween Plugin adds a complete suite of atmospheric events, encounters, and visual effects to bring authentic Halloween immersion to your server.
+It includes random scare events, boss fights, a dramatic grave system, ambient sounds, and custom pumpkin buffs — all fully configurable and optimized for performance.
+
+This plugin is designed for both small community servers and large networks seeking an event‑ready, stable Halloween system with minimal setup.
+
+[B]Works on Minecraft 1.21.3+ and the new year-based versions 26.1 / 26.2[/B] (Spigot, Paper, Purpur); 26.3 is expected to work (tested on Paper 26.3 alpha), not yet guaranteed.
+
+[SIZE=5][B][COLOR=#FF6600]Halloween Boss Showcase[/COLOR][/B][/SIZE]
+[MEDIA=youtube]IGhz5KSODT8[/MEDIA]
+
+[SIZE=5][B][COLOR=#FF6600]Grave Event Showcase[/COLOR][/B][/SIZE]
+[MEDIA=youtube]SUoFE0Cjh34[/MEDIA]
+
+[SIZE=5][B][COLOR=#FF6600]Pumpkin Trader Showcase[/COLOR][/B][/SIZE]
+[MEDIA=youtube]L97l9WvlNXA[/MEDIA]
+
+[SIZE=5][B][COLOR=#FF6600]Core Systems[/COLOR][/B][/SIZE]
+[LIST]
+[*][B]Scare Events[/B] – Randomly trigger harmless but atmospheric effects such as lightning, darkness, fire flashes, Slenderman encounters, and Herobrine appearances.
+[*][B]Boss Battles[/B] – Summonable Pumpkin Zombie and Skeleton bosses with multiple combat phases, minion spawns, and configurable rewards.
+[*][B]Grave System[/B] – Build player graves to summon undead armies through an animated ritual sequence, complete with wave progression, a wave bar and a glowing treasure chest.
+[*][B]Pumpkin Buffs[/B] – Wearing a carved pumpkin grants temporary configurable potion effects with optional glowing visuals.
+[*][B]Sound System[/B] – Play from sixteen curated horror sounds directly via commands for custom events or ambience.
+[*][B]Bat Transformation Event[/B] – Bats can transform into witches with enhanced health, potion drops, and pumpkin rewards.
+[*][B]Player Management[/B] – Each player can enable or disable personal Halloween participation, ensuring event flexibility across servers.
+[/LIST]
+
+[SIZE=5][B][COLOR=#FF6600]Key Features[/COLOR][/B][/SIZE]
+[LIST]
+[*]Modular event control: enable or disable any system individually.
+[*]Safe upgrades: config and messages are smart-merged – your values, comments and custom messages are kept (v3.0.5+).
+[*]World blacklist: keep events out of the Nether / End or any world you choose.
+[*]Smart XP scaling for fair progression rewards.
+[*]Optimized entity management and cleanup utilities.
+[*]Cinematic animations for graves and boss spawns.
+[*]100% translatable: every text (events, help, admin feedback) is in [FONT=courier new]messages.yml[/FONT] with [FONT=courier new]&[/FONT]/hex colours and case-insensitive placeholders.
+[*]Vanish & spectator aware: hidden staff get no events and are never named in broadcasts.
+[*]Season scheduler, witching hour, [FONT=courier new]/halloween trigger[/FONT], Discord webhook (v3.4.0).
+[*]Statistics & leaderboards with PlaceholderAPI, boss bars & titles, WorldGuard region flag (v3.4.0).
+[*]Flexible rewards (items, commands, Vault money, candy) and a candy economy with a configurable Pumpkin Trader (v3.4.0).
+[*]No external dependencies required.
+[/LIST]
+
+[SIZE=5][B][COLOR=#FF6600]Configuration Example[/COLOR][/B][/SIZE]
+[CODE]
+config_version: "3.4.0"
+
+command_prefix: "halloween"
+
+broadcast_events: false
+
+worlds_blacklist:
+  - nether
+  - world_nether
+  - the_end
+  - world_the_end
+
+player_filters:
+  respect_vanish: true
+  skip_spectators: true
+
+login_pumpkin:
+  enabled: true
+  cooldown_minutes: 30
+
+login_messages:
+  enabled: true
+  sound: true
+
+helmet_rewards:
+  enabled: true
+  first_reward_minutes: 5
+  increment_minutes: 5
+  max_minutes: 30
+
+pumpkin_zombie_boss:
+  enabled: true
+  cooldown_minutes: 10
+  health: 100.0
+  damage_boost: 2.0
+  speed_boost: 0.3
+  xp_reward: 10
+  rewards:
+    - material: CARVED_PUMPKIN
+      min: 15
+      max: 20
+    - material: CAKE
+      min: 3
+      max: 5
+    - material: PHANTOM_MEMBRANE
+      min: 1
+      max: 5
+    - material: ZOMBIE_HEAD
+      min: 1
+      max: 1
+      chance: 0.3
+    - material: GLOWSTONE_DUST
+      min: 10
+      max: 32
+
+pumpkin_skeleton_boss:
+  enabled: true
+  cooldown_minutes: 10
+  health: 100.0
+  damage_boost: 3.0
+  speed_boost: 0.3
+  xp_reward: 15
+  bat_spawn_interval: 10
+  phantom_spawn_interval: 60
+  minion_range: 20
+  rewards:
+    - material: CARVED_PUMPKIN
+      min: 15
+      max: 30
+    - material: PHANTOM_MEMBRANE
+      min: 2
+      max: 4
+    - material: ANCIENT_DEBRIS
+      min: 1
+      max: 2
+    - material: POTION
+      min: 1
+      max: 1
+
+random_pumpkin_mobs:
+  enabled: true
+  chance: 0.10
+  pumpkin_drops:
+    min: 1
+    max: 3
+
+pumpkin_villager:
+  enabled: true
+  trades:                       # item: any material, or CANDY = Halloween Candy
+    - cost:   { item: EMERALD, amount: 1 }
+      result: { item: CARVED_PUMPKIN, amount: 64 }
+      max_uses: 999999
+    - cost:   { item: CANDY, amount: 10 }
+      result: { item: GOLDEN_APPLE, amount: 1 }
+      max_uses: 5
+
+candy:
+  enabled: true
+  material: COOKIE
+  name: "&6&lHalloween Candy"
+  edible: false
+  drops:
+    grave_mob:          { chance: 0.25, min: 1, max: 1 }
+    boss_defeat:        { chance: 1.0,  min: 5, max: 10 }
+
+bat_transformation:
+  enabled: true
+  chance: 0.33
+  health_multiplier: 1.5
+  message: "§5§l✦ §dThe bat transforms into a witch! §5§l✦"
+  xp_reward: 5
+  rewards:
+    pumpkins_min: 3
+    pumpkins_max: 8
+    potion_drop: true
+
+events:
+  pumpkin:
+    enabled: true
+    min: 5
+    max: 20
+    enable_pumpkin_surprise: true
+    pumpkin_surprise_count: 3
+
+  slenderman:
+    enabled: true
+    min: 15
+    max: 40
+
+  fire:
+    enabled: true
+    min: 30
+    max: 60
+    damage_enabled: false
+
+  lightning:
+    enabled: true
+    min: 20
+    max: 35
+    damage_enabled: false
+
+  darkness:
+    enabled: true
+    min: 10
+    max: 50
+    duration_seconds: 2
+
+  herobrine:
+    enabled: true
+    min: 40
+    max: 80
+    render_distance: 3
+
+pumpkin_buffs:
+  enabled: true
+  glowing: true
+  duration: 15
+
+  effects:
+    - type: HASTE
+      level: 2
+      enabled: false
+    - type: SPEED
+      level: 2
+      enabled: true
+    - type: STRENGTH
+      level: 2
+      enabled: false
+    - type: REGENERATION
+      level: 2
+      enabled: true
+    - type: RESISTANCE
+      level: 2
+      enabled: false
+    - type: JUMP_BOOST
+      level: 2
+      enabled: false
+
+grave:
+  enabled: true
+  cooldown_minutes: 15
+  wave_timeouts:
+    wave1: 90
+    wave2: 120
+    wave3: 180
+  spawns:
+    wave1:
+      skeleton: 3
+      zombie: 2
+      skeleton_horse: 2
+      zombie_horse: 3
+    wave2:
+      skeleton: 5
+      zombie: 7
+      skeleton_horse: 3
+      zombie_horse: 4
+    wave3:
+      skeleton: 10
+      zombie: 8
+      blaze: 3
+      skeleton_horse: 6
+  health_boost: 1.3
+  damage_boost: 1.5
+  speed_boost: 0.2
+  chest_glow: { enabled: true, minutes: 15 }
+  pumpkin_drop_chance: 0.10
+  pumpkin_drops_per_mob: 1
+  xp_per_mob: 5
+  rewards:                      # also: - command: "give %player% ..." / - money: 100 / - candy: 5
+    - material: CARVED_PUMPKIN
+      min: 10
+      max: 32
+    - material: CAKE
+      min: 2
+      max: 5
+    - material: SKELETON_SKULL
+      min: 0
+      max: 1
+      chance: 0.5
+    - material: ZOMBIE_HEAD
+      min: 0
+      max: 1
+      chance: 0.5
+    - material: DIAMOND
+      min: 5
+      max: 10
+    - material: ANCIENT_DEBRIS
+      min: 1
+      max: 3
+    - material: PHANTOM_MEMBRANE
+      min: 1
+      max: 1
+
+season:
+  enabled: false
+  start: "10-01"
+  end: "11-05"
+  countdown_days: 7
+
+witching_hour:
+  enabled: false
+  mode: real                    # real (server clock) or minecraft (world time)
+  start: "20:00"
+  end: "22:00"
+  interval_multiplier: 0.5
+
+discord:
+  enabled: false
+  webhook_url: ""
+
+statistics:
+  enabled: true
+  player_visible: [scares, pumpkins_received, halloween_mob_kills, bosses_defeated, graves_completed, cakes, candy_earned]
+  top_public: true
+  season_end_top: 3
+
+visuals:
+  boss_bar: { enabled: true, radius: 40 }
+  titles:   { enabled: true, boss_spawn: true, wave_start: true, grave_complete: true }
+
+worldguard:
+  enabled: true                 # region flag halloween-events (when WorldGuard is installed)
+
+update_checker:
+  enabled: true
+  message: "§6[Halloween] §eNew update available!\n§7Current: §c%current_version% §7→ Latest: §a%new_version%\n§eDownload: %link%"
+[/CODE]
+
+[SIZE=5][B][COLOR=#FF6600]Commands[/COLOR][/B][/SIZE]
+[LIST]
+[*][FONT=courier new]/halloween on[/FONT] – Enable all events globally.
+[*][FONT=courier new]/halloween off[/FONT] – Disable all events and remove active entities (bosses, grave waves, witches).
+[*][FONT=courier new]/halloween reload[/FONT] – Reload configuration, messages and player data.
+[*][FONT=courier new]/halloween set <event> <min> <max>[/FONT] – Adjust event timing or disable an event.
+[*][FONT=courier new]/halloween sound <player|@a> <sound>[/FONT] – Play horror sounds to selected players.
+[*][FONT=courier new]/halloween cleanup [all][/FONT] – Remove spawned bosses, mobs, and optional traders.
+[*][FONT=courier new]/halloween enable|disable[/FONT] – Turn Halloween on/off for yourself.
+[*][FONT=courier new]/halloween buffs list|toggle|add|remove|level[/FONT] – Manage the pumpkin helmet buffs.
+[*][FONT=courier new]/halloween stats [player][/FONT], [FONT=courier new]/halloween top <stat>[/FONT] – Statistics and leaderboards.
+[*][FONT=courier new]/halloween trigger <event> [player|@a][/FONT] – Fire any event or boss now.
+[*][FONT=courier new]/halloween candy give <player> <amount>[/FONT] – Hand out Halloween Candy.
+[*][FONT=courier new]/halloween debug eligible [player][/FONT] – Why does a player (not) get events?
+[*][FONT=courier new]/halloween reset <pumpkin|helmet|cooldowns|all> [player][/FONT] – Reset one-time rewards or boss/grave cooldowns.
+[*][FONT=courier new]/hlw[/FONT] – Short alias; the command name itself can be changed via [FONT=courier new]command_prefix[/FONT].
+[/LIST]
+Read more in the documentation tab.
+
+[SIZE=5][B][COLOR=#FF6600]Permissions[/COLOR][/B][/SIZE]
+[table]
+[tr][th]Permission[/th][th]Default[/th][th]Description[/th][/tr]
+[tr][td]halloween.base[/td][td]true[/td][td]Player commands: help, enable, disable[/td][/tr]
+[tr][td]halloween.use[/td][td]OP[/td][td]Admin commands: on/off, reload, set, reset, buffs, sound, cleanup[/td][/tr]
+[tr][td]halloween.admin[/td][td]OP[/td][td]Receives the in-game "update available" notice on join[/td][/tr]
+[tr][td]halloween.stats[/td][td]true[/td][td]Own statistics and the public leaderboard[/td][/tr]
+[tr][td]halloween.stats.admin[/td][td]OP[/td][td]Any player's statistics[/td][/tr]
+[tr][td]halloween.trigger[/td][td]OP[/td][td]/halloween trigger[/td][/tr]
+[/table]
+
+[SIZE=5][B][COLOR=#FF6600]Installation[/COLOR][/B][/SIZE]
+[LIST=1]
+[*]Place the plugin JAR into the server’s [FONT=courier new]plugins/[/FONT] directory.
+[*]Restart the server to generate configuration files in [FONT=courier new]plugins/Halloween_Softici/[/FONT].
+[*]Edit [FONT=courier new]config.yml[/FONT] and [FONT=courier new]messages.yml[/FONT] to your preference.
+[*]Run [FONT=courier new]/halloween reload[/FONT] or restart to apply changes.
+[/LIST]
+
+[SIZE=5][B][COLOR=#FF6600]Upgrading[/COLOR][/B][/SIZE]
+[B]From v3.0.5 or newer (drop-in):[/B]
+[LIST]
+[*]Stop the server, replace the JAR, start.
+[*][FONT=courier new]config.yml[/FONT] is smart-merged: your values and comments are kept, only new sections/keys are added.
+[*][FONT=courier new]messages.yml[/FONT] keeps every category you customized; new categories are appended. A YAML typo in the file no longer wipes it – the plugin logs the line/column, leaves the file untouched and uses default messages until you fix it and run [FONT=courier new]/halloween reload[/FONT].
+[*][FONT=courier new]data.yml[/FONT] (player opt-outs, global on/off) is never touched.
+[/LIST]
+[B]From v3.0.0 – v3.0.4:[/B] config is replaced with fresh defaults, the old file is kept as [FONT=courier new]config.old_<timestamp>.yml[/FONT] – copy your values back manually. messages.yml and data.yml are preserved.
+
+[B]From v1.x / v2.x (folder [FONT=courier new]plugins/Halloween/[/FONT]):[/B]
+[LIST]
+[*]Backup [FONT=courier new]plugins/Halloween/[/FONT], replace the JAR, start the server.
+[*]A fresh config is generated in [FONT=courier new]plugins/Halloween_Softici/[/FONT]. The old structure ([FONT=courier new]intervals:[/FONT], old boss section names) is [B]not converted[/B] – re-apply your custom values by hand.
+[*]Optional: copy [FONT=courier new]data.yml[/FONT] to [FONT=courier new]Halloween_Softici/[/FONT] to keep player preferences.
+[*]Delete the old [FONT=courier new]plugins/Halloween/[/FONT] folder once everything works (it only triggers a startup notice).
+[/LIST]
+
+[SIZE=5][B][COLOR=#FF6600]Technical Information[/COLOR][/B][/SIZE]
+[LIST]
+[*]Current version: 3.4.0 (config version 3.4.0)
+[*]Optional integrations: Vault (money rewards), PlaceholderAPI (placeholders), WorldGuard (halloween-events flag)
+[*]Spigot / Paper / Purpur: [B]1.21.3 or newer[/B], including Minecraft 26.1 / 26.2. [I]26.3: builds and runs on Paper 26.3 alpha in our tests - expected to work, but Paper 26.3 is still alpha, so no promises until it goes stable.[/I]
+[*]Java: [B]21 or newer[/B] (Paper 26.x itself requires Java 25)
+[*]Servers on 1.21.1 / 1.21.2: use v3.1.1
+[*]Smart config/messages merge on upgrade (v3.0.5+), timestamped backup when a full replace is needed
+[*]Unique plugin folder ([FONT=courier new]Halloween_Softici[/FONT]) prevents conflicts with other Halloween add-ons
+[*]No external dependencies, optimized for low performance overhead
+[*]Source code & downloads: [URL='https://gitlab.com/softici/halloween']gitlab.com/softici/halloween[/URL] (Releases)
+[/LIST]
+
+[SIZE=5][B][COLOR=#FF6600]Version Summary[/COLOR][/B][/SIZE]
+[LIST]
+[*]v3.4.0 – season scheduler, /halloween trigger, witching hour, Discord webhook, statistics + PlaceholderAPI, boss bars & titles, WorldGuard flag, command/money/candy rewards, Halloween Candy & configurable trader.
+[*]v3.3.0 – &/hex colours, case-insensitive placeholders, everything translatable, vanish/spectator filters, join-message toggle, 1-based buff levels (auto-converted).
+[*]v3.2.x – Minecraft 26.x / Paper 26.2 support, grave event fix after [FONT=courier new]/halloween off[/FONT], messages.yml typo protection.
+[*]v3.1.x – Smart config merge, world blacklist, all messages customizable, configurable pumpkin surprise.
+[*]v3.0.5 – v3.0.9 – Boss/grave cooldowns, rapid-click fix, bosses keep player gear safe, grave and boss messages in messages.yml.
+[*]v3.0.0 – Major update with new structure, bug fixes, and bat transformation system.
+[*]v1.7.x – Grave wave system, dynamic rewards, and enhanced animations.
+[*]v1.6.x – Horror sound system and command customization.
+[*]v1.5.x – Boss battles, trading system, and improved XP handling.
+[*]Earlier versions – Core scare events and pumpkin curse mechanics.
+[/LIST]
+
+[SIZE=3][I][COLOR=#999999]Made by Softici s.r.o. – A complete Halloween event framework for Minecraft servers.[/COLOR][/I][/SIZE]

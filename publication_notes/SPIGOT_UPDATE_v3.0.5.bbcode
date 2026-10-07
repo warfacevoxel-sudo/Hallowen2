@@ -1,0 +1,73 @@
+[SIZE=5][COLOR=#FF6600][B]🎃 Halloween Plugin v3.0.5 - Major Fixes & Optimizations![/B][/COLOR][/SIZE]
+
+[COLOR=#FF6600][B]Release Date:[/B][/COLOR] October 17, 2025
+[COLOR=#FF6600][B]Type:[/B][/COLOR] Bug Fixes & Performance Improvements
+
+[SIZE=4][COLOR=#CC3300]� Major Bug Fixes[/COLOR][/SIZE]
+
+[COLOR=#009900][B]Entity Cleanup & Server Restart Issues[/B][/COLOR]
+[LIST]
+[*][B]FIXED:[/B] Halloween entities (bosses, minions) now properly cleanup after server restart
+[*][B]FIXED:[/B] Enhanced name-based detection works regardless of tracking data
+[*][B]IMPROVED:[/B] Skeleton boss teleportation no longer spams chat messages
+[*][B]IMPROVED:[/B] Boss teleportation reliability throughout entire encounters
+[/LIST]
+
+[COLOR=#009900][B]Config Migration & Data Persistence[/B][/COLOR]
+[LIST]
+[*][B]FIXED:[/B] Reliable config migration from v3.0.1+ with automatic backups
+[*][B]FIXED:[/B] Boss and grave cooldowns now properly save across server restarts
+[*][B]FIXED:[/B] [FONT=courier]/halloween reload[/FONT] now properly reloads messages.yml changes
+[*][B]IMPROVED:[/B] Message customizations fully preserved during updates
+[/LIST]
+
+[SIZE=4][COLOR=#6600CC]🎯 Anti-Farming System[/COLOR][/SIZE]
+
+[COLOR=#0066CC][B]New Cooldown Features:[/B][/COLOR]
+Prevents players from farming bosses and graves for rewards:
+
+[CODE]
+# Configurable per-player cooldowns
+pumpkin_zombie_boss:
+  cooldown_minutes: 10    # 10min between zombie boss spawns
+
+pumpkin_skeleton_boss:  
+  cooldown_minutes: 10    # 10min between skeleton boss spawns
+
+grave:
+  cooldown_minutes: 15    # 15min between grave activations
+[/CODE]
+
+[COLOR=#0066CC][B]Grave Reward Protection:[/B][/COLOR]
+Players must kill at least 50% of grave mobs to receive full rewards. Incomplete graves give reduced loot (1 dirt + 1 pumpkin).
+
+[SIZE=4][COLOR=#FF6600]� Installation & Migration[/COLOR][/SIZE]
+
+[LIST=1]
+[*]Stop your server
+[*]Replace with [FONT=courier]halloween-plugin-3.0.5.jar[/FONT]
+[*]Start server → Config auto-migrates with backup
+[*]All player data and progress preserved
+[/LIST]
+
+[COLOR=#CC6600][B]From v3.0.1-v3.0.4:[/B][/COLOR] Config replaced with v3.0.5 defaults, backup created as [FONT=courier]config.old_TIMESTAMP.yml[/FONT]
+[COLOR=#CC6600][B]Messages.yml:[/B][/COLOR] All customizations preserved automatically
+
+[SIZE=4][COLOR=#009900]✨ Quality of Life Improvements[/COLOR][/SIZE]
+
+[LIST]
+[*][B]Better Admin Experience:[/B] Messages.yml reload works properly for quick customization
+[*][B]Cleaner Multiplayer:[/B] No more chat spam during boss encounters
+[*][B]Balanced Gameplay:[/B] Anti-farming cooldowns prevent reward exploitation
+[*][B]Restart Safe:[/B] All Halloween entities cleanup reliably after maintenance
+[/LIST]
+
+[COLOR=#CC6600][B]Compatibility:[/B][/COLOR] Minecraft 1.21.1+ (Paper/Purpur recommended)
+[COLOR=#CC6600][B]Java Version:[/B][/COLOR] 17+
+[COLOR=#CC6600][B]Migration:[/B][/COLOR] Automatic from v3.0+ with backup system
+
+[SIZE=4][COLOR=#9900CC]🔗 Links[/COLOR][/SIZE]
+
+[URL=https://github.com/yourusername/halloween-plugin/releases]📥 Download[/URL] | [URL=https://github.com/yourusername/halloween-plugin]📚 Documentation[/URL] | [URL=https://github.com/yourusername/halloween-plugin/issues]🐛 Bug Reports[/URL]
+
+[I][COLOR=#666666]Recommended update for all servers experiencing entity persistence or config migration issues! 🎃[/COLOR][/I]

@@ -1,0 +1,59 @@
+[SIZE=5][COLOR=#FF6600][B]🎃 Halloween Plugin v3.0.6 - Rapid-Click Exploit Hotfix![/B][/COLOR][/SIZE]
+
+[COLOR=#FF6600][B]Release Date:[/B][/COLOR] October 25, 2025
+[COLOR=#FF6600][B]Type:[/B][/COLOR] Security hotfix - single critical exploit fix
+
+[SIZE=4][COLOR=#CC3300]🔒 Security Fix[/COLOR][/SIZE]
+
+[COLOR=#009900][B]v3.0.6 - Rapid-Click Boss Spawn Exploit Prevention[/B][/COLOR]
+[LIST]
+[*][B]FIXED:[/B] Players could spawn multiple bosses by rapid-clicking pumpkin head structure
+[*][B]FIXED:[/B] Exploit allowed spawning 5+ bosses within 1 second from single structure
+[*][B]ADDED:[/B] Per-block click debounce (3 second default cooldown between clicks)
+[*][B]IMPROVED:[/B] More consistent boss spawn behavior
+[/LIST]
+
+[SIZE=4][COLOR=#6600CC]💡 What This Means for Admins[/COLOR][/SIZE]
+
+[COLOR=#0066CC][B]Boss Spawn Control:[/B][/COLOR]
+Players can no longer exploit the pumpkin head structures by rapid-clicking:
+[LIST]
+[*]Zombie Boss (fence + pumpkin) - protected from rapid spawning (1 click per second maximum)
+[*]Skeleton Boss (lapis + pumpkin) - protected from rapid spawning (1 click per second maximum)
+[*]This is now hardcoded - ALWAYS 3 second between clicks on same block, no exceptions
+[/LIST]
+
+[COLOR=#0066CC][B]How It Works:[/B][/COLOR]
+[LIST]
+[*]Each pumpkin structure tracks the last click time
+[*]If clicked again within 1 second: "Boss spawn is on cooldown!" message
+[*]After 1 second: next click works normally
+[*]Different pumpkin structures are independent
+[/LIST]
+
+[SIZE=4][COLOR=#FF6600]📦 Installation[/COLOR][/SIZE]
+
+[LIST=1]
+[*]Stop your server
+[*]Replace [FONT=courier]halloween-plugin-3.0.5.jar[/FONT] with [FONT=courier]halloween-plugin-3.0.6.jar[/FONT]
+[*]Start your server
+[*]No config changes needed - hotfix is fully backward compatible
+[/LIST]
+
+[COLOR=#CC6600][B]Compatibility:[/B][/COLOR] v3.0.5 → v3.0.6 = No migration (configs fully compatible)
+[COLOR=#CC6600][B]Minecraft:[/B][/COLOR] 1.21.1+ (Paper/Purpur recommended)
+[COLOR=#CC6600][B]Java:[/B][/COLOR] 17+
+
+[SIZE=4][COLOR=#9900CC]✨ Release Notes[/COLOR][/SIZE]
+
+This is a maintenance hotfix addressing a single but important exploit:
+[LIST]
+[*]Tight click detection prevents rapid boss spawning
+[*]Individual block tracking ensures fair gameplay
+[*]No breaking changes - drop-in replacement for v3.0.5
+[/LIST]
+
+
+ [URL='https://gitlab.com/softici/halloween/-/issues'] Bug Reports[/URL]
+ 
+[I][COLOR=#666666]Keeping your server fair and Halloween fun! 🎃[/COLOR][/I]

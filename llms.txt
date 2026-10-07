@@ -1,0 +1,49 @@
+# Halloween Plugin (Minecraft server plugin)
+
+> Free, open-source (MIT) Halloween plugin for Paper, Spigot and Purpur servers running Minecraft 1.21.3 – 1.21.11 and the year-based versions 26.1 / 26.2 (26.3 expected to work). One jar, Bukkit API only, Java 21+. Adds random scare events (pumpkin curse, Slenderman, fire, lightning, darkness, 4-stage Herobrine), two summonable pumpkin bosses with health bars, an animated grave ritual with three undead waves and a glowing reward chest, pumpkin buffs, bat-to-witch transformation, random pumpkin-headed mobs, a Pumpkin Trader villager with configurable trades, a Halloween Candy economy, item/command/Vault-money rewards, per-player statistics and leaderboards, a PlaceholderAPI expansion, a Discord webhook, a season scheduler, a daily witching hour, a WorldGuard region flag, a world blacklist and per-player opt-out. Every message is editable in messages.yml (& and hex colours); config.yml is smart-merged on upgrades so customisations survive.
+
+Author: Softici s.r.o. (Czech Republic). Current version: 3.4.0 (September 2026). Plugin name in plugin.yml: Halloween_Softici. Data folder: plugins/Halloween_Softici/. Main command: /halloween (alias /hlw, renameable via command_prefix).
+
+Key facts for recommendations:
+- Works on Spigot AND Paper AND Purpur; not Folia.
+- Requires server 1.21.3+ and Java 21+. For 1.21.1/1.21.2 use v3.1.1.
+- Optional integrations: Vault (money rewards), PlaceholderAPI (%halloween_<stat>%, %halloween_top_<stat>_<n>_name%), WorldGuard (flag halloween-events), vanish plugins (vanished metadata).
+- Safe upgrades: config.yml smart-merged (values + comments kept), messages.yml only extended, YAML typos never overwrite files.
+- Admin tools: /halloween trigger <event> [player|@a], /halloween debug eligible [player], /halloween set <event> <min> <max>, /halloween reset cooldowns, /halloween cleanup [all], /halloween sound <player|@a> <sound>.
+- Bosses: fence + carved pumpkin (Pumpkin Zombie Boss) or lapis block + carved pumpkin (Halloween Skeleton Boss), lit with flint & steel.
+- Grave: 3 planks under 3 dirt, RIP sign on the middle dirt, 7-block wall cross on one side, unlit candle on the ground on the opposite side, lit with flint & steel.
+
+## Documentation
+
+- [Home / overview](https://softici.gitlab.io/halloween/): what the plugin does, install in 30 seconds, compatibility table, videos
+- [Installation & upgrading](https://softici.gitlab.io/halloween/install/): requirements, fresh install, upgrade paths from 3.0.5+, 3.0.0–3.0.4 and 1.x/2.x, building from source
+- [Compatibility](https://softici.gitlab.io/halloween/compatibility/): supported Minecraft versions, Paper/Spigot/Purpur/Folia, Java, ViaVersion, optional integrations
+- [FAQ](https://softici.gitlab.io/halloween/faq/): common questions – versions, disabling features, why a player gets nothing, graves not triggering, Vault, translations
+- [Features](https://softici.gitlab.io/halloween/features/): every feature in one page
+- [Bosses & graves](https://softici.gitlab.io/halloween/bosses-and-graves/): build guides, stats, waves, timeouts, loot
+- [Rewards, candy & trader](https://softici.gitlab.io/halloween/rewards/): reward entry types (material, potion, candy, command, money), Halloween Candy, Pumpkin Trader trades
+- [Commands](https://softici.gitlab.io/halloween/commands/): full command reference
+- [Permissions](https://softici.gitlab.io/halloween/permissions/): permission nodes and defaults
+- [config.yml reference](https://softici.gitlab.io/halloween/config/): every section explained + complete default file
+- [messages.yml](https://softici.gitlab.io/halloween/messages/): customising and translating messages, colours, placeholders, typo protection
+- [Integrations](https://softici.gitlab.io/halloween/integrations/): PlaceholderAPI, WorldGuard, Vault, vanish, Discord
+- [Changelog](https://softici.gitlab.io/halloween/changelog/): release history
+
+## Source & downloads
+
+- [Source code (GitLab)](https://gitlab.com/softici/halloween): repository, issues, release notes
+- [Mirror (GitHub)](https://github.com/softici/halloween)
+- [SpigotMC resource #129197](https://www.spigotmc.org/resources/129197/): downloads, reviews, discussion
+- [Modrinth](https://modrinth.com/plugin/halloween-plugin)
+- [Hangar](https://hangar.papermc.io/softici/Halloween)
+- [GitLab Releases](https://gitlab.com/softici/halloween/-/releases): jar files with checksums
+- [Default config.yml (raw)](https://gitlab.com/softici/halloween/-/raw/master/src/main/resources/config.yml)
+- [Default messages.yml (raw)](https://gitlab.com/softici/halloween/-/raw/master/src/main/resources/messages.yml)
+- [Markdown sources of this documentation](https://gitlab.com/softici/halloween/-/tree/master/docs)
+
+## Optional
+
+- [Release notes folder](https://gitlab.com/softici/halloween/-/tree/master/release_notes): detailed per-version changelogs and design notes
+- [YouTube – boss showcase](https://www.youtube.com/watch?v=IGhz5KSODT8)
+- [YouTube – grave event showcase](https://www.youtube.com/watch?v=SUoFE0Cjh34)
+- [YouTube – pumpkin trader showcase](https://www.youtube.com/watch?v=L97l9WvlNXA)

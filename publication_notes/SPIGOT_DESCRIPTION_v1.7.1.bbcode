@@ -1,0 +1,432 @@
+[SIZE=6] 
+[COLOR=#ff6600][B]Halloween Plugin v1.7.1[/B][/COLOR][/SIZE]
+
+Bring the spooky spirit of Halloween to your Minecraft server!
+This plugin adds fun, scary features designed to [B]surprise your players[/B] and create a creepy seasonal atmosphere.
+
+Developed by [B]Softici s.r.o.[/B]
+
+[B][COLOR=#ff9933]──────────────────────────[/COLOR][/B]
+
+[SIZE=5][COLOR=#ff9933]Features[/COLOR][/SIZE]
+
+[LIST]
+[*][B][COLOR=#660000]Herobrine Scare Events[/COLOR][/B] [COLOR=#ff0000]NEW in v1.7.0![/COLOR]
+- Progressive 4-stage encounter system with increasing intensity
+- [B]Stage 1:[/B] Silent observation (Herobrine watches from 20-30 blocks)
+- [B]Stage 2:[/B] Closer encounter (15-25 blocks, cave ambience)
+- [B]Stage 3:[/B] Vanishing act (appears then teleports away, enderman scream)
+- [B]Stage 4:[/B] The chase (aggressive pursuit with wither sounds)
+- Fully configurable spawn rates and behavior
+- Atmospheric sound effects for each stage
+
+[*][B][COLOR=#9900ff]Horror Sound Command[/COLOR][/B] [COLOR=#ff0000]v1.6.2[/COLOR]
+- Play spooky horror sounds to specific players or everyone!
+- Command: [ICODE]/halloween sound <player|@a> <sound>[/ICODE]
+- 15 unique horror sounds: cave ambience, witch cackle, ghast scream, enderman, zombie, skeleton, creeper, wither, ender dragon, thunder, bell, portal, soul, sculk shriek, warden heartbeat
+- Tab completion for players and sounds
+- Perfect for events, pranks, and atmosphere!
+
+[*][B][COLOR=#00ccff]Custom Command Prefix[/COLOR][/B] [COLOR=#ff0000]v1.6.1[/COLOR]
+- Configure your own command to avoid conflicts with other plugins
+- Set [ICODE]command_prefix[/ICODE] in config.yml (e.g., "scary", "spooky", "hw")
+- When using custom prefix, [ICODE]/halloween[/ICODE] is completely unregistered and freed for other plugins
+- Perfect for servers with multiple Halloween plugins!
+- Works on Spigot, Paper, and Purpur
+
+[*][B][COLOR=#999999]Spooky Login Greeting[/COLOR][/B] 
+Players are welcomed with a chilling message when they join: 
+[ICODE]Spooky times have arrived... Type /halloween disable if you don't dare to be cursed.[/ICODE]
+[COLOR=#00ff00]v1.5.4:[/COLOR] 30-minute cooldown prevents pumpkin farming on join!
+
+[*][B][COLOR=#ff6600]Pumpkin Curse[/COLOR][/B] 
+- Every 1–10 minutes (configurable), a carved pumpkin appears on players' heads. 
+- Items are safe — the plugin checks inventory space before swapping helmets. 
+- After 3 curses, players' free slots fill with stacks of pumpkins (Easter egg). 
+
+[*][B][COLOR=#8b00ff]Grave System[/COLOR][/B] [COLOR=#ff0000]v1.6.0[/COLOR] [COLOR=#00ff00]✅ Fixed in v1.7.1![/COLOR]
+Build elaborate graves and summon an [B]undead army[/B] to test your combat skills!
+[B]How to Build:[/B]
+[LIST=1]
+[*]Place 3 wood planks underground (coffin)
+[*]Cover with 3 dirt blocks
+[*]Add RIP sign on middle dirt
+[*]Build cross with stone walls (4 vertical + 2 horizontal at 3rd level)
+[*]Place candles on opposite side
+[*]Light candle with flint & steel!
+[/LIST]
+[B]What Happens:[/B]
+- Dramatic 18-second animation (cross sinks → dirt vanishes → coffin transforms to nether bricks)
+- [B]Undead army spawns:[/B] 3 Skeletons, 2 Zombies, 2 Skeleton Riders, 3 Zombie Riders (all with pumpkin helmets and glow!)
+- [B]Buffed mobs:[/B] +30% health, +50% damage, +20% speed
+- [B]Rewards:[/B] Chest with 10-32 pumpkins, cakes, skulls (50%), treasure map, 5 diamonds
+- [B]Team XP:[/B] Distributed based on kill contribution
+- [COLOR=#00ff00]✅ Now works underground and when surrounded by other blocks![/COLOR]
+
+[*][B][COLOR=#cc0000]Epic Boss Battles[/COLOR][/B] [COLOR=#ff0000]v1.5.0[/COLOR]
+[B]Pumpkin Monster (Zombie Boss):[/B]
+- Summon: Place fence + carved pumpkin, ignite with flint & steel
+- Stats: 100 HP, Diamond Armor, Mace weapon, +30% speed
+- Rewards: 10-14 pumpkins, cakes, zombie head (rare!), glowstone, XP
+
+[B]Halloween Boss (Skeleton Boss):[/B]
+- Summon: Place lapis block + carved pumpkin, ignite with flint & steel
+- Stats: 100 HP, Netherite Armor + Pumpkin Head, Bow, +30% speed
+- [B]Summons minions:[/B] Cursed Bat (every 10s) and Haunting Phantom (every 60s)
+- Rewards: [B]Ancient Debris[/B], phantom membranes, potions, 15-30 pumpkins, +40% more XP!
+- [COLOR=#00ff00]v1.5.3:[/COLOR] Changed from Witch to Skeleton for balanced combat
+
+[*][B][COLOR=#00cccc]Smart XP System[/COLOR][/B] [COLOR=#ff0000]v1.5.4[/COLOR]
+- Prevents high-level XP exploits with intelligent scaling
+- Low-level players (< 30): Get direct levels (3-7 levels)
+- High-level players (≥ 30): Get raw XP (scales naturally with Minecraft's curve)
+- Halloween Boss gives +40% more XP than Pumpkin Monster
+- Fully configurable base rewards
+
+[*][B][COLOR=#ffaa00]Pumpkin Villager Trading[/COLOR][/B] [COLOR=#ff0000]v1.5.0[/COLOR]
+- Convert any villager: Right-click with carved pumpkin
+- Becomes [B]Pumpkin Trader[/B] (Toolsmith profession, wears pumpkin helmet)
+- Trading: 64 pumpkins ↔ 1 emerald (both directions)
+- Daily limit: 64 trades per villager
+- [COLOR=#00ff00]v1.5.4:[/COLOR] Reverts to normal villager when Halloween disabled globally
+
+[*][B][COLOR=#9900ff]Random Pumpkin Mobs[/COLOR][/B] [COLOR=#ff0000]v1.5.0[/COLOR]
+- 10% chance any mob spawns wearing a pumpkin helmet
+- Drops 5-10 carved pumpkins when killed
+- Works with zombies, skeletons, creepers, etc.
+- Fully configurable chance and drop amounts
+
+[*][B][COLOR=#00ff00]Automatic Update Checker[/COLOR][/B] [COLOR=#ff0000]NEW in v1.7.1![/COLOR]
+- Notifies admins when new version is available
+- Shows current and latest version on startup
+- In-game notification with clickable download link
+- Fully configurable in config.yml
+- Can be disabled if not needed
+
+[*][B][COLOR=#999999]Slenderman Prank[/COLOR][/B] 
+- An Enderman spawns 1 block in front of a random player and vanishes after 0.5s. 
+- Creepy sounds + server-wide messages. 
+
+[*][B][COLOR=#ff3300]Fire Prank[/COLOR][/B] 
+- Harmless fire effect for a few seconds (no damage). 
+- Broadcasts funny lines like: 
+[ICODE]I fell into the burning ring of fire...[/ICODE]
+
+[*][B][COLOR=#ffff00]Lightning Prank[/COLOR][/B] 
+- Harmless lightning strike near a random player. 
+- Thunder and cave ambience included. 
+
+[*][B][COLOR=#000000]Darkness Event[/COLOR][/B] [COLOR=#ff0000]v1.4.0[/COLOR]
+- Brief moment of blindness (1 second) with creepy atmosphere.
+- Multiple layered trapdoor sounds + cave ambience.
+- Random spooky messages broadcast to all players.
+- Default 10-50 minutes between events.
+
+[*][B][COLOR=#33cc33]Configurable Pumpkin Buffs[/COLOR][/B] [COLOR=#ff0000]v1.3.0[/COLOR]
+- Wearing a carved pumpkin grants customizable beacon-like buffs
+- Default: Haste II, Strength II, Speed II, Resistance II, Jump Boost II, Regeneration II
+- [B]Fully customizable:[/B] Add/remove effects, change levels, toggle individual buffs
+- 8 admin commands for real-time buff management ([ICODE]/halloween buffs[/ICODE])
+- Supports ALL Minecraft potion effects (Night Vision, Fire Resistance, etc.)
+- Toggle glowing effect independently
+- Player glows with an eerie aura (configurable)
+
+[*][B][COLOR=#ff9900]Progressive Cake Rewards[/COLOR][/B] [COLOR=#ff0000]v1.4.0[/COLOR]
+- Wearing pumpkin helmet rewards cakes progressively
+- 1st reward: 3 minutes → Cake
+- 2nd reward: 6 minutes → Cake
+- 3rd reward: 9 minutes → Cake
+- Continues increasing by 3 minutes up to 30 minutes
+- After reaching max: Cake every 30 minutes
+- Players notified: "Next reward in X minutes!"
+
+[*][B][COLOR=#00ccff]Server-Wide Announcements[/COLOR][/B] 
+- All pranks broadcast randomized spooky messages to everyone. 
+- Messages are fully customizable in [ICODE]messages.yml[/ICODE].
+- [B]Auto-merging:[/B] Updates automatically add new messages without overwriting yours!
+
+[*][B][COLOR=#ff0000]Player Protection[/COLOR][/B] [COLOR=#00ff00]Enhanced in v1.6.0![/COLOR]
+- Players can [ICODE]/halloween disable[/ICODE] to opt-out completely
+- Disabled players cannot spawn bosses or trigger graves (with helpful message)
+- 30-minute join cooldown prevents pumpkin farming
+- [ICODE]/halloween off[/ICODE] despawns all bosses, grave mobs, Herobrines, and reverts villagers instantly
+[/LIST]
+
+[B][COLOR=#ff9933]──────────────────────────[/COLOR][/B]
+
+[SIZE=5][COLOR=#ff9933]Commands[/COLOR][/SIZE]
+
+[B]Player Commands:[/B]
+[CODE]
+/halloween help       - Show all commands
+/halloween enable     - Enable effects for yourself
+/halloween disable    - Disable effects for yourself
+[/CODE]
+
+[B]Admin Commands:[/B]
+[CODE]
+/halloween on         - Enable plugin globally (starts all tasks)
+/halloween off        - Disable globally (despawns everything)
+/halloween reload     - Reload configs and messages
+/halloween set <event> <min> <max>  - Adjust intervals
+/halloween reset <pumpkin|helmet|all>  - Reset player states
+/halloween sound <player|@a> <sound>  - Play horror sound
+/halloween buffs <subcommand>  - Manage pumpkin buffs
+[/CODE]
+
+[B]Sound Command:[/B]
+[CODE]
+/halloween sound <player|@a> <sound>
+
+Available sounds:
+cave_ambience, witch_cackle, ghast_scream, enderman_scream,
+zombie_growl, skeleton_rattle, creeper_hiss, wither,
+ender_dragon, thunder, bell, portal, soul, sculk_shriek,
+warden_heartbeat
+
+Examples:
+/halloween sound Steve cave_ambience
+/halloween sound @a witch_cackle
+[/CODE]
+
+[B]Buff Management:[/B]
+[CODE]
+/halloween buffs list              - Show all buffs
+/halloween buffs toggle            - Enable/disable buff system
+/halloween buffs glow <on|off>     - Toggle glowing
+/halloween buffs add <effect> <level>     - Add buff
+/halloween buffs remove <effect>          - Remove buff
+/halloween buffs enable/disable <effect>  - Toggle specific buff
+/halloween buffs level <effect> <level>   - Change buff level
+[/CODE]
+
+[B][COLOR=#ff9933]──────────────────────────[/COLOR][/B]
+
+[SIZE=5][COLOR=#ff9933]Configuration[/COLOR][/SIZE]
+
+Prank intervals and features are stored in [ICODE]config.yml[/ICODE]:
+
+[CODE=yaml]
+# v1.6.1 - Custom command prefix
+command_prefix: "halloween"  # Change to "scary", "spooky", etc.
+
+# Broadcast settings
+broadcast_events: false  # If false, only affected player sees messages
+
+# Herobrine System (v1.7.0+)
+herobrine:
+  enabled: true
+  spawn_interval:
+    min: 30  # Minutes between spawns
+    max: 60
+  stage_durations:
+    observation: 30    # Stage 1 duration (seconds)
+    closer: 20         # Stage 2 duration
+    vanishing: 15      # Stage 3 duration
+    chase: 45          # Stage 4 duration
+  chase_speed: 0.4     # Movement speed boost during chase
+
+# Update Checker (v1.7.1+)
+update_checker:
+  enabled: true
+  message: "§6[Halloween] §eNew update available!\n§7Current: §c%current_version% §7→ Latest: §a%new_version%\n§eDownload: %link%"
+
+# Grave System (v1.6.0+)
+grave:
+  enabled: true
+  spawns:
+    skeleton: 3
+    zombie: 2
+    skeleton_horse: 2
+    zombie_horse: 3
+  health_boost: 1.3  # +30% health
+  damage_boost: 1.5  # +50% damage
+  speed_boost: 0.2   # +20% speed
+  pumpkin_drops_per_mob: 3
+  xp_per_mob: 5
+  rewards:
+    pumpkins_min: 10
+    pumpkins_max: 32
+    cakes_min: 2
+    cakes_max: 5
+    skeleton_skull_chance: 0.5
+    zombie_head_chance: 0.5
+    diamonds: 5
+    treasure_map: 1
+
+# Pumpkin Monster Boss (v1.5.0+)
+pumpkin_monster:
+  enabled: true
+  health: 100.0
+  damage_boost: 2.0
+  speed_boost: 0.3
+  xp_reward: 10  # Base XP (scales with player level)
+
+# Halloween Boss (v1.5.0+)
+pumpkin_witch:
+  enabled: true
+  health: 100.0
+  damage_boost: 3.0
+  speed_boost: 0.3
+  xp_reward: 15  # Base XP (+40% more than Pumpkin Monster)
+  bat_spawn_interval: 10    # Seconds
+  phantom_spawn_interval: 60  # Seconds
+
+# Random pumpkin mobs (v1.5.0+)
+random_pumpkin_mobs:
+  enabled: true
+  chance: 0.10  # 10%
+  pumpkin_drops:
+    min: 5
+    max: 10
+
+# Pumpkin Villager trading (v1.5.0+)
+pumpkin_villager:
+  enabled: true
+  daily_limit: 64
+
+# Event intervals
+intervals:
+  pumpkin:
+    min: 1
+    max: 10
+  slenderman:
+    min: 10
+    max: 15
+  fire:
+    min: 30
+    max: 60
+  lightning:
+    min: 20
+    max: 40
+  darkness:
+    min: 10
+    max: 50
+
+# Pumpkin buffs (v1.3.0+)
+pumpkin_buffs:
+  enabled: true
+  glowing: true
+  effects:
+    - type: HASTE
+      level: 1
+      enabled: true
+    - type: SPEED
+      level: 1
+      enabled: true
+    # ... customize as needed
+[/CODE]
+
+Prank messages are customizable in [ICODE]messages.yml[/ICODE]. Example:
+
+[CODE=yaml]
+slenderman:
+  - "Slenderman almost got %PLAYER%... but vanished in shame."
+fire:
+  - "I fell into the burning ring of fire..."
+darkness:
+  - "%PLAYER% felt the darkness creeping in..."
+herobrine:
+  stage1:
+    - "👁️ %PLAYER% feels like they're being watched..."
+  stage2:
+    - "😨 %PLAYER% swears they saw something in the distance..."
+  stage3:
+    - "😱 %PLAYER% just saw Herobrine... then he vanished!"
+  stage4:
+    - "🏃 RUN %PLAYER%! Herobrine is hunting you!"
+pumpkinMonsterSpawn:
+  - "💀 %PLAYER% awakened a Pumpkin Monster!"
+pumpkinWitchDefeat:
+  - "⭐ %PLAYER% defeated the legendary Halloween Boss!"
+graveAwaken:
+  - "⚰️ %PLAYER% has disturbed an ancient grave... something evil awakens!"
+graveCurseBroken:
+  - "✨ %PLAYER% has broken the curse of the grave and defeated the undead army!"
+[/CODE]
+
+[B]Auto-Merging:[/B] When you update the plugin, new messages and config sections are automatically added without overwriting your customizations!
+
+[B][COLOR=#ff9933]──────────────────────────[/COLOR][/B]
+
+[SIZE=5][COLOR=#ff9933]Installation[/COLOR][/SIZE]
+
+[LIST=1]
+[*]Place the plugin jar in your [ICODE]plugins/[/ICODE] folder.
+[*]Start the server once to generate configs.
+[*]Edit [ICODE]config.yml[/ICODE] and [ICODE]messages.yml[/ICODE] if desired.
+[*]Use [ICODE]/halloween reload[/ICODE] or restart the server.
+[/LIST]
+
+[B]Upgrading from older versions:[/B]
+Simply replace the JAR and restart. Your configs and messages will be preserved, and new features will be automatically added!
+
+[B][COLOR=#ff9933]──────────────────────────[/COLOR][/B]
+
+[SIZE=5][COLOR=#ff9933]Compatibility[/COLOR][/SIZE]
+
+[LIST]
+[*][B]Minecraft:[/B] 1.20+ (tested on 1.21.1)
+[*][B]Server:[/B] Spigot, Paper, Purpur, or compatible
+[*][B]Java:[/B] 17+
+[*][B]Dependencies:[/B] None (standalone plugin!)
+[/LIST]
+
+[B][COLOR=#ff9933]──────────────────────────[/COLOR][/B]
+
+[SIZE=5][COLOR=#ff9933]Latest Updates[/COLOR][/SIZE]
+
+[B]v1.7.1 (October 8, 2025)[/B]
+[LIST]
+[*]🔧 FIXED: Grave detection now works underground and when surrounded by blocks
+[*]🔧 FIXED: Cross arms now sink completely during animation (layer 3→0)
+[*]✨ NEW: Automatic update checker with admin notifications
+[*]✨ NEW: Clickable download links in update notifications
+[*]✨ NEW: Fully configurable update messages with placeholders
+[*]IMPROVED: Config version auto-updates from 1.7.0 to 1.7.1
+[/LIST]
+
+[B]v1.7.0 (October 7, 2025)[/B]
+[LIST]
+[*]✨ NEW: [B]Herobrine Scare Events[/B] - 4-stage progressive encounter system
+[*]✨ NEW: Stage 1 - Silent observation from distance
+[*]✨ NEW: Stage 2 - Closer encounter with cave ambience
+[*]✨ NEW: Stage 3 - Vanishing act with enderman scream
+[*]✨ NEW: Stage 4 - Aggressive chase with wither sounds
+[*]✨ NEW: Fully configurable spawn rates and stage durations
+[*]🔧 FIXED: Herobrine cleanup on plugin disable
+[*]🔧 FIXED: Multiple bug fixes for stability
+[/LIST]
+
+[B]v1.6.2 (October 7, 2025)[/B]
+[LIST]
+[*]NEW: [B]Horror Sound Command[/B] - Play spooky sounds to players
+[*]NEW: 15 unique horror sounds with tab completion
+[*]NEW: Broadcast sounds to all players with @a
+[*]IMPROVED: Enhanced admin control for atmosphere and events
+[/LIST]
+
+[B]v1.6.1 (October 7, 2025)[/B]
+[LIST]
+[*]NEW: [B]Custom Command Prefix[/B] - Configure your own command
+[*]NEW: Player data separated to [ICODE]data.yml[/ICODE]
+[*]IMPROVED: Cross-server compatibility (Spigot, Paper, Purpur)
+[/LIST]
+
+[B]v1.6.0 (October 7, 2025)[/B]
+[LIST]
+[*]NEW: [B]Grave System[/B] - Build graves and summon undead armies!
+[*]NEW: Dramatic 18-second grave animation
+[*]NEW: Team-based XP distribution for grave battles
+[*]NEW: Chest reward system with multiple goodies
+[/LIST]
+
+[B][COLOR=#ff9933]──────────────────────────[/COLOR][/B]
+
+[SIZE=5][COLOR=#ff9933]License[/COLOR][/SIZE]
+This project is open-source under the [B]MIT License[/B].
+You are free to use, modify, and share it.
+
+[B][COLOR=#ff9933]──────────────────────────[/COLOR][/B]
+
+[CENTER][SIZE=4][B]Enjoying the plugin? Leave a ⭐⭐⭐⭐⭐ review![/B][/SIZE][/CENTER]

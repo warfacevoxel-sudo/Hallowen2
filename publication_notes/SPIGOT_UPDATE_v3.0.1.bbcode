@@ -1,0 +1,37 @@
+[SIZE=5][B][COLOR=#FF6600]🎃 Halloween Plugin v3.0.1 - Critical Hotfix[/COLOR][/B][/SIZE]
+
+[SIZE=4][B][COLOR=#FFD700]🔧 Bug Fixes[/COLOR][/B][/SIZE]
+
+[B]Fixed: Pumpkin buffs interfering with beacon effects[/B]
+[LIST]
+[*]Removed automatic buff removal when pumpkin helmet is taken off
+[*]This was causing beacon buffs to be removed every 5 seconds
+[*]Pumpkin buffs now expire naturally (15 seconds default)
+[*]Glow effect still removes immediately when helmet is removed
+[/LIST]
+
+[B]Fixed: Players with Halloween disabled still receiving pumpkin buffs[/B]
+[LIST]
+[*]Pumpkin buff system now properly checks if player has Halloween enabled
+[*]Uses [FONT=Courier New]isEligible()[/FONT] check before applying buffs
+[*]Respects [FONT=Courier New]/halloween disable[/FONT] setting
+[/LIST]
+
+[SIZE=4][B][COLOR=#FFD700]📝 Config Migration[/COLOR][/B][/SIZE]
+
+[LIST]
+[*]✅ [B]Seamless update from v3.0.0[/B] - No config changes needed
+[*]🔄 [B]Automatic migration from older versions[/B] with timestamped backup
+[*]Backup format: [FONT=Courier New]config_YYYYMMDD_HHMMSS.backup.yml[/FONT]
+[/LIST]
+
+[SIZE=4][B][COLOR=#FFD700]⚙️ Technical Notes[/COLOR][/B][/SIZE]
+
+[LIST]
+[*][B]Compatible with:[/B] Minecraft 1.21.1, Spigot/Paper/Purpur
+[*][B]Breaking changes:[/B] None (hotfix only)
+[*][B]Config version:[/B] 3.0.1
+[*][B]Recommended for:[/B] All v3.0.0 users experiencing beacon conflicts
+[/LIST]
+
+[SIZE=3][I][COLOR=#999999]This is a stability hotfix addressing community-reported issues. Update recommended for all servers using beacon effects.[/COLOR][/I][/SIZE]

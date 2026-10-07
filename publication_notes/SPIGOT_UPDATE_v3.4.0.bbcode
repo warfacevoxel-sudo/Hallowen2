@@ -1,0 +1,42 @@
+[SIZE=6][B][COLOR=#FF6600]🎃 Halloween Plugin v3.4.0 - Admin Toolkit, Statistics & Candy 🎃[/COLOR][/B][/SIZE]
+
+[SIZE=4][B]The biggest update since 3.0 - everything optional, defaults keep your current behaviour[/B][/SIZE]
+
+[HR][/HR]
+
+[SIZE=5][B][COLOR=#FF6600]🗓 Season scheduler[/COLOR][/B][/SIZE]
+Halloween turns itself on when your season starts and off when it ends ([FONT=courier new]season.start / end[/FONT], MM-DD). Players joining shortly before see a countdown. Manual [FONT=courier new]/halloween on|off[/FONT] still works.
+
+[SIZE=5][B][COLOR=#FF6600]⚡ /halloween trigger[/COLOR][/B][/SIZE]
+Fire any event on demand: [FONT=courier new]/halloween trigger <pumpkin|slenderman|fire|lightning|darkness|herobrine|zombieboss|skeletonboss|batwitch> [player|@a][/FONT]. Great for events, streams and testing.
+
+[SIZE=5][B][COLOR=#FF6600]🌙 Witching hour[/COLOR][/B][/SIZE]
+A daily window (real or in-game time) where scares come twice as often, with announcements and ambient horror sounds.
+
+[SIZE=5][B][COLOR=#FF6600]📊 Statistics & leaderboards[/COLOR][/B][/SIZE]
+[FONT=courier new]/halloween stats[/FONT], [FONT=courier new]/halloween top <stat>[/FONT] - scares survived, Halloween mobs killed, bosses defeated, graves completed, candy earned... You decide which stats players may see. [B]PlaceholderAPI[/B] expansion [FONT=courier new]%halloween_<stat>%[/FONT], [FONT=courier new]%halloween_top_<stat>_<n>_name%[/FONT]. Season-end top 3 announced in game and on Discord.
+
+[SIZE=5][B][COLOR=#FF6600]💬 Discord webhook[/COLOR][/B][/SIZE]
+Boss spawns and kills, grave completions, season start/end and the leaderboard posted to your Discord channel.
+
+[SIZE=5][B][COLOR=#FF6600]❤️ Boss bars & titles[/COLOR][/B][/SIZE]
+Health bars for both bosses, a wave bar for grave events ([FONT=courier new]Wave 2/3 · 5 mobs left · 1:30[/FONT]) and titles for boss spawns, wave starts and grave completion.
+
+[SIZE=5][B][COLOR=#FF6600]🛡 WorldGuard flag[/COLOR][/B][/SIZE]
+[FONT=courier new]/rg flag <region> halloween-events deny[/FONT] - no scares, bosses, graves or traders in your spawn or market.
+
+[SIZE=5][B][COLOR=#FF6600]🎁 Rewards: command, money, candy[/COLOR][/B][/SIZE]
+Every rewards list accepts [FONT=courier new]- command: "give %player% ..."[/FONT], [FONT=courier new]- money: 100[/FONT] ([B]Vault[/B]) and [FONT=courier new]- candy: 5[/FONT] next to items. [FONT=courier new]chance[/FONT] now works for boss rewards too (it was ignored).
+
+[SIZE=5][B][COLOR=#FF6600]🍬 Halloween Candy & configurable Pumpkin Trader[/COLOR][/B][/SIZE]
+Candy drops from Halloween mobs, bosses and graves and is spent at the Pumpkin Trader, whose trades you now configure yourself ([FONT=courier new]cost / result / max_uses[/FONT], [FONT=courier new]item: CANDY[/FONT]). Defaults keep the classic emerald ↔ pumpkins trades; existing traders pick the new offers up automatically.
+
+[SIZE=5][B][COLOR=#FF6600]⚰️ Grave polish & fixes[/COLOR][/B][/SIZE]
+✅ The reward chest [B]glows[/B] until someone opens it - no more hunting for the loot
+✅ Completion is measured over [B]all waves[/B] (a timed-out wave now lowers the reward instead of reporting 100%)
+✅ The "30 seconds remaining" warning no longer fires during the next wave
+✅ [FONT=courier new]/halloween reset cooldowns [player][/FONT] clears boss & grave cooldowns; [FONT=courier new]/halloween debug eligible [player][/FONT] shows why a player does (not) get events
+
+[HR][/HR]
+[B]Requirements:[/B] Spigot / Paper / Purpur 1.21.3+ (incl. 26.1 / 26.2; 26.3 expected to work), Java 21+. Vault, PlaceholderAPI and WorldGuard are optional.
+[B]Upgrade:[/B] drop-in for v3.0.5+ - new config sections and 45 new message categories are added automatically; nothing you customised changes.

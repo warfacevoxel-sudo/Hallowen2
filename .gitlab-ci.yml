@@ -1,0 +1,86 @@
+# Halloween Plugin – GitLab CI
+#
+#  build        every push / MR: compiles the plugin with JDK 25 (Java 21 bytecode) and keeps the jar as an artifact
+#  pages        master only: builds the documentation site (mkdocs-material) → https://softici.gitlab.io/halloween/
+#  release      tags only, MANUAL: uploads the jar to Modrinth / GitHub. Runs only when the CI/CD variables
+#               MODRINTH_TOKEN (scope: create/write versions) and/or GITHUB_TOKEN (repo → contents: write) exist.
+#               Settings → CI/CD → Variables, mark them Masked + Protected. Without them the job is skipped.
+
+stages: [build, deploy, release]
+
+variables:
+  MAVEN_OPTS: "-Dmaven.repo.local=$CI_PROJECT_DIR/.m2/repository -Dorg.slf4j.simpleLogger.showDateTime=true"
+  MAVEN_CLI_OPTS: "--batch-mode --no-transfer-progress --errors"
+
+build:
+  stage: build
+  image: maven:3.9-eclipse-temurin-25
+  cache:
+    key: maven-$CI_COMMIT_REF_SLUG
+    paths: [.m2/repository]
+  script:
+    - mvn $MAVEN_CLI_OPTS clean package
+    - ls -la target/*.jar
+  artifacts:
+    paths: [target/halloween-plugin-*.jar]
+    expire_in: 30 days
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+    - if: $CI_COMMIT_BRANCH
+    - if: $CI_COMMIT_TAG
+
+pages:
+  stage: deploy
+  pages: true
+  image:
+    name: squidfunk/mkdocs-material:9
+    entrypoint: [""]
+  needs: []
+  script:
+    - mkdocs build --strict --site-dir public
+    - cp docs/llms.txt public/llms.txt
+    - test -f public/sitemap.xml && test -f public/robots.txt
+  artifacts:
+    paths: [public]
+    expire_in: 1 week
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+
+release:
+  stage: release
+  image: alpine:3.20
+  needs: [build]
+  before_script:
+    - apk add --no-cache curl jq
+    - JAR=$(ls target/halloween-plugin-*.jar | head -n1); echo "jar=$JAR"
+    - VERSION=${CI_COMMIT_TAG#v}; echo "version=$VERSION"
+    - CHANGELOG=release_notes/CHANGELOG_v$VERSION.md; test -f "$CHANGELOG" || CHANGELOG=/dev/null
+  script:
+    # --- Modrinth (project slug: halloween-plugin) ---
+    - |
+      if [ -n "$MODRINTH_TOKEN" ]; then
+        jq -n --arg v "$VERSION" --rawfile cl "$CHANGELOG" \
+          '{name: ("Halloween Plugin " + $v), version_number: $v, changelog: $cl, dependencies: [],
+            game_versions: ["1.21.3","1.21.4","1.21.5","1.21.6","1.21.7","1.21.8","1.21.9","1.21.10","1.21.11","26.1","26.1.1","26.1.2","26.2","26.3"],
+            version_type: "release", loaders: ["paper","spigot","purpur","bukkit"], featured: true,
+            project_id: "halloween-plugin", file_parts: ["file"], primary_file: "file"}' > /tmp/modrinth.json
+        curl -sS -f -X POST https://api.modrinth.com/v2/version \
+          -H "Authorization: $MODRINTH_TOKEN" -H "User-Agent: softici/halloween-ci ($CI_PROJECT_URL)" \
+          -F "data=</tmp/modrinth.json" -F "file=@$JAR" | jq '{id, version_number, status}'
+      else echo "MODRINTH_TOKEN not set – skipping Modrinth"; fi
+    # --- GitHub release on the mirror softici/halloween ---
+    - |
+      if [ -n "$GITHUB_TOKEN" ]; then
+        REL=$(jq -n --arg t "$CI_COMMIT_TAG" --arg n "Halloween Plugin $VERSION" --rawfile b "$CHANGELOG" \
+          '{tag_name: $t, name: $n, body: $b, draft: false, prerelease: false}' | \
+          curl -sS -f -X POST https://api.github.com/repos/softici/halloween/releases \
+            -H "Authorization: Bearer $GITHUB_TOKEN" -H "Accept: application/vnd.github+json" -d @-)
+        UPLOAD=$(echo "$REL" | jq -r '.upload_url' | sed 's/{.*}//')
+        curl -sS -f -X POST "$UPLOAD?name=$(basename $JAR)" \
+          -H "Authorization: Bearer $GITHUB_TOKEN" -H "Content-Type: application/java-archive" \
+          --data-binary "@$JAR" | jq '{name, browser_download_url}'
+      else echo "GITHUB_TOKEN not set – skipping GitHub"; fi
+  rules:
+    - if: $CI_COMMIT_TAG =~ /^v\d+\.\d+\.\d+$/ && ($MODRINTH_TOKEN || $GITHUB_TOKEN)
+      when: manual
+      allow_failure: true

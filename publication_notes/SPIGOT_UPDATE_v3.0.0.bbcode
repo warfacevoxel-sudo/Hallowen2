@@ -1,0 +1,234 @@
+[SIZE=6][B][COLOR=#FF0000]🎃 Halloween Plugin v3.0.0 - MAJOR UPDATE[/COLOR][/B][/SIZE]
+
+[SIZE=5][B][COLOR=#FFD700]⚠️ BREAKING CHANGES - READ BEFORE UPDATING[/COLOR][/B][/SIZE]
+
+[B][COLOR=#FF6600]Plugin Folder Name Changed:[/COLOR][/B]
+[LIST]
+[*]Old: [FONT=Courier New]plugins/Halloween/[/FONT]
+[*]New: [FONT=Courier New]plugins/Halloween_Softici/[/FONT]
+[*][B]Prevents conflicts[/B] with other Halloween plugins
+[*][B]Auto-detection[/B] warns if old folder exists
+[/LIST]
+
+[B][COLOR=#FF6600]Config Structure Changed:[/COLOR][/B]
+[LIST]
+[*][FONT=Courier New]intervals:[/FONT] → [FONT=Courier New]events:[/FONT]
+[*][FONT=Courier New]pumpkin_monster:[/FONT] → [FONT=Courier New]pumpkin_zombie_boss:[/FONT]
+[*][FONT=Courier New]pumpkin_witch:[/FONT] → [FONT=Courier New]pumpkin_skeleton_boss:[/FONT]
+[*]All events now have [FONT=Courier New]enabled: true/false[/FONT] flag
+[*][B]Auto-migration[/B] preserves your settings
+[/LIST]
+
+[SIZE=5][B][COLOR=#FFD700]✨ New Features[/COLOR][/B][/SIZE]
+
+[B]🦇 Bat Transformation Event (NEW!)[/B]
+[LIST]
+[*]Bats have 33% chance to transform into witches when killed
+[*]Transformed witches spawn with pumpkin helmet + glow effect
+[*]1.5x health multiplier
+[*]Random useful potion drops: [I]Strength, Swiftness, Regeneration, Healing, Fire Resistance[/I]
+[*]3-8 pumpkin drops + 5 XP levels
+[*]Fully configurable in [FONT=Courier New]config.yml[/FONT]
+[/LIST]
+
+[CODE]
+bat_transformation:
+  enabled: true
+  chance: 0.33           # 33% transformation rate
+  health_multiplier: 1.5
+  xp_reward: 5
+  rewards:
+    pumpkins_min: 3
+    pumpkins_max: 8
+    potion_drop: true    # Random useful potion
+[/CODE]
+
+[B]🎯 Per-Event Toggle System[/B]
+[LIST]
+[*]Each event now has individual [FONT=Courier New]enabled: true/false[/FONT] flag
+[*]Disable specific events without removing config sections
+[*]Works immediately after [FONT=Courier New]/halloween reload[/FONT]
+[*]Example: Turn off pumpkin heads but keep Slenderman
+[/LIST]
+
+[CODE]
+events:
+  pumpkin:
+    enabled: true   # ✅ NOW WORKS!
+    min: 5
+    max: 15
+  
+  slenderman:
+    enabled: false  # ✅ Completely disabled
+    min: 10
+    max: 20
+[/CODE]
+
+[SIZE=5][B][COLOR=#FFD700]🐛 Critical Bug Fixes[/COLOR][/B][/SIZE]
+
+[LIST]
+[*][B]Fixed: Event [FONT=Courier New]enabled: false[/FONT] not working[/B]
+  [LIST]
+  [*]Previously, setting [FONT=Courier New]enabled: false[/FONT] had no effect
+  [*]All 6 event tasks updated (pumpkin, slenderman, fire, lightning, darkness, herobrine)
+  [*]Now properly checks enabled flag before scheduling
+  [/LIST]
+
+[*][B]Fixed: Bat witch potion drops were broken[/B]
+  [LIST]
+  [*]Old: Dropped uncraftable potions with no effects
+  [*]New: Random useful potions (Strength/Swiftness/Regeneration/Healing/Fire Resistance)
+  [*]Uses Minecraft 1.21.1 compatible potion types
+  [/LIST]
+
+[*][B]Fixed: XP errors in 3 locations[/B]
+  [LIST]
+  [*][FONT=Courier New]IllegalArgumentException: Experience must be positive[/FONT]
+  [*]Fixed in GraveManager, PumpkinMonsterManager, PumpkinWitchManager
+  [*]Now validates XP before setting
+  [/LIST]
+
+[*][B]Fixed: Config version overwrite during migration[/B]
+  [LIST]
+  [*]Config migration no longer overwrites [FONT=Courier New]config_version[/FONT]
+  [*]Preserves version marker for future updates
+  [/LIST]
+
+[*][B]Fixed: Deprecated sections added to fresh installs[/B]
+  [LIST]
+  [*]Removed [FONT=Courier New]pumpkin_protector:[/FONT] (was not working)
+  [*]Removed standalone [FONT=Courier New]herobrine:[/FONT] (use [FONT=Courier New]events.herobrine:[/FONT])
+  [*]Fresh v3.0.0 configs only contain working features
+  [/LIST]
+
+[*][B]Code Cleanup[/B]
+  [LIST]
+  [*]Removed 200+ lines of dead migration code
+  [*]Cleaner codebase for future updates
+  [/LIST]
+[/LIST]
+
+[SIZE=5][B][COLOR=#FFD700]🔄 Migration Guide[/COLOR][/B][/SIZE]
+
+[B]Updating from v1.x/v2.x:[/B]
+
+[B]Step 1:[/B] Backup your config
+[CODE]
+# Windows PowerShell:
+copy plugins\Halloween\config.yml plugins\Halloween\config.yml.backup
+copy plugins\Halloween\data.yml plugins\Halloween\data.yml.backup
+[/CODE]
+
+[B]Step 2:[/B] Stop server, replace JAR file
+
+[B]Step 3:[/B] Start server
+[LIST]
+[*]Plugin creates new [FONT=Courier New]Halloween_Softici/[/FONT] folder
+[*]Auto-generates v3.0.0 config structure
+[*]Shows warning if old [FONT=Courier New]Halloween/[/FONT] folder detected
+[/LIST]
+
+[B]Step 4:[/B] Migrate player data (optional)
+[CODE]
+copy plugins\Halloween\data.yml plugins\Halloween_Softici\data.yml
+[/CODE]
+
+[B]Step 5:[/B] Verify and cleanup
+[CODE]
+/halloween reload      # Check for errors
+/halloween set pumpkin 1 1  # Test events
+# After testing, delete old Halloween/ folder
+[/CODE]
+
+[SIZE=5][B][COLOR=#FFD700]📝 Updated Commands[/COLOR][/B][/SIZE]
+
+[CODE]
+/halloween cleanup [all]  # NEW: Remove entities, "all" includes traders
+/halloween set <event> 0 0  # Set to 0 0 to disable event
+/halloween reload  # Restarts all tasks with new config
+[/CODE]
+
+[SIZE=5][B][COLOR=#FFD700]🎯 Complete Feature Overview[/COLOR][/B][/SIZE]
+
+[B]🎃 Scare Events:[/B]
+[LIST]
+[*]Random pumpkin heads with buffs
+[*]Slenderman teleportation
+[*]Lightning strikes
+[*]Fire spawns
+[*]Darkness effects
+[*]Herobrine 4-stage encounters (night only)
+[*][B]NEW:[/B] Bat transformation witches
+[/LIST]
+
+[B]👹 Boss Battles:[/B]
+[LIST]
+[*]Pumpkin Zombie Boss (formerly Pumpkin Monster)
+[*]Pumpkin Skeleton Boss (formerly Pumpkin Witch)
+[*]4-phase progression
+[*]Minion spawning
+[*]Epic rewards
+[/LIST]
+
+[B]⚰️ Grave System:[/B]
+[LIST]
+[*]Build graves to summon undead armies
+[*]18-second dramatic animation
+[*]Team-based XP distribution
+[*]Reward chests with diamonds & ancient debris
+[*]3-wave combat system
+[/LIST]
+
+[B]🎃 Pumpkin Buffs:[/B]
+[LIST]
+[*]Speed, Strength, Resistance
+[*]Night Vision
+[*]Configurable duration & amplifiers
+[*]Glow effect (optional)
+[/LIST]
+
+[B]🔊 Horror Sounds:[/B]
+[LIST]
+[*]16 unique horror sounds
+[*][FONT=Courier New]/halloween sound @a <sound>[/FONT] command
+[*]Tab completion support
+[/LIST]
+
+[SIZE=5][B][COLOR=#FFD700]⚙️ Technical Details[/COLOR][/B][/SIZE]
+
+[LIST]
+[*][B]Config Version:[/B] 3.0.0
+[*][B]API:[/B] Spigot 1.21.1, Paper 1.21.1+, Purpur 1.21.1+
+[*][B]Java:[/B] 17+
+[*][B]Permissions:[/B]
+  [LIST]
+  [*][FONT=Courier New]halloween.base[/FONT] - Player commands (default: true)
+  [*][FONT=Courier New]halloween.admin[/FONT] - Admin commands (default: OP)
+  [/LIST]
+[/LIST]
+
+[SIZE=5][B][COLOR=#FFD700]📚 Documentation[/COLOR][/B][/SIZE]
+
+[LIST]
+[*][B]GitHub:[/B] Full documentation, guides, and source code
+[*][B]Config Auto-Migration:[/B] Automatically updates from v1.x/v2.x
+[*][B]Migration Warnings:[/B] Console shows clear instructions
+[*][B]Release Notes:[/B] Complete changelog available
+[/LIST]
+
+[SIZE=5][B][COLOR=#FFD700]🎉 Why Update to v3.0.0?[/COLOR][/B][/SIZE]
+
+[LIST]
+[*]✅ [B]No more plugin conflicts[/B] - Unique folder name
+[*]✅ [B]New bat transformation event[/B] - More variety
+[*]✅ [B]Per-event control[/B] - Enable/disable individual events
+[*]✅ [B]6 critical bugs fixed[/B] - More stable
+[*]✅ [B]Cleaner config structure[/B] - Easier to manage
+[*]✅ [B]Better code quality[/B] - Foundation for future features
+[/LIST]
+
+[SIZE=4][I][COLOR=#999999]Compatible with Minecraft 1.21.1 | Tested on Paper/Purpur | Auto-migration from v1.x/v2.x[/COLOR][/I][/SIZE]
+
+[B][COLOR=#FF6600]⚠️ Important:[/COLOR][/B] This is a major version update with breaking changes. Please read the migration guide above before updating. Auto-migration preserves your settings, but manual testing is recommended.
+
+[SIZE=4][B]Download v3.0.0 now and enjoy the enhanced Halloween experience! 🎃👻[/B][/SIZE]

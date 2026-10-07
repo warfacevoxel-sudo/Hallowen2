@@ -1,0 +1,293 @@
+[SIZE=6] 
+[COLOR=#ff6600][B]Halloween Plugin[/B][/COLOR][/SIZE]
+
+Bring the spooky spirit of Halloween to your Minecraft server!
+This plugin adds fun, scary features designed to [B]surprise your players[/B] and create a creepy seasonal atmosphere.
+
+Developed by [B]Softici s.r.o.[/B]
+
+[B][COLOR=#ff9933]──────────────────────────[/COLOR][/B]
+
+[SIZE=5][COLOR=#ff9933]Features[/COLOR][/SIZE]
+
+[LIST]
+[*][B][COLOR=#999999]Spooky Login Greeting[/COLOR][/B] 
+Players are welcomed with a chilling message when they join: 
+[ICODE]Spooky times have arrived... Type /halloween disable if you don't dare to be cursed.[/ICODE]
+[COLOR=#00ff00]NEW in v1.5.4:[/COLOR] 30-minute cooldown prevents pumpkin farming on join!
+
+[*][B][COLOR=#ff6600]Pumpkin Curse[/COLOR][/B] 
+- Every 1–10 minutes (configurable), a carved pumpkin appears on players' heads. 
+- Items are safe — the plugin checks inventory space before swapping helmets. 
+- After 3 curses, players' free slots fill with stacks of pumpkins (Easter egg). 
+
+[*][B][COLOR=#8b00ff]Grave System[/COLOR][/B] [COLOR=#ff0000]NEW in v1.6.0![/COLOR]
+Build elaborate graves and summon an [B]undead army[/B] to test your combat skills!
+
+[B]How to Build a Grave:[/B]
+
+[LIST=1]
+[*][B]Create the Coffin[/B] (underground):
+[LIST]
+[*]Place 3 wood planks in a row, 1 block below ground level
+[*]Any wood planks work!
+[/LIST]
+
+[*][B]Cover with Dirt[/B]:
+[LIST]
+[*]Place 3 dirt blocks directly above the coffin
+[/LIST]
+
+[*][B]Place the Sign[/B]:
+[LIST]
+[*]Put a sign on the middle dirt block
+[*]Write "RIP", "R.I.P.", "R.i.P.", or any variation
+[/LIST]
+
+[*][B]Build the Cross[/B]:
+[LIST]
+[*]On one side of the dirt, place 4 stone walls vertically
+[*]At the 3rd level (counting from bottom), add 2 stone walls horizontally (left and right)
+[*]Creates a cross shape
+[/LIST]
+
+[*][B]Add Candles[/B]:
+[LIST]
+[*]Place at least 1 candle on the opposite side of the cross
+[*]On top of the dirt blocks
+[/LIST]
+
+[*][B]Light the Candle[/B]:
+[LIST]
+[*]Right-click the candle with flint & steel
+[*]The grave awakens!
+[/LIST]
+[/LIST]
+
+[B]What Happens:[/B]
+
+[LIST=1]
+[*][B]Dramatic Animation[/B] (every 3 seconds):
+[LIST]
+[*]Cross sinks block by block (4 stages)
+[*]Dirt layer vanishes with sign and candles
+[*]Coffin transforms into nether bricks
+[/LIST]
+
+[*][B]Undead Army Spawns[/B]:
+[LIST]
+[*][B]3 Skeletons[/B] (default)
+[*][B]2 Zombies[/B] (default)
+[*][B]2 Skeleton Riders[/B] on skeleton horses (default)
+[*][B]3 Zombie Riders[/B] on zombie horses (default)
+[*]All mobs wear pumpkin helmets and glow!
+[/LIST]
+
+[*][B]Buffed Stats[/B]:
+[LIST]
+[*]+30% health
+[*]+50% damage
+[*]+20% speed
+[*]Drop 3 pumpkins each + extra XP
+[/LIST]
+
+[*][B]Defeat All Mobs[/B]:
+[LIST]
+[*]Chest appears with rewards
+[*]XP distributed among participants
+[/LIST]
+[/LIST]
+
+[B]Rewards:[/B]
+
+[B]Chest Contains:[/B]
+[LIST]
+[*]10-32 Carved Pumpkins
+[*]2-5 Cakes
+[*]0-1 Skeleton Skull (50% chance)
+[*]0-1 Zombie Head (50% chance)
+[*]1 Treasure Map
+[*]5 Diamonds
+[/LIST]
+
+[B]Participant XP:[/B]
+[LIST]
+[*]Total pool: 10 levels worth of XP (level 1 equivalent)
+[*]Distributed based on kill contribution
+[*]Example: Kill 50% of mobs = 50% of XP
+[/LIST]
+
+[HR][/HR]
+
+[SIZE=5][B]⚙️ Configuration[/B][/SIZE]
+
+[B]New Config Section:[/B]
+
+[CODE=yaml]
+# Grave System (v1.6.0+)
+grave:
+  enabled: true
+  spawns:
+    skeleton: 3  # Number of skeletons to spawn
+    zombie: 2  # Number of zombies to spawn
+    skeleton_horse: 2  # Number of skeleton riders on horses
+    zombie_horse: 3  # Number of zombie riders on horses
+  health_boost: 1.3  # Multiply mob health by this (1.3 = 30% more health)
+  damage_boost: 1.5  # Multiply mob damage by this (1.5 = 50% more damage)
+  speed_boost: 0.2  # Add this to mob speed
+  pumpkin_drops_per_mob: 3  # Pumpkins dropped by each grave mob
+  xp_per_mob: 5  # Extra XP per mob kill
+  rewards:
+    pumpkins_min: 10
+    pumpkins_max: 32
+    cakes_min: 2
+    cakes_max: 5
+    skeleton_skull_chance: 0.5  # 50% chance
+    zombie_head_chance: 0.5  # 50% chance
+    diamonds: 5
+    treasure_map: 1
+[/CODE]
+
+[B]New Messages:[/B]
+
+[CODE=yaml]
+graveAwaken:
+  - "🪦 %PLAYER% has disturbed an ancient grave... something evil awakens!"
+  - "💀 %PLAYER% has awakened old evil from beyond the grave!"
+  - "👻 The dead rise as %PLAYER% disturbs their eternal rest!"
+  - "⚰️ %PLAYER% has broken the seal on a cursed grave!"
+
+graveCurseBroken:
+  - "✨ %PLAYER% has broken the curse of the grave and defeated the undead army!"
+  - "🏆 %PLAYER% has vanquished the grave guardians and lifted the curse!"
+  - "⭐ The grave's curse is broken thanks to %PLAYER%!"
+  - "🎉 %PLAYER% and their allies have defeated the undead horde!"
+[/CODE]
+
+[HR][/HR]
+
+[SIZE=5][B]🛡️ Protection Systems[/B][/SIZE]
+
+[LIST]
+[*][B]Disabled Players:[/B] Cannot trigger grave events
+[*][B]Global Disable:[/B] [FONT=Courier New]/halloween off[/FONT] despawns all active grave mobs
+[*][B]Error Messages:[/B] Helpful messages if Halloween is disabled
+[/LIST]
+
+[HR][/HR]
+
+[SIZE=5][B]🎮 Gameplay Tips[/B][/SIZE]
+
+[B]For Players:[/B]
+[LIST]
+[*][B]Team up![/B] Graves spawn many mobs - bring friends
+[*][B]Be prepared:[/B] Diamond/netherite armor recommended
+[*][B]Track contributions:[/B] Everyone who helps gets XP
+[*][B]Farm pumpkins:[/B] Each mob drops 3 pumpkins (default)
+[/LIST]
+
+[B]For Server Admins:[/B]
+[LIST]
+[*][B]Adjust difficulty:[/B] Change spawn counts in config
+[*][B]Balance rewards:[/B] Customize chest loot
+[*][B]Test first:[/B] Build a grave in creative to test settings
+[*][B]Monitor performance:[/B] Large battles may impact server
+[/LIST]
+
+[HR][/HR]
+
+[SIZE=5][B]📊 Technical Details[/B][/SIZE]
+
+[B]Structure Validation:[/B]
+[LIST]
+[*]Checks for exact 3x1 coffin (wood planks)
+[*]Validates 3x1 dirt layer above
+[*]Confirms RIP sign (case-insensitive)
+[*]Verifies cross structure (4 vertical + 2 horizontal stone walls)
+[*]Requires at least 1 candle on opposite side
+[/LIST]
+
+[B]Animation System:[/B]
+[LIST]
+[*]3-second intervals between stages
+[*]4 cross sinking stages
+[*]1 dirt removal stage
+[*]1 coffin transformation stage
+[*]Total animation time: ~18 seconds
+[/LIST]
+
+[B]Mob Tracking:[/B]
+[LIST]
+[*]UUIDs stored per grave
+[*]Kill attribution tracked per player
+[*]XP calculated by contribution percentage
+[*]Cleanup on grave completion or global disable
+[/LIST]
+
+[HR][/HR]
+
+[SIZE=5][B]🐛 Known Issues[/B][/SIZE]
+
+None currently known. Please report any bugs!
+
+[HR][/HR]
+
+[SIZE=5][B]📦 Installation[/B][/SIZE]
+
+[LIST=1]
+[*][B]Backup[/B] your server
+[*]Stop your server
+[*]Replace old [FONT=Courier New]halloween-plugin-1.5.4.jar[/FONT] with [FONT=Courier New]halloween-plugin-1.6.0.jar[/FONT]
+[*]Start server (config auto-updates with new grave section)
+[*]Enjoy!
+[/LIST]
+
+[HR][/HR]
+
+[SIZE=5][B]🔄 Changes from v1.5.4[/B][/SIZE]
+
+[LIST]
+[*][B]Added:[/B] Complete Grave System with structure building
+[*][B]Added:[/B] Sinking animation for cross
+[*][B]Added:[/B] Undead army spawning (4 mob types)
+[*][B]Added:[/B] Mounted mobs (skeleton/zombie riders)
+[*][B]Added:[/B] Participant XP distribution system
+[*][B]Added:[/B] Chest reward system
+[*][B]Added:[/B] Grave mob tracking and cleanup
+[*][B]Added:[/B] Global disable cleanup for graves
+[*][B]Updated:[/B] [FONT=Courier New]/halloween off[/FONT] now despawns grave mobs
+[*][B]Updated:[/B] Config with full grave configuration section
+[*][B]Updated:[/B] Messages with grave event messages
+[/LIST]
+
+[HR][/HR]
+
+[SIZE=5][B]💻 Developer Notes[/B][/SIZE]
+
+[B]New Classes:[/B]
+[LIST]
+[*][FONT=Courier New]GraveManager.java[/FONT] - Main grave system controller
+[*][FONT=Courier New]GraveStructure[/FONT] (inner class) - Structure data storage
+[*][FONT=Courier New]GraveData[/FONT] (inner class) - Active grave tracking
+[/LIST]
+
+[B]API Changes:[/B]
+[LIST]
+[*]Added [FONT=Courier New]getGraveManager()[/FONT] to HalloweenPlugin
+[*]Added [FONT=Courier New]despawnAllGraves()[/FONT] cleanup method
+[*]Extended [FONT=Courier New]/halloween off[/FONT] command
+[/LIST]
+
+[HR][/HR]
+
+[SIZE=5][B]🎉 Credits[/B][/SIZE]
+
+[B]Developed by:[/B] Softici s.r.o.
+[B]Version:[/B] 1.6.0
+[B]Release Date:[/B] October 6, 2025
+
+[HR][/HR]
+
+[CENTER][SIZE=5][B]Enjoy the new Grave System! 🪦👻[/B][/SIZE]
+
+[I]May your builds be spooky and your battles epic![/I][/CENTER]

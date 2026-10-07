@@ -1,0 +1,283 @@
+[SIZE=6][B][COLOR=#FF6600]🎃 Halloween Plugin v1.5.4 - Major Update! 👻[/COLOR][/B][/SIZE]
+
+[SIZE=5][B][COLOR=#FF9900]📋 What's New in v1.5.4[/COLOR][/B][/SIZE]
+
+This massive update brings bosses, trading, minion systems, and much more to your Halloween celebrations!
+
+[HR][/HR]
+
+[SIZE=5][B][COLOR=#FF6600]⭐ NEW FEATURES[/COLOR][/B][/SIZE]
+
+[SIZE=4][B]🎃 Two Epic Boss Battles[/B][/SIZE]
+
+[B][COLOR=#00AA00]Pumpkin Monster (Zombie Boss)[/COLOR][/B]
+[LIST]
+[*]Summon: Place [B]Fence Block[/B] + [B]Carved Pumpkin[/B] on top, right-click with Flint & Steel
+[*]Stats: 100 HP, Diamond Armor, Mace weapon
+[*]Rewards: Pumpkins, Cakes, Zombie Head, Glowstone, Phantom Membrane
+[*]XP: Smart scaling (3-5 levels at low level, scaled XP at high level)
+[/LIST]
+
+[B][COLOR=#0066FF]Halloween Boss (Skeleton Boss)[/COLOR][/B]
+[LIST]
+[*]Summon: Place [B]Lapis Lazuli Block[/B] + [B]Carved Pumpkin[/B] on top, right-click with Flint & Steel
+[*]Stats: 100 HP, Netherite Armor, Bow weapon
+[*]Special: Summons [B]Bats[/B] every 10s and [B]Phantoms[/B] every 60s
+[*]Rewards: [B]Ancient Debris[/B], Phantom Membrane, Random Beneficial Potion, 15-30 Pumpkins
+[*]XP: Smart scaling (+40% more than Pumpkin Monster)
+[/LIST]
+
+[SIZE=4][B]💎 Pumpkin Trading System[/B][/SIZE]
+[LIST]
+[*]Right-click any villager with a Carved Pumpkin to convert them
+[*]Becomes [B]Pumpkin Trader[/B] (Toolsmith with pumpkin helmet)
+[*]Trade: [B]64 Pumpkins ↔ 1 Emerald[/B] (both directions)
+[*]Daily limit: 64 trades per villager
+[/LIST]
+
+[SIZE=4][B]🎲 Random Pumpkin Mobs[/B][/SIZE]
+[LIST]
+[*]10% chance for any mob to spawn with a pumpkin helmet
+[*]Drops 5-10 carved pumpkins when killed
+[*]Works with all hostile mobs
+[/LIST]
+
+[SIZE=4][B]⏰ Join Cooldown System[/B][/SIZE]
+[LIST]
+[*]Players receive pumpkin helmet when joining (if not already wearing one)
+[*]30-minute cooldown prevents pumpkin farming
+[*]Persistent across server restarts
+[/LIST]
+
+[HR][/HR]
+
+[SIZE=5][B][COLOR=#FF6600]🎯 SMART XP SYSTEM[/COLOR][/B][/SIZE]
+
+[B]No more XP exploits![/B] The plugin now scales XP rewards based on player level:
+
+[LIST]
+[*][B]Low Level (< 30)[/B]: Get direct levels (3-7 levels per boss)
+[*][B]High Level (≥ 30)[/B]: Get raw XP that scales naturally with level requirements
+[*][B]Halloween Boss[/B]: Gives +40% more XP than Pumpkin Monster
+[/LIST]
+
+[B]Examples:[/B]
+[CODE]
+Level 5:  Pumpkin Monster = +3 levels | Halloween Boss = +7 levels
+Level 50: Pumpkin Monster = +70 XP (~0.4 levels) | Halloween Boss = +147 XP (~0.8 levels)
+Level 90: Pumpkin Monster = +70 XP (~0.04 levels) | Halloween Boss = +147 XP (~0.09 levels)
+[/CODE]
+
+[HR][/HR]
+
+[SIZE=5][B][COLOR=#FF6600]🔧 IMPROVEMENTS[/COLOR][/B][/SIZE]
+
+[SIZE=4][B]Configuration System[/B][/SIZE]
+[LIST]
+[*][B]Pumpkin Buffs[/B]: Fully configurable effects when wearing pumpkin helmet
+[*]8 Admin commands for real-time buff management
+[*]Individual effect enable/disable and level adjustment
+[*]Glowing effect toggle
+[/LIST]
+
+[SIZE=4][B]Progressive Cake Rewards[/B][/SIZE]
+[LIST]
+[*]Wear pumpkin helmet continuously to earn cakes
+[*]First reward: 3 minutes
+[*]Progressive: 6, 9, 12... up to 30 minutes
+[*]Resets if helmet is removed
+[/LIST]
+
+[SIZE=4][B]Better Messages[/B][/SIZE]
+[LIST]
+[*][B]Private Mode[/B]: Only affected player sees event messages (broadcast_events: false)
+[*][B]Broadcast Mode[/B]: All players see events (broadcast_events: true)
+[*]Only players with Halloween enabled see messages
+[*]Disabled players get helpful hint to enable Halloween
+[/LIST]
+
+[SIZE=4][B]Global Disable Protection[/B][/SIZE]
+[LIST]
+[*]When admin disables Halloween with [B]/halloween off[/B]:
+[*]✓ All bosses despawn immediately
+[*]✓ All minions (bats/phantoms) removed
+[*]✓ All Pumpkin Traders revert to normal villagers
+[*]✓ Players cannot spawn new bosses
+[/LIST]
+
+[SIZE=4][B]Player Disable Protection[/B][/SIZE]
+[LIST]
+[*]Players who disable Halloween cannot spawn bosses
+[*]Shows helpful message: "You have Halloween disabled! Type /halloween enable to spawn bosses."
+[*]Respects player choice
+[/LIST]
+
+[HR][/HR]
+
+[SIZE=5][B][COLOR=#FF6600]🎃 HALLOWEEN EVENTS[/COLOR][/B][/SIZE]
+
+All original pranks still included:
+[LIST]
+[*][B]Pumpkin Curse[/B]: Random pumpkin helmet (1-10 min intervals)
+[*][B]Slenderman[/B]: Teleports behind you (10-15 min)
+[*][B]Fire Ring[/B]: Harmless fire effect (30-60 min)
+[*][B]Lightning Strike[/B]: Harmless lightning (20-40 min)
+[*][B]Darkness[/B]: Temporary darkness effect (10-50 min)
+[*][B]Easter Egg[/B]: Get 3 pumpkins in row? Inventory filled with pumpkins!
+[/LIST]
+
+[HR][/HR]
+
+[SIZE=5][B][COLOR=#FF6600]📋 COMMANDS[/COLOR][/B][/SIZE]
+
+[SIZE=4][B]Player Commands[/B][/SIZE]
+[CODE]
+/halloween help       - Show all commands
+/halloween enable     - Enable Halloween for yourself
+/halloween disable    - Disable Halloween for yourself
+[/CODE]
+
+[SIZE=4][B]Admin Commands[/B][/SIZE]
+[CODE]
+/halloween on                              - Enable Halloween globally
+/halloween off                             - Disable Halloween (despawns bosses, reverts villagers)
+/halloween reload                          - Reload config and messages
+/halloween set <event> <min> <max>        - Set event intervals
+/halloween reset <pumpkin|helmet|all>     - Reset player states
+/halloween buffs list                      - List all pumpkin buffs
+/halloween buffs toggle                    - Toggle buffs on/off
+/halloween buffs glow <on|off>            - Toggle glowing effect
+/halloween buffs add <effect> <level>     - Add a buff
+/halloween buffs remove <effect>           - Remove a buff
+/halloween buffs enable <effect>           - Enable a buff
+/halloween buffs disable <effect>          - Disable a buff
+/halloween buffs level <effect> <level>   - Change buff level
+[/CODE]
+
+[HR][/HR]
+
+[SIZE=5][B][COLOR=#FF6600]⚙️ CONFIGURATION[/COLOR][/B][/SIZE]
+
+[B]Main Settings:[/B]
+[CODE]
+enabled: true                  # Global Halloween toggle
+broadcast_events: false        # Broadcast to all vs private messages
+
+pumpkin_monster:              # Zombie boss configuration
+  enabled: true
+  health: 100.0
+  damage_boost: 2.0
+  speed_boost: 0.3
+  xp_reward: 10
+
+pumpkin_witch:                # Skeleton boss configuration
+  enabled: true
+  health: 100.0
+  damage_boost: 3.0
+  speed_boost: 0.3
+  xp_reward: 15
+  bat_spawn_interval: 10
+  phantom_spawn_interval: 60
+  minion_range: 20
+
+random_pumpkin_mobs:          # Random mob pumpkins
+  enabled: true
+  chance: 0.10
+  pumpkin_drops:
+    min: 5
+    max: 10
+
+pumpkin_villager:             # Trading system
+  enabled: true
+  daily_limit: 64
+
+pumpkin_buffs:                # Helmet buffs
+  enabled: true
+  glowing: true
+  effects:
+    - type: HASTE
+      level: 1
+      enabled: true
+    - type: SPEED
+      level: 1
+      enabled: true
+    - type: STRENGTH
+      level: 1
+      enabled: true
+    # ... and more!
+[/CODE]
+
+[HR][/HR]
+
+[SIZE=5][B][COLOR=#FF6600]📦 INSTALLATION[/COLOR][/B][/SIZE]
+
+[LIST=1]
+[*]Download [B]halloween-plugin-1.5.4.jar[/B]
+[*]Place in your server's [B]plugins/[/B] folder
+[*]Restart the server
+[*]Configure [B]config.yml[/B] and [B]messages.yml[/B] to your liking
+[*]Enjoy the spooky fun! 🎃
+[/LIST]
+
+[HR][/HR]
+
+[SIZE=5][B][COLOR=#FF6600]🔄 UPGRADING FROM v1.4.x[/COLOR][/B][/SIZE]
+
+[LIST]
+[*]✅ [B]100% Compatible[/B] - No breaking changes
+[*]✅ All player data preserved (disabled status, rewards, etc.)
+[*]✅ All configurations preserved
+[*]✅ Simply replace the JAR file and restart
+[/LIST]
+
+[HR][/HR]
+
+[SIZE=5][B][COLOR=#FF6600]✨ HIGHLIGHTS[/COLOR][/B][/SIZE]
+
+[LIST]
+[*]🎮 [B]Two challenging bosses[/B] with unique mechanics
+[*]🦇 [B]Minion system[/B] with bats and phantoms
+[*]💎 [B]Trading economy[/B] with villagers
+[*]🎯 [B]Smart XP scaling[/B] prevents exploits
+[*]⏰ [B]Anti-farm cooldown[/B] system
+[*]🔧 [B]Full configurability[/B] for all features
+[*]📊 [B]Progressive rewards[/B] for dedication
+[*]🛡️ [B]Complete protection[/B] systems
+[*]📝 [B]Customizable messages[/B]
+[*]🎃 [B]Original pranks[/B] still included
+[/LIST]
+
+[HR][/HR]
+
+[SIZE=5][B][COLOR=#FF6600]📋 REQUIREMENTS[/COLOR][/B][/SIZE]
+
+[LIST]
+[*][B]Minecraft:[/B] 1.20+ (Paper/Spigot)
+[*][B]Java:[/B] 17+
+[*][B]Dependencies:[/B] None! Standalone plugin
+[/LIST]
+
+[HR][/HR]
+
+[SIZE=5][B][COLOR=#FF6600]🐛 BUG FIXES[/COLOR][/B][/SIZE]
+
+[LIST]
+[*]Fixed: High-level players getting too much XP from bosses
+[*]Fixed: Players with Halloween disabled could spawn bosses
+[*]Fixed: Bosses and villagers persisting after global disable
+[*]Fixed: Minion spawning reliability issues
+[*]Fixed: Pumpkin farming exploit via join/leave
+[*]Fixed: Message spam for disabled players
+[*]Fixed: Villager profession conflicts with pumpkin helmet
+[*]Fixed: Chest spawning at incorrect height
+[/LIST]
+
+[HR][/HR]
+
+[SIZE=6][B][COLOR=#FF6600]🎃 Happy Halloween! 👻[/COLOR][/B][/SIZE]
+
+[SIZE=4]Transform your server into a spooky Halloween adventure with epic bosses, trading, and endless fun![/SIZE]
+
+[HR][/HR]
+
+[SIZE=3][I]Plugin by Softici s.r.o. | Version 1.5.4 | Build: October 6, 2025[/I][/SIZE]

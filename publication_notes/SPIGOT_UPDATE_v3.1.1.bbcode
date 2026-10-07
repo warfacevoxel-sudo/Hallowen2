@@ -1,0 +1,152 @@
+[SIZE=6][B][COLOR=#FF6600]🎃 Halloween Plugin v3.1.1 - Bug Fix Release 🎃[/COLOR][/B][/SIZE]
+
+[SIZE=4][B]Bug Fix: Pumpkin Surprise Configuration Now Works![/B][/SIZE]
+
+In v3.1.0, we added config options to control the pumpkin surprise easter egg, but the code wasn't actually reading them. This has been fixed!
+
+[HR][/HR]
+
+[SIZE=5][B][COLOR=#FF6600]🐛 What Was Fixed[/COLOR][/B][/SIZE]
+
+[B]The Problem:[/B]
+Config options [FONT=courier new]enable_pumpkin_surprise[/FONT] and [FONT=courier new]pumpkin_surprise_count[/FONT] existed in v3.1.0 but were [B]completely ignored[/B] by the plugin. The code still used hardcoded values.
+
+[B]The Fix:[/B]
+Code now properly reads and respects both configuration options!
+
+[HR][/HR]
+
+[SIZE=5][B][COLOR=#FF6600]✨ What You Can Do Now[/COLOR][/B][/SIZE]
+
+[SIZE=4][B]1. Disable the Pumpkin Surprise Feature[/B][/SIZE]
+
+Don't want player inventories filling with pumpkins? Just disable it:
+
+[CODE]events:
+  pumpkin:
+    enable_pumpkin_surprise: false  # No more inventory flooding!
+[/CODE]
+
+[SIZE=4][B]2. Customize the Trigger Count[/B][/SIZE]
+
+Want it to trigger after 5 pumpkins instead of 3?
+
+[CODE]events:
+  pumpkin:
+    pumpkin_surprise_count: 5  # Requires 5 pumpkins before surprise
+[/CODE]
+
+[SIZE=4][B]3. Make It Trigger Immediately[/B][/SIZE]
+
+Want every pumpkin to fill the inventory? (Chaos mode!)
+
+[CODE]events:
+  pumpkin:
+    pumpkin_surprise_count: 1  # Surprise on EVERY pumpkin!
+[/CODE]
+
+[HR][/HR]
+
+[SIZE=5][B][COLOR=#FF6600]📝 Configuration[/COLOR][/B][/SIZE]
+
+The config options that [B]now actually work[/B]:
+
+[CODE]events:
+  # Pumpkin Curse - Places carved pumpkin on player's head
+  pumpkin:
+    enabled: true
+    min: 5
+    max: 20
+    enable_pumpkin_surprise: true  # ← NOW WORKS! Enable/disable inventory fill
+    pumpkin_surprise_count: 3      # ← NOW WORKS! Customize trigger count
+[/CODE]
+
+[B]Default Values:[/B]
+[LIST]
+[*][FONT=courier new]enable_pumpkin_surprise: true[/FONT] - Feature is enabled by default
+[*][FONT=courier new]pumpkin_surprise_count: 3[/FONT] - Triggers on 3rd pumpkin (same as before)
+[/LIST]
+
+[HR][/HR]
+
+[SIZE=5][B][COLOR=#FF6600]🔄 Upgrade Instructions[/COLOR][/B][/SIZE]
+
+[SIZE=4][B]From v3.1.0 to v3.1.1:[/B][/SIZE]
+
+[B]1.[/B] Stop your server
+[B]2.[/B] Replace [FONT=courier new]halloween-plugin-3.1.0.jar[/FONT] with [FONT=courier new]halloween-plugin-3.1.1.jar[/FONT]
+[B]3.[/B] Start your server
+[B]4.[/B] Config auto-updates to v3.1.1
+
+[COLOR=#00AA00][B]✅ 100% Backward Compatible![/B][/COLOR]
+[LIST]
+[*]No manual config changes needed
+[*]Existing configs work perfectly
+[*]Default behavior is identical to v3.1.0
+[/LIST]
+
+[SIZE=4][B]From v3.0.x to v3.1.1:[/B][/SIZE]
+
+[LIST]
+[*]Smart merge automatically adds new config keys
+[*]Your customizations are preserved
+[*]Just drop in the new JAR and restart!
+[/LIST]
+
+[HR][/HR]
+
+[SIZE=5][B][COLOR=#FF6600]🔧 Technical Details[/COLOR][/B][/SIZE]
+
+[B]What Changed:[/B]
+
+[SIZE=3][B]Before (v3.1.0) - Hardcoded:[/B][/SIZE]
+[CODE]if (count == 3 && !data.hasPumpkinPrank(player.getUniqueId())) {
+    fillFreeSlotsWithPumpkins(player);  // Always at 3, can't disable
+}
+[/CODE]
+
+[SIZE=3][B]After (v3.1.1) - Config-Driven:[/B][/SIZE]
+[CODE]boolean surpriseEnabled = getConfig().getBoolean("events.pumpkin.enable_pumpkin_surprise", true);
+int surpriseCount = Math.max(1, getConfig().getInt("events.pumpkin.pumpkin_surprise_count", 3));
+
+if (surpriseEnabled && count >= surpriseCount && !data.hasPumpkinPrank(player.getUniqueId())) {
+    fillFreeSlotsWithPumpkins(player);  // Now respects your config!
+}
+[/CODE]
+
+[B]Build Info:[/B]
+[LIST]
+[*]JAR Size: 133,725 bytes (~131 KB)
+[*]Java: 17+
+[*]Spigot/Paper: 1.20-1.21.1
+[*]Build Status: ✅ Clean (zero errors)
+[/LIST]
+
+[HR][/HR]
+
+[SIZE=5][B][COLOR=#FF6600]📚 What's the Pumpkin Surprise?[/COLOR][/B][/SIZE]
+
+When a player receives their 3rd pumpkin (from events or login), the plugin fills all empty inventory slots with stacks of 64 carved pumpkins as a fun easter egg! 🎃
+
+[B]Now you can:[/B]
+[LIST]
+[*]Disable it entirely if you don't want it
+[*]Change when it triggers (1st pumpkin, 5th pumpkin, 10th, etc.)
+[*]Keep the default behavior (3rd pumpkin)
+[/LIST]
+
+[HR][/HR]
+
+[SIZE=5][B][COLOR=#FF6600]🎯 Download[/COLOR][/B][/SIZE]
+
+[B]Latest Version:[/B] v3.1.1 (October 27, 2025)
+[B]Type:[/B] Bug Fix Release
+[B]Changelog:[/B] See [URL='https://github.com/yourusername/halloween-plugin/releases/tag/v3.1.1']GitHub Releases[/URL]
+
+[HR][/HR]
+
+[SIZE=4][B]Questions? Issues?[/B][/SIZE]
+Post in this thread and I'll help you out! 👻
+
+[SIZE=4][B]Enjoying the plugin?[/B][/SIZE]
+Leave a review and let me know what features you'd like to see next! 🎃

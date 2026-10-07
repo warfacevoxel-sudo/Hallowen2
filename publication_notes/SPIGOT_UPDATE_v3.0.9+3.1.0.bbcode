@@ -1,0 +1,85 @@
+[SIZE=5][COLOR=#FF6600][B]🎃 Halloween Plugin v3.0.9 + v3.1.0 - World Blacklist & Message Expansion![/B][/COLOR][/SIZE]
+
+[COLOR=#FF6600][B]Release Date:[/B][/COLOR] October 21, 2025
+[COLOR=#FF6600][B]Type:[/B][/COLOR] Feature release - world filtering + message customization
+
+[SIZE=4][COLOR=#CC3300]✨ New Features[/COLOR][/SIZE]
+
+[COLOR=#009900][B]v3.1.0 - World Blacklist System[/B][/COLOR]
+[LIST]
+[*][B]NEW:[/B] Disable Halloween events in specific worlds (nether, creative, admin worlds)
+[*][B]COMPLETE:[/B] All 12 event types respect world blacklist (bosses, traders, graves, scares)
+[*][B]SMART MERGE:[/B] Automatically adds worlds_blacklist section when upgrading from v3.0.x
+[*][B]FLEXIBLE:[/B] Supports vanilla (nether, the_end) and custom world names (world_nether, world_the_end)
+[*][B]NO DATA LOSS:[/B] Your custom config settings are preserved during upgrade
+[/LIST]
+
+[COLOR=#009900][B]v3.0.9 - Additional Message Customization[/B][/COLOR]
+[LIST]
+[*][B]EXPANDED:[/B] 9 more messages moved to messages.yml (XP rewards, cooldowns, pumpkin love notes)
+[*][B]VARIATIONS:[/B] 19 total message variations for better variety
+[*][B]TRANSLATABLE:[/B] All player-facing messages now in one file
+[/LIST]
+
+[SIZE=4][COLOR=#0066CC]📋 World Blacklist Configuration[/COLOR][/SIZE]
+
+[CODE]
+# In config.yml (auto-added when upgrading)
+worlds_blacklist:
+  - nether           # Vanilla nether
+  - world_nether     # Multiverse/custom servers
+  - the_end          # Vanilla the_end
+  - world_the_end    # Multiverse/custom servers
+  - creative_world   # Add any world name you want
+[/CODE]
+
+[B]What gets disabled in blacklisted worlds:[/B]
+[LIST]
+[*]Login pumpkin spawns
+[*]Pumpkin trader creation (villagers)
+[*]Boss spawning (zombie/skeleton bosses)
+[*]Grave encounters
+[*]All scare events (pumpkin curse, slenderman, fire, lightning, darkness, herobrine)
+[*]Bat witch transformations
+[/LIST]
+
+[SIZE=4][COLOR=#FF6600]⚙️ Installation[/COLOR][/SIZE]
+
+[B]From v3.0.8 → v3.1.0:[/B]
+[LIST=1]
+[*]Stop your server
+[*]Replace [FONT=courier]halloween-plugin-3.0.8.jar[/FONT] with [FONT=courier]halloween-plugin-3.1.0.jar[/FONT]
+[*]Start your server
+[*][B]worlds_blacklist[/B] section auto-added to config.yml (at bottom of file)
+[*][B]messages.yml[/B] smart-merged with 9 new message types
+[*]All your existing settings preserved!
+[/LIST]
+
+[B]From older versions (v3.0.0-v3.0.7):[/B]
+Same process! Smart merge handles everything automatically.
+
+[SIZE=4][COLOR=#9900CC]💡 Use Cases[/COLOR][/SIZE]
+
+[LIST]
+[*][B]Creative worlds:[/B] Disable Halloween in build/creative worlds
+[*][B]Nether/End:[/B] No Halloween chaos in dangerous dimensions
+[*][B]Admin worlds:[/B] Staff areas remain event-free
+[*][B]Minigame worlds:[/B] Prevent Halloween interference
+[*][B]Multiverse servers:[/B] Full control over which worlds get Halloween events
+[/LIST]
+
+[COLOR=#CC6600][B]Compatibility:[/B][/COLOR] v3.0.x → v3.1.0 = Automatic migration (zero manual edits needed)
+[COLOR=#CC6600][B]Minecraft:[/B][/COLOR] 1.21.1+ (Paper/Purpur recommended)
+[COLOR=#CC6600][B]Java:[/B][/COLOR] 17+
+
+[SIZE=4][COLOR=#00AA00]✅ What's Fixed[/COLOR][/SIZE]
+
+[LIST]
+[*]World blacklist now correctly handles YAML quoted strings
+[*]Smart config merge adds new sections to END of file (clean organization)
+[*]Config upgrade from v3.0.x preserves ALL admin customizations
+[/LIST]
+
+[URL='https://gitlab.com/softici/halloween/-/issues']🐛 Bug Reports[/URL]
+
+[I][COLOR=#666666]Complete control over where Halloween happens! 🎃[/COLOR][/I]

@@ -1,0 +1,111 @@
+# Halloween Plugin documentation site (GitLab Pages)
+# Build locally:  pip install mkdocs-material && mkdocs serve
+site_name: Halloween Plugin
+site_url: https://softici.gitlab.io/halloween/
+site_description: >-
+  Halloween Plugin for Paper, Spigot and Purpur (Minecraft 1.21.3 – 26.x): random scare events,
+  Pumpkin bosses, an animated grave system with undead waves, Herobrine, pumpkin buffs,
+  a candy economy, statistics, Discord webhook and a season scheduler. Free, open source (MIT).
+site_author: Softici s.r.o.
+copyright: Copyright &copy; 2025–2026 Softici s.r.o. · MIT License
+repo_url: https://gitlab.com/softici/halloween
+repo_name: softici/halloween
+edit_uri: -/edit/master/docs/
+
+docs_dir: docs
+strict: true
+
+theme:
+  name: material
+  custom_dir: overrides
+  language: en
+  logo: img/icon.jpg
+  favicon: img/icon.jpg
+  icon:
+    repo: fontawesome/brands/gitlab
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: deep orange
+      accent: orange
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: deep orange
+      accent: orange
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+  features:
+    - navigation.sections
+    - navigation.top
+    - navigation.footer
+    - navigation.instant
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - content.tabs.link
+    - toc.follow
+
+nav:
+  - Home: index.md
+  - Getting started:
+      - Installation & upgrading: install.md
+      - Compatibility: compatibility.md
+      - FAQ: faq.md
+  - Features:
+      - Feature overview: features.md
+      - Bosses & graves: bosses-and-graves.md
+      - Rewards, candy & trader: rewards.md
+  - Reference:
+      - Commands: commands.md
+      - Permissions: permissions.md
+      - config.yml: config.md
+      - messages.yml: messages.md
+      - PlaceholderAPI & WorldGuard: integrations.md
+  - Changelog: changelog.md
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets:
+      base_path: ["."]
+      check_paths: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+
+plugins:
+  - search
+
+extra:
+  # Bumped by release_notes/VERSION_UPDATE_CHECKLIST.md
+  plugin_version: "3.4.0"
+  download_spigot: https://www.spigotmc.org/resources/129197/
+  download_modrinth: https://modrinth.com/plugin/halloween-plugin
+  download_gitlab: https://gitlab.com/softici/halloween/-/releases
+  download_github: https://github.com/softici/halloween/releases
+  hangar: https://hangar.papermc.io/softici/Halloween
+  social:
+    - icon: fontawesome/brands/gitlab
+      link: https://gitlab.com/softici/halloween
+      name: Source on GitLab
+    - icon: fontawesome/brands/github
+      link: https://github.com/softici/halloween
+      name: Mirror on GitHub
+    - icon: fontawesome/brands/youtube
+      link: https://www.youtube.com/watch?v=IGhz5KSODT8
+      name: Boss showcase on YouTube
