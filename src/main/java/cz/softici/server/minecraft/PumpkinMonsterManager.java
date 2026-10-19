@@ -289,7 +289,8 @@ public class PumpkinMonsterManager implements Listener {
         startBossTeleportation(zombie.getUniqueId());
         
         // Broadcast spawn message
-        plugin.broadcastAbout(creator, plugin.getMessages().getRandomMessage("pumpkinMonsterSpawn", creator.getName()));
+        plugin.broadcastNearby(loc, plugin.getVisuals().bossMessageRadius(), creator, null,
+            plugin.getMessages().getRandomMessage("pumpkinMonsterSpawn", creator.getName())); // v3.4.1 - only players in range
         plugin.getDiscord().sendBossSpawn("Pumpkin Monster", creator.getName()); // v3.4.0
         
         // Sound effects
@@ -361,7 +362,8 @@ public class PumpkinMonsterManager implements Listener {
             }, 1L);
             
             // Broadcast victory
-            plugin.broadcastAbout(killer, plugin.getMessages().getRandomMessage("pumpkinMonsterDefeat", killer.getName()));
+            plugin.broadcastNearby(chestLoc, plugin.getVisuals().bossMessageRadius(), killer, null,
+                plugin.getMessages().getRandomMessage("pumpkinMonsterDefeat", killer.getName())); // v3.4.1 - only players in range
             plugin.getStats().increment(killer, "bosses_defeated"); // v3.4.0
             plugin.getDiscord().sendBossDefeat("Pumpkin Monster", killer.getName());
             

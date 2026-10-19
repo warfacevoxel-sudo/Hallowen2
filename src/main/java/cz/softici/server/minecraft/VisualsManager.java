@@ -36,6 +36,21 @@ public class VisualsManager implements Listener {
     public boolean bossBarsEnabled() { return plugin.getConfig().getBoolean("visuals.boss_bar.enabled", true); }
     public double bossBarRadius() { return plugin.getConfig().getDouble("visuals.boss_bar.radius", 40.0); }
 
+    /** v3.4.1 - true: boss/grave announcements go only to players near the event (like the boss bars). */
+    public boolean messagesRadiusOnly() { return plugin.getConfig().getBoolean("visuals.messages.radius_only", true); }
+
+    /** v3.4.1 - radius for boss summon/defeat messages; 0 (default) = same as visuals.boss_bar.radius. */
+    public double bossMessageRadius() {
+        double r = plugin.getConfig().getDouble("visuals.messages.boss_radius", 0.0);
+        return r > 0 ? r : bossBarRadius();
+    }
+
+    /** v3.4.1 - radius around the grave for wave bar, titles and messages (default 30, as before for bar/titles). */
+    public double graveRadius() {
+        double r = plugin.getConfig().getDouble("visuals.messages.grave_radius", 30.0);
+        return r > 0 ? r : 30.0;
+    }
+
     /* ---------- generic bars ---------- */
 
     public BossBar newBar(String title, BarColor color, BarStyle style) {

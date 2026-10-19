@@ -1282,6 +1282,41 @@ public class HalloweenPlugin extends JavaPlugin implements Listener {
         broadcastAll(msg);
     }
 
+    /**
+     * v3.4.1 - Announce a boss/grave event only to players who can actually see it happen: eligible players
+     * within {@code radius} blocks of {@code center} (same world), plus the subject and {@code extra} participants.
+     * Uses the same audience rules as the boss bars (opt-out, vanish, spectators, world blacklist, WorldGuard flag).
+     * If {@code subject} is vanished only they see the message (as in broadcastAbout).
+     * With visuals.messages.radius_only: false it behaves exactly like the old global broadcast.
+     *
+     * @param subject player the message names (summoner/killer/initiator), or null if it names nobody
+     * @param extra   always-included players (e.g. grave participants), may be null
+     */
+    public void broadcastNearby(Location center, double radius, Player subject, Collection<UUID> extra, String msg) {
+        if (msg == null || msg.isEmpty()) return;
+        if (!visuals.messagesRadiusOnly() || center == null || center.getWorld() == null) {
+            if (subject != null) broadcastAbout(subject, msg); else broadcastAll(msg);
+            return;
+        }
+        if (subject != null && subject.isOnline() && isVanished(subject)) {
+            subject.sendMessage(msg);
+            return;
+        }
+        Set<Player> targets = new LinkedHashSet<>();
+        double r2 = radius * radius;
+        for (Player p : center.getWorld().getPlayers()) {
+            if (p.getLocation().distanceSquared(center) <= r2 && isEligible(p)) targets.add(p);
+        }
+        if (subject != null && subject.isOnline() && !data.isDisabled(subject.getUniqueId())) targets.add(subject);
+        if (extra != null) {
+            for (UUID id : extra) {
+                Player p = Bukkit.getPlayer(id);
+                if (p != null && p.isOnline() && !data.isDisabled(id) && !isVanished(p)) targets.add(p);
+            }
+        }
+        for (Player p : targets) p.sendMessage(msg);
+    }
+
     public void broadcastAll(String msg) {
         for (Player online : Bukkit.getOnlinePlayers()) {
             // Only send message if player has Halloween enabled (not disabled)

@@ -198,7 +198,8 @@ public class PumpkinWitchManager implements Listener {
         startBossTeleportation(witch);
         
         // Broadcast spawn message
-        plugin.broadcastAbout(creator, plugin.getMessages().getRandomMessage("pumpkinWitchSpawn", creator.getName()));
+        plugin.broadcastNearby(loc, plugin.getVisuals().bossMessageRadius(), creator, null,
+            plugin.getMessages().getRandomMessage("pumpkinWitchSpawn", creator.getName())); // v3.4.1 - only players in range
         plugin.getDiscord().sendBossSpawn("Halloween Boss", creator.getName()); // v3.4.0
         
         // Sound effects
@@ -369,7 +370,8 @@ public class PumpkinWitchManager implements Listener {
             }, 1L);
             
             // Broadcast victory
-            plugin.broadcastAbout(killer, plugin.getMessages().getRandomMessage("pumpkinWitchDefeat", killer.getName()));
+            plugin.broadcastNearby(chestLoc, plugin.getVisuals().bossMessageRadius(), killer, null,
+                plugin.getMessages().getRandomMessage("pumpkinWitchDefeat", killer.getName())); // v3.4.1 - only players in range
             plugin.getStats().increment(killer, "bosses_defeated"); // v3.4.0
             plugin.getDiscord().sendBossDefeat("Halloween Boss", killer.getName());
             
