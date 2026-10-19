@@ -33,7 +33,7 @@ import java.util.*;
 public class HalloweenPlugin extends JavaPlugin implements Listener {
 
     /** Version written into config.yml by migrations - bump on every release (see VERSION_UPDATE_CHECKLIST.md). */
-    public static final String CONFIG_VERSION = "3.4.0";
+    public static final String CONFIG_VERSION = "3.4.1"; // v3.4.1 - bumped so existing 3.4.0 configs get visuals.messages via smart merge
 
     private final Random random = new Random();
     private PlayerDataManager data;
@@ -455,7 +455,7 @@ public class HalloweenPlugin extends JavaPlugin implements Listener {
         
         // v3.4.0 - Allow 3.0.5 through 3.4.0 to coexist without migration (only migrate older versions)
         // v3.0.0 through v3.0.4 get REPLACED with fresh config (too many breaking changes)
-        if (!configVersion.equals(CONFIG_VERSION) && !configVersion.equals("3.3.0") && !configVersion.equals("3.2.2") && !configVersion.equals("3.2.1") && !configVersion.equals("3.2.0") && !configVersion.equals("3.1.1") && !configVersion.equals("3.1.0") &&
+        if (!configVersion.equals(CONFIG_VERSION) && !configVersion.equals("3.4.0") && !configVersion.equals("3.3.0") && !configVersion.equals("3.2.2") && !configVersion.equals("3.2.1") && !configVersion.equals("3.2.0") && !configVersion.equals("3.1.1") && !configVersion.equals("3.1.0") &&
             !configVersion.equals("3.0.9") && !configVersion.equals("3.0.8") && !configVersion.equals("3.0.7") &&
             !configVersion.equals("3.0.6") && !configVersion.equals("3.0.5")) {
             getLogger().info("Detected config version: " + configVersion + " (expected: " + CONFIG_VERSION + ") - replacing with fresh " + CONFIG_VERSION + " config");
@@ -600,6 +600,9 @@ public class HalloweenPlugin extends JavaPlugin implements Listener {
         
         // v3.4.0 - configurable Pumpkin Trader trades
         ensurePumpkinVillagerTrades(lines);
+
+        // v3.4.1 - boss/grave messages limited to players in range
+        ensureVisualsMessages(lines);
         
         // v3.4.0 - grave.pumpkin_drops_per_mob was never read before 3.4.0 (1 pumpkin was hardcoded). The shipped
         // default said 3; keep the in-game behaviour unchanged by turning that untouched default into 1.
@@ -613,6 +616,33 @@ public class HalloweenPlugin extends JavaPlugin implements Listener {
                 }
             }
         }
+    }
+
+    /**
+     * v3.4.1 - Insert visuals.messages (radius-only boss/grave announcements) into an existing visuals section
+     * (nested keys are not added by the generic top-level merge).
+     */
+    private void ensureVisualsMessages(List<String> lines) {
+        int sectionStart = -1;
+        for (int i = 0; i < lines.size(); i++) {
+            if (lines.get(i).startsWith("visuals:")) { sectionStart = i; break; }
+        }
+        if (sectionStart < 0) return; // section missing entirely -> added as a whole by the top-level merge
+        int insertAt = sectionStart + 1;
+        for (int i = sectionStart + 1; i < lines.size(); i++) {
+            String line = lines.get(i);
+            if (!line.isEmpty() && !Character.isWhitespace(line.charAt(0)) && !line.startsWith("#")) break; // next top-level key
+            if (line.trim().startsWith("messages:")) return; // already there
+            if (!line.trim().isEmpty() && !line.trim().startsWith("#")) insertAt = i + 1; // after the last real key of the section
+        }
+        List<String> block = Arrays.asList(
+            "  # v3.4.1 - boss/grave summon, wave and victory chat messages (same audience rules as the bars/titles)",
+            "  messages:",
+            "    radius_only: true   # true = only eligible players near the boss/grave (+ summoner/killer/grave participants); false = whole server",
+            "    boss_radius: 0      # 0 = use boss_bar.radius",
+            "    grave_radius: 30    # around the grave; also used by the grave wave bar and titles");
+        lines.addAll(insertAt, block);
+        getLogger().info("  ✓ Added visuals.messages (boss/grave messages only for players in range)");
     }
 
     /**
