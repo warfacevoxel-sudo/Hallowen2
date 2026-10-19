@@ -254,6 +254,11 @@ visuals:
   boss_bar:
     enabled: true
     radius: 40          # players within this distance of a boss see its health bar (grave bars use 30)
+  # v3.4.1 - boss/grave summon, wave and victory chat messages (same audience rules as the bars/titles)
+  messages:
+    radius_only: true   # true = only eligible players near the boss/grave (+ summoner/killer/grave participants); false = whole server
+    boss_radius: 0      # 0 = use boss_bar.radius
+    grave_radius: 30    # around the grave; also used by the grave wave bar and titles
   titles:
     enabled: true
     boss_spawn: true
