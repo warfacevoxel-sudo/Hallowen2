@@ -2,7 +2,7 @@
 # Halloween Plugin v3.4.0 Config
 # =========================================================
 # DO NOT EDIT THIS LINE - used for auto-migration detection
-config_version: "3.4.0"
+config_version: "3.4.1"
 
 # Global enable/disable is controlled via commands, not here!
 #   /halloween on  - Enable Halloween globally (stored in data.yml)
