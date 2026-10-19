@@ -377,10 +377,28 @@ public class GraveManager implements Listener {
         return block.getType().toString().endsWith("_PLANKS");
     }
 
+    /** v3.4.1 - Grave announcement for everyone near the grave + participants (names nobody, so no vanish handling). */
+    private void announceGrave(GraveData graveData, String msg) {
+        plugin.broadcastNearby(graveData.getStructure().getCoffinLocation(), plugin.getVisuals().graveRadius(),
+            null, graveParticipants(graveData), msg);
+    }
+
+    /** v3.4.1 - Grave announcement that names the initiator (a vanished initiator is never leaked). */
+    private void announceGraveAbout(GraveData graveData, Player initiator, String msg) {
+        plugin.broadcastNearby(graveData.getStructure().getCoffinLocation(), plugin.getVisuals().graveRadius(),
+            initiator, graveParticipants(graveData), msg);
+    }
+
+    private Set<UUID> graveParticipants(GraveData graveData) {
+        Set<UUID> ids = new HashSet<>(graveData.getKillCounts().keySet());
+        ids.add(graveData.getInitiator());
+        return ids;
+    }
+
     private void startGraveEvent(Player player, GraveStructure structure) {
         // Broadcast message
         String message = plugin.getMessageManager().getRandomMessage("graveAwaken", player.getName());
-        plugin.broadcastAbout(player, message); // v3.3.0 - respects /halloween disable and vanish
+        plugin.broadcastNearby(structure.getCoffinLocation(), plugin.getVisuals().graveRadius(), player, null, message); // v3.4.1 - only players near the grave (still respects /halloween disable and vanish)
         plugin.getStats().increment(player, "graves_started"); // v3.4.0
         plugin.getDiscord().sendGraveStart(player.getName());
         
@@ -687,13 +705,13 @@ public class GraveManager implements Listener {
                 .replace("%WAVE%", String.valueOf(wave))
                 .replace("%TOTAL_WAVES%", String.valueOf(graveData.getTotalWaves()));
         }
-        plugin.broadcastAll(waveMsg);
+        announceGrave(graveData, waveMsg);
         
         // Play deep horn sound for nearby players (±20 blocks)
         Location graveLocation = graveData.getStructure().getCoffinLocation();
         playHornForNearbyPlayers(graveLocation, 20);
         // v3.4.0 - title + wave bar
-        plugin.getVisuals().titleNearby(graveLocation, 30, "wave_start", "titleWaveStart",
+        plugin.getVisuals().titleNearby(graveLocation, plugin.getVisuals().graveRadius(), "wave_start", "titleWaveStart",
             "%WAVE%", String.valueOf(wave), "%TOTAL_WAVES%", String.valueOf(graveData.getTotalWaves()));
         
         spawnGraveMobs(graveData, wave);
@@ -722,7 +740,7 @@ public class GraveManager implements Listener {
             "%TOTAL_WAVES%", String.valueOf(graveData.getTotalWaves()),
             "%MOBS_LEFT%", String.valueOf(graveData.getRemainingMobs()),
             "%TIME%", String.format("%d:%02d", remaining / 60, remaining % 60)));
-        plugin.getVisuals().updateAudience(bar, graveData.getStructure().getCoffinLocation(), 30, graveData.getKillCounts().keySet());
+        plugin.getVisuals().updateAudience(bar, graveData.getStructure().getCoffinLocation(), plugin.getVisuals().graveRadius(), graveData.getKillCounts().keySet());
     }
 
     /** v3.4.0 - 1 s countdown refresh of the wave bar, tracked so close() cancels it. */
@@ -972,7 +990,7 @@ public class GraveManager implements Listener {
             String waveMsg = plugin.getMessages().getRandomMessage("graveWaveCleared", "")
                 .replace("%CURRENT_WAVE%", String.valueOf(currentWave))
                 .replace("%NEXT_WAVE%", String.valueOf(graveData.getCurrentWave()));
-            plugin.broadcastAll(waveMsg);
+            announceGrave(graveData, waveMsg);
             
             // Spawn next wave after 5 seconds
             scheduleForGrave(graveData, 100L, () -> spawnWave(graveData));
@@ -1002,7 +1020,7 @@ public class GraveManager implements Listener {
                     // v3.0.8 - Use messages.yml for warning
                     String warningMsg = plugin.getMessages().getRandomMessage("graveWaveWarning", "")
                         .replace("%MOBS_LEFT%", String.valueOf(remaining));
-                    plugin.broadcastAll(warningMsg);
+                    announceGrave(graveData, warningMsg);
                 }
             }, warningTicks).getTaskId();
             graveData.setWaveWarningTask(warningTaskId);
@@ -1029,13 +1047,13 @@ public class GraveManager implements Listener {
         // v3.0.8 - Broadcast timeout message from messages.yml
         String timeoutMsg = plugin.getMessages().getRandomMessage("graveWaveTimeout", "")
             .replace("%WAVE%", String.valueOf(wave));
-        plugin.broadcastAll(timeoutMsg);
+        announceGrave(graveData, timeoutMsg);
         
         // Broadcast timeout details from messages.yml (multiple lines - pick random one)
         String detailMsg = plugin.getMessages().getRandomMessage("graveWaveTimeoutDetails", "")
             .replace("%MOBS_LEFT%", String.valueOf(remaining))
             .replace("%COMPLETION_PERCENT%", String.format("%.1f", completionPercent));
-        plugin.broadcastAll(detailMsg);
+        announceGrave(graveData, detailMsg);
         
         // Remove all remaining mobs from this wave
         List<UUID> mobsToRemove = new ArrayList<>(graveData.getMobUUIDs());
@@ -1059,7 +1077,7 @@ public class GraveManager implements Listener {
         } else {
             graveData.nextWave();
             // v3.3.0 - configurable via messages.yml
-            plugin.broadcastAll(plugin.getMessages().get("graveProceedingToWave", "%NEXT_WAVE%", String.valueOf(graveData.getCurrentWave())));
+            announceGrave(graveData, plugin.getMessages().get("graveProceedingToWave", "%NEXT_WAVE%", String.valueOf(graveData.getCurrentWave())));
             
             // Spawn next wave after 5 seconds
             scheduleForGrave(graveData, 100L, () -> spawnWave(graveData));
@@ -1076,10 +1094,10 @@ public class GraveManager implements Listener {
         
         Player initiator = Bukkit.getPlayer(graveData.getInitiator());
         String completeMsg = plugin.getMessages().getRandomMessage("graveEventCompletedWithPenalty", playerName);
-        plugin.broadcastAbout(initiator, completeMsg);
+        announceGraveAbout(graveData, initiator, completeMsg);
         
         // v3.3.0 - configurable via messages.yml (graveFinalCompletion, %COMPLETION_PERCENT%)
-        plugin.broadcastAbout(initiator, plugin.getMessages().get("graveFinalCompletion",
+        announceGraveAbout(graveData, initiator, plugin.getMessages().get("graveFinalCompletion",
             "%COMPLETION_PERCENT%", String.format("%.1f", completionPercent)));
         
         // Spawn reduced reward chest
@@ -1103,19 +1121,19 @@ public class GraveManager implements Listener {
         if (playerName == null) playerName = "Unknown";
         Player initiator = Bukkit.getPlayer(graveData.getInitiator());
         String message = plugin.getMessages().getRandomMessage("graveCurseBroken", playerName);
-        plugin.broadcastAbout(initiator, message);
+        announceGraveAbout(graveData, initiator, message);
         // v3.4.0 - completion title for everyone near the grave
-        plugin.getVisuals().titleNearby(structure.getCoffinLocation(), 30, "grave_complete", "titleGraveComplete", "%PLAYER%", playerName);
+        plugin.getVisuals().titleNearby(structure.getCoffinLocation(), plugin.getVisuals().graveRadius(), "grave_complete", "titleGraveComplete", "%PLAYER%", playerName);
         
         // Use messages.yml for all waves defeated message
         String allWavesMsg = plugin.getMessages().getRandomMessage("graveAllWavesDefeated", playerName);
-        plugin.broadcastAbout(initiator, allWavesMsg);
+        announceGraveAbout(graveData, initiator, allWavesMsg);
         
         // v3.0.5 - Calculate actual completion percentage for rewards
         // v3.4.0 - overall across all waves (a wave that timed out earlier lowers the result)
         double completionPercent = graveData.getOverallCompletion() * 100.0;
         if (completionPercent < 99.5) {
-            plugin.broadcastAbout(initiator, plugin.getMessages().get("graveFinalCompletion",
+            announceGraveAbout(graveData, initiator, plugin.getMessages().get("graveFinalCompletion",
                 "%COMPLETION_PERCENT%", String.format("%.1f", completionPercent)));
         }
         spawnGraveRewardChest(graveData, rewardLoc, completionPercent / 100.0);
@@ -1150,7 +1168,7 @@ public class GraveManager implements Listener {
                         plugin.getLogger().info("Grave completion < 50% - giving only 1 pumpkin as penalty");
                         // v3.0.8 - Use messages.yml for incomplete defense
                         String incompleteMsg = plugin.getMessages().getRandomMessage("graveIncompleteDefense", "");
-                        plugin.broadcastAll(incompleteMsg);
+                        announceGrave(graveData, incompleteMsg);
                     } else {
                         // v3.4.0 - shared reward service: items -> chest, money split by kill share,
                         // commands for every participant, completion multiplier applied to amounts
