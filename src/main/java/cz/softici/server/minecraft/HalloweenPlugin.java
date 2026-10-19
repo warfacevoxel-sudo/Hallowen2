@@ -1292,7 +1292,7 @@ public class HalloweenPlugin extends JavaPlugin implements Listener {
      * @param subject player the message names (summoner/killer/initiator), or null if it names nobody
      * @param extra   always-included players (e.g. grave participants), may be null
      */
-    public void broadcastNearby(Location center, double radius, Player subject, Collection<UUID> extra, String msg) {
+    public void broadcastNearby(org.bukkit.Location center, double radius, Player subject, Collection<UUID> extra, String msg) {
         if (msg == null || msg.isEmpty()) return;
         if (!visuals.messagesRadiusOnly() || center == null || center.getWorld() == null) {
             if (subject != null) broadcastAbout(subject, msg); else broadcastAll(msg);
